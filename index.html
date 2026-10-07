@@ -512,79 +512,140 @@ nav a:hover{
 ========================= */
 
 /*
-   O braço direito é o braço da máquina.
-   Quando o barbeiro está parado, esse braço
-   faz um pequeno aceno para a tela.
+   AGORA O ACENO É FEITO COM A MÃO DIREITA LIVRE.
+
+   Sequência:
+   1. Máquina sai da mão.
+   2. Máquina vai para o bolso.
+   3. Braço sobe.
+   4. Ele acena.
+   5. Braço desce.
+   6. Máquina volta para a mão.
 */
 
-.barber-waving .barber-arm-right{
-    animation:barberWave 1.05s ease-in-out;
+.barber-arm-right{
+    transform-box:view-box;
 }
 
-@keyframes barberWave{
+.barber-waving .barber-arm-right{
+    animation:barberWaveHigh 1.65s ease-in-out;
+}
+
+@keyframes barberWaveHigh{
 
     0%{
         transform:rotate(0deg);
     }
 
-    15%{
-        transform:rotate(-12deg);
+    12%{
+        transform:rotate(-32deg);
     }
 
-    30%{
-        transform:rotate(18deg);
+    25%{
+        transform:rotate(-58deg);
     }
 
-    45%{
-        transform:rotate(-16deg);
+    38%{
+        transform:rotate(-43deg);
     }
 
-    60%{
-        transform:rotate(14deg);
+    51%{
+        transform:rotate(-64deg);
     }
 
-    75%{
-        transform:rotate(-10deg);
+    64%{
+        transform:rotate(-42deg);
+    }
+
+    77%{
+        transform:rotate(-60deg);
+    }
+
+    90%{
+        transform:rotate(-35deg);
     }
 
     100%{
         transform:rotate(0deg);
     }
 
+}
+
+/* =========================
+   BOLSO DA MÁQUINA
+========================= */
+
+.clipper-pocket{
+    opacity:1;
+    transform-box:fill-box;
+    transform-origin:center;
+    transition:
+        opacity .2s ease,
+        transform .35s cubic-bezier(.2,.8,.2,1);
 }
 
 /*
-   Pequeno movimento da máquina durante o aceno,
-   deixando a animação mais natural.
+   Quando a máquina está guardada,
+   ela fica posicionada dentro do bolso.
 */
 
-.barber-waving .clipper-tool{
-    animation:clipperWave 1.05s ease-in-out;
+.clipper-tool{
+    transform-box:fill-box;
     transform-origin:center;
+    transition:
+        transform .35s cubic-bezier(.2,.8,.2,1),
+        opacity .2s ease;
 }
 
-@keyframes clipperWave{
+/*
+   O clipper fica inicialmente na mão.
+*/
+
+.clip­per-in-hand{
+    opacity:1;
+}
+
+/*
+   Durante o aceno ele vai para o bolso.
+   A posição foi calculada para o corpo do personagem.
+*/
+
+.clipper-tool.clipper-stowed{
+    transform:translate(-18px,11px) rotate(-12deg);
+}
+
+/* =========================
+   PREPARAÇÃO DO ACENO
+========================= */
+
+.barber-wave-prep .clipper-tool{
+    animation:clipperToPocket .35s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes clipperToPocket{
 
     0%{
-        transform:rotate(0deg);
+        transform:translate(0,0) rotate(7deg);
     }
 
-    30%{
-        transform:rotate(-8deg);
-    }
-
-    55%{
-        transform:rotate(8deg);
-    }
-
-    80%{
-        transform:rotate(-5deg);
+    45%{
+        transform:translate(-7px,5px) rotate(-4deg);
     }
 
     100%{
-        transform:rotate(0deg);
+        transform:translate(-18px,11px) rotate(-12deg);
     }
 
+}
+
+/* =========================
+   BOLSO VISUAL
+========================= */
+
+.barber-pocket{
+    position:absolute;
+    left:0;
+    top:0;
 }
 
 /* =========================
@@ -1548,11 +1609,14 @@ footer{
             aria-hidden="true"
         >
 
-            <!-- CORPO -->
+            <!-- =================================================
+                 CORPO
+            ================================================= -->
 
             <g class="barber-body">
 
                 <!-- PERNA ESQUERDA -->
+
                 <g class="barber-leg-left">
 
                     <path
@@ -1572,7 +1636,9 @@ footer{
 
                 </g>
 
+
                 <!-- PERNA DIREITA -->
+
                 <g class="barber-leg-right">
 
                     <path
@@ -1592,6 +1658,7 @@ footer{
 
                 </g>
 
+
                 <!-- UNIFORME DE LUXO -->
 
                 <path
@@ -1605,6 +1672,7 @@ footer{
                     stroke-width="1.6"
                 />
 
+
                 <!-- CAMISA -->
 
                 <path
@@ -1612,12 +1680,14 @@ footer{
                     fill="#eee8d8"
                 />
 
+
                 <!-- GRAVATA -->
 
                 <path
                     d="M47 72 L53 72 L55 83 L50 89 L45 83 Z"
                     fill="#d7ad55"
                 />
+
 
                 <!-- LAPELAS -->
 
@@ -1635,10 +1705,12 @@ footer{
                     stroke-width="1"
                 />
 
+
                 <!-- BOTÕES -->
 
                 <circle cx="50" cy="93" r="2" fill="#d7ad55"/>
                 <circle cx="50" cy="101" r="2" fill="#d7ad55"/>
+
 
                 <!-- CRACHÁ -->
 
@@ -1660,6 +1732,31 @@ footer{
                     fill="#111"
                 >N</text>
 
+
+                <!-- =================================================
+                     BOLSO DA MÁQUINA
+                ================================================= -->
+
+                <path
+                    d="M58 91 L70 91 L69 105 L57 105 Z"
+                    fill="#080808"
+                    stroke="#d7ad55"
+                    stroke-width="1.2"
+                />
+
+                <path
+                    d="M58 92 L70 92"
+                    stroke="#f4d27a"
+                    stroke-width="1"
+                />
+
+                <circle
+                    cx="67"
+                    cy="96"
+                    r="1.1"
+                    fill="#d7ad55"
+                />
+
             </g>
 
 
@@ -1670,14 +1767,15 @@ footer{
             <g class="barber-arm-left">
 
                 <path
-                    d="M32 73 Q20 82 18 94"
+                    d="M32 73 Q21 82 18 94"
                     stroke="#101010"
                     stroke-width="9"
                     stroke-linecap="round"
                     fill="none"
                 />
 
-                <!-- mão -->
+
+                <!-- MÃO -->
 
                 <circle
                     cx="18"
@@ -1688,56 +1786,129 @@ footer{
                     stroke-width="1"
                 />
 
-                <!-- TESOURA PROFISSIONAL -->
+
+                <!-- =================================================
+                     TESOURA PROFISSIONAL REALISTA
+                ================================================= -->
 
                 <g
                     class="scissors-tool"
-                    transform="translate(8 88) rotate(-18)"
+                    transform="translate(13 90) rotate(-12)"
                 >
 
-                    <!-- argolas -->
+                    <!-- ARGOLA 1 -->
 
                     <circle
                         cx="0"
                         cy="0"
-                        r="4.5"
-                        fill="#101010"
-                        stroke="#e3e3e3"
-                        stroke-width="1.8"
+                        r="5"
+                        fill="#111"
+                        stroke="#d9d9d9"
+                        stroke-width="1.5"
                     />
 
                     <circle
-                        cx="9"
+                        cx="0"
                         cy="0"
-                        r="4.5"
-                        fill="#101010"
-                        stroke="#e3e3e3"
-                        stroke-width="1.8"
+                        r="2.4"
+                        fill="#050505"
+                        stroke="#777"
+                        stroke-width=".8"
                     />
 
-                    <!-- lâminas -->
+
+                    <!-- ARGOLA 2 -->
+
+                    <circle
+                        cx="6"
+                        cy="7"
+                        r="5"
+                        fill="#111"
+                        stroke="#d9d9d9"
+                        stroke-width="1.5"
+                    />
+
+                    <circle
+                        cx="6"
+                        cy="7"
+                        r="2.4"
+                        fill="#050505"
+                        stroke="#777"
+                        stroke-width=".8"
+                    />
+
+
+                    <!-- LÂMINA SUPERIOR -->
 
                     <path
-                        d="M3 0 L23 -9"
-                        stroke="#f0f0f0"
-                        stroke-width="2.2"
+                        d="M3 2 L26 -8"
+                        stroke="#f2f2f2"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+
+                    <path
+                        d="M5 2 L26 -8"
+                        stroke="#9b9b9b"
+                        stroke-width=".8"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+
+
+                    <!-- LÂMINA INFERIOR -->
+
+                    <path
+                        d="M7 6 L26 13"
+                        stroke="#f2f2f2"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+
+                    <path
+                        d="M8 6 L26 13"
+                        stroke="#999"
+                        stroke-width=".8"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+
+
+                    <!-- PONTA DAS LÂMINAS -->
+
+                    <path
+                        d="M26 -8 L30 -10"
+                        stroke="#ededed"
+                        stroke-width="1"
                         stroke-linecap="round"
                     />
 
                     <path
-                        d="M6 0 L23 9"
-                        stroke="#f0f0f0"
-                        stroke-width="2.2"
+                        d="M26 13 L30 15"
+                        stroke="#ededed"
+                        stroke-width="1"
                         stroke-linecap="round"
                     />
 
-                    <!-- parafuso -->
+
+                    <!-- PIVÔ DOURADO -->
 
                     <circle
                         cx="5"
-                        cy="0"
-                        r="1.6"
+                        cy="4"
+                        r="2.2"
                         fill="#d7ad55"
+                        stroke="#f4d27a"
+                        stroke-width=".7"
+                    />
+
+                    <circle
+                        cx="5"
+                        cy="4"
+                        r=".8"
+                        fill="#111"
                     />
 
                 </g>
@@ -1746,7 +1917,7 @@ footer{
 
 
             <!-- =================================================
-                 BRAÇO DIREITO — MÁQUINA
+                 BRAÇO DIREITO — MÃO LIVRE PARA ACENAR
             ================================================= -->
 
             <g class="barber-arm-right">
@@ -1759,7 +1930,8 @@ footer{
                     fill="none"
                 />
 
-                <!-- mão -->
+
+                <!-- MÃO -->
 
                 <circle
                     cx="83"
@@ -1770,80 +1942,91 @@ footer{
                     stroke-width="1"
                 />
 
-                <!-- MÁQUINA PROFISSIONAL -->
+            </g>
 
-                <g
-                    class="clipper-tool"
-                    transform="translate(76 82) rotate(7)"
-                >
 
-                    <!-- corpo -->
+            <!-- =================================================
+                 MÁQUINA
+                 FICA FORA DO BRAÇO PARA NÃO SOFRER
+                 O BUG DE ROTAÇÃO DURANTE O ACENO.
+            ================================================= -->
 
-                    <rect
-                        x="0"
-                        y="0"
-                        width="14"
-                        height="25"
-                        rx="4"
-                        fill="#090909"
-                        stroke="#d7ad55"
-                        stroke-width="1.6"
-                    />
+            <g
+                class="clipper-tool"
+                id="clipperTool"
+                transform="translate(76 82) rotate(7)"
+            >
 
-                    <!-- lâmina -->
+                <!-- CORPO -->
 
-                    <path
-                        d="M3 -4 L11 -4 L10 2 L4 2 Z"
-                        fill="#cfcfcf"
-                        stroke="#777"
-                        stroke-width=".7"
-                    />
+                <rect
+                    x="0"
+                    y="0"
+                    width="14"
+                    height="25"
+                    rx="4"
+                    fill="#090909"
+                    stroke="#d7ad55"
+                    stroke-width="1.6"
+                />
 
-                    <!-- dentes da lâmina -->
 
-                    <path
-                        d="M3 -4 L3 -7
-                           M5 -4 L5 -7
-                           M7 -4 L7 -7
-                           M9 -4 L9 -7
-                           M11 -4 L11 -7"
-                        stroke="#eeeeee"
-                        stroke-width="1"
-                        stroke-linecap="round"
-                    />
+                <!-- LÂMINA -->
 
-                    <!-- detalhe dourado -->
+                <path
+                    d="M3 -4 L11 -4 L10 2 L4 2 Z"
+                    fill="#cfcfcf"
+                    stroke="#777"
+                    stroke-width=".7"
+                />
 
-                    <rect
-                        x="3"
-                        y="6"
-                        width="8"
-                        height="2"
-                        rx="1"
-                        fill="#d7ad55"
-                    />
 
-                    <!-- botão -->
+                <!-- DENTES DA LÂMINA -->
 
-                    <circle
-                        cx="7"
-                        cy="15"
-                        r="2.2"
-                        fill="#d7ad55"
-                    />
+                <path
+                    d="M3 -4 L3 -7
+                       M5 -4 L5 -7
+                       M7 -4 L7 -7
+                       M9 -4 L9 -7
+                       M11 -4 L11 -7"
+                    stroke="#eeeeee"
+                    stroke-width="1"
+                    stroke-linecap="round"
+                />
 
-                    <!-- detalhe inferior -->
 
-                    <rect
-                        x="4"
-                        y="20"
-                        width="6"
-                        height="2"
-                        rx="1"
-                        fill="#222"
-                    />
+                <!-- DETALHE DOURADO -->
 
-                </g>
+                <rect
+                    x="3"
+                    y="6"
+                    width="8"
+                    height="2"
+                    rx="1"
+                    fill="#d7ad55"
+                />
+
+
+                <!-- BOTÃO -->
+
+                <circle
+                    cx="7"
+                    cy="15"
+                    r="2.2"
+                    fill="#d7ad55"
+                />
+
+
+                <!-- DETALHE INFERIOR -->
+
+                <rect
+                    x="4"
+                    y="20"
+                    width="6"
+                    height="2"
+                    rx="1"
+                    fill="#222"
+                />
 
             </g>
 
@@ -1854,7 +2037,7 @@ footer{
 
             <g class="barber-head">
 
-                <!-- pescoço -->
+                <!-- PESCOÇO -->
 
                 <rect
                     x="43"
@@ -1865,7 +2048,8 @@ footer{
                     fill="#ffd36b"
                 />
 
-                <!-- rosto -->
+
+                <!-- ROSTO -->
 
                 <ellipse
                     cx="50"
@@ -1877,7 +2061,8 @@ footer{
                     stroke-width="1"
                 />
 
-                <!-- cabelo -->
+
+                <!-- CABELO -->
 
                 <path
                     d="M29 43
@@ -1888,7 +2073,8 @@ footer{
                     fill="#141414"
                 />
 
-                <!-- brilho do cabelo -->
+
+                <!-- BRILHO DO CABELO -->
 
                 <path
                     d="M36 28 Q48 19 61 24"
@@ -1898,6 +2084,7 @@ footer{
                     fill="none"
                     opacity=".6"
                 />
+
 
                 <!-- ROSTO NORMAL -->
 
@@ -1926,6 +2113,7 @@ footer{
                     />
 
                 </g>
+
 
                 <!-- ROSTO CANSADO -->
 
@@ -1970,17 +2158,20 @@ footer{
 
         </svg>
 
+
         <!-- SUOR -->
 
         <span class="barber-sweat sweat-one"></span>
         <span class="barber-sweat sweat-two"></span>
         <span class="barber-sweat sweat-three"></span>
 
+
         <!-- RESPIRAÇÃO -->
 
         <span class="tired-breath"></span>
 
     </div>
+
 
     <div class="mini-barber-shadow"></div>
 
@@ -1994,16 +2185,38 @@ footer{
 <header>
 
     <a href="#inicio" class="logo">
-        <div class="logo-mark">N</div>
-        <div class="logo-text">NERO <span>BARBER</span></div>
+
+        <div class="logo-mark">
+            N
+        </div>
+
+        <div class="logo-text">
+            NERO <span>BARBER</span>
+        </div>
+
     </a>
 
+
     <nav>
-        <a href="#inicio">Início</a>
-        <a href="#servicos">Serviços</a>
-        <a href="#barbeiros">Barbeiros</a>
-        <a href="#historia">Nossa história</a>
+
+        <a href="#inicio">
+            Início
+        </a>
+
+        <a href="#servicos">
+            Serviços
+        </a>
+
+        <a href="#barbeiros">
+            Barbeiros
+        </a>
+
+        <a href="#historia">
+            Nossa história
+        </a>
+
     </nav>
+
 
     <button
         class="header-btn"
@@ -2011,6 +2224,7 @@ footer{
     >
         Agendar horário
     </button>
+
 
     <button
         class="mobile-menu"
@@ -2031,8 +2245,11 @@ footer{
 <section class="hero" id="inicio">
 
     <div class="hero-grid"></div>
+
     <div class="hero-orb"></div>
+
     <div class="hero-ring"></div>
+
 
     <div class="hero-content">
 
@@ -2040,16 +2257,24 @@ footer{
             Barbearia Premium
         </div>
 
+
         <h1>
+
             Seu estilo.
-            <span>Sua assinatura.</span>
+
+            <span>
+                Sua assinatura.
+            </span>
+
         </h1>
+
 
         <p>
             Mais do que um corte. Uma experiência criada para homens
             que entendem que presença, precisão e estilo fazem parte
             da mesma identidade.
         </p>
+
 
         <div class="hero-actions">
 
@@ -2059,6 +2284,7 @@ footer{
             >
                 Agendar experiência
             </button>
+
 
             <a
                 href="#servicos"
@@ -2072,14 +2298,26 @@ footer{
 
     </div>
 
+
     <div class="hero-card">
 
         <div class="hero-card-top">
-            <small>Experiência NERO</small>
-            <div class="rating">★ 4.9</div>
+
+            <small>
+                Experiência NERO
+            </small>
+
+            <div class="rating">
+                ★ 4.9
+            </div>
+
         </div>
 
-        <strong>Precisão.</strong>
+
+        <strong>
+            Precisão.
+        </strong>
+
 
         <p>
             Atendimento premium, ambiente exclusivo
@@ -2100,13 +2338,18 @@ footer{
     <div class="section-header reveal">
 
         <div>
-            <div class="section-kicker">Nossos serviços</div>
+
+            <div class="section-kicker">
+                Nossos serviços
+            </div>
 
             <h2 class="section-title">
                 Precisão em<br>
                 cada detalhe.
             </h2>
+
         </div>
+
 
         <p class="section-desc">
             Escolha sua experiência e deixe o resto
@@ -2118,18 +2361,30 @@ footer{
 
     <div class="services-grid">
 
+
         <div
             class="service-card reveal"
             onclick="openBooking('Corte + Barba Completo')"
         >
 
-            <div class="service-number">01</div>
+            <div class="service-number">
+                01
+            </div>
 
-            <div class="service-icon">✂</div>
+            <div class="service-icon">
+                ✂
+            </div>
 
             <div class="service-title">
-                <h3>Corte + Barba</h3>
-                <span class="price-inline">R$ 105</span>
+
+                <h3>
+                    Corte + Barba
+                </h3>
+
+                <span class="price-inline">
+                    R$ 105
+                </span>
+
             </div>
 
             <p>
@@ -2145,13 +2400,24 @@ footer{
             onclick="openBooking('Corte Máquina')"
         >
 
-            <div class="service-number">02</div>
+            <div class="service-number">
+                02
+            </div>
 
-            <div class="service-icon">▣</div>
+            <div class="service-icon">
+                ▣
+            </div>
 
             <div class="service-title">
-                <h3>Corte Máquina</h3>
-                <span class="price-inline">R$ 30</span>
+
+                <h3>
+                    Corte Máquina
+                </h3>
+
+                <span class="price-inline">
+                    R$ 30
+                </span>
+
             </div>
 
             <p>
@@ -2167,13 +2433,24 @@ footer{
             onclick="openBooking('Tesoura + Máquina')"
         >
 
-            <div class="service-number">03</div>
+            <div class="service-number">
+                03
+            </div>
 
-            <div class="service-icon">✂</div>
+            <div class="service-icon">
+                ✂
+            </div>
 
             <div class="service-title">
-                <h3>Tesoura + Máquina</h3>
-                <span class="price-inline">R$ 40</span>
+
+                <h3>
+                    Tesoura + Máquina
+                </h3>
+
+                <span class="price-inline">
+                    R$ 40
+                </span>
+
             </div>
 
             <p>
@@ -2189,13 +2466,24 @@ footer{
             onclick="openBooking('Visagismo')"
         >
 
-            <div class="service-number">04</div>
+            <div class="service-number">
+                04
+            </div>
 
-            <div class="service-icon">◇</div>
+            <div class="service-icon">
+                ◇
+            </div>
 
             <div class="service-title">
-                <h3>Visagismo</h3>
-                <span class="price-inline">R$ 150</span>
+
+                <h3>
+                    Visagismo
+                </h3>
+
+                <span class="price-inline">
+                    R$ 150
+                </span>
+
             </div>
 
             <p>
@@ -2219,13 +2507,18 @@ footer{
     <div class="section-header reveal">
 
         <div>
-            <div class="section-kicker">Nossa equipe</div>
+
+            <div class="section-kicker">
+                Nossa equipe
+            </div>
 
             <h2 class="section-title">
                 Mestres do<br>
                 acabamento.
             </h2>
+
         </div>
+
 
         <p class="section-desc">
             Técnica, experiência e atenção aos mínimos
@@ -2237,15 +2530,28 @@ footer{
 
     <div class="barbers-grid">
 
+
         <div class="barber-card reveal">
 
             <div class="barber-photo">
-                <div class="barber-avatar">R</div>
+
+                <div class="barber-avatar">
+                    R
+                </div>
+
             </div>
 
+
             <div class="barber-info">
-                <h3>Rafael</h3>
-                <p>Especialista em visagismo</p>
+
+                <h3>
+                    Rafael
+                </h3>
+
+                <p>
+                    Especialista em visagismo
+                </p>
+
             </div>
 
         </div>
@@ -2254,12 +2560,24 @@ footer{
         <div class="barber-card reveal">
 
             <div class="barber-photo">
-                <div class="barber-avatar">M</div>
+
+                <div class="barber-avatar">
+                    M
+                </div>
+
             </div>
 
+
             <div class="barber-info">
-                <h3>Matheus</h3>
-                <p>Especialista em cortes</p>
+
+                <h3>
+                    Matheus
+                </h3>
+
+                <p>
+                    Especialista em cortes
+                </p>
+
             </div>
 
         </div>
@@ -2268,12 +2586,24 @@ footer{
         <div class="barber-card reveal">
 
             <div class="barber-photo">
-                <div class="barber-avatar">L</div>
+
+                <div class="barber-avatar">
+                    L
+                </div>
+
             </div>
 
+
             <div class="barber-info">
-                <h3>Lucas</h3>
-                <p>Especialista em barba</p>
+
+                <h3>
+                    Lucas
+                </h3>
+
+                <p>
+                    Especialista em barba
+                </p>
+
             </div>
 
         </div>
@@ -2302,15 +2632,18 @@ footer{
             Nossa história
         </div>
 
+
         <h2 class="section-title">
             Não é apenas<br>
             uma barbearia.
         </h2>
 
+
         <p>
             A NERO BARBER nasceu com uma ideia simples:
             transformar o momento do corte em uma experiência.
         </p>
+
 
         <ul class="story-list">
 
@@ -2352,9 +2685,11 @@ footer{
         começa aqui.
     </h2>
 
+
     <p>
         Reserve seu horário e viva a experiência NERO.
     </p>
+
 
     <button
         class="primary-btn"
@@ -2374,7 +2709,9 @@ footer{
 
 <footer>
 
-    <span>NERO BARBER © 2026</span>
+    <span>
+        NERO BARBER © 2026
+    </span>
 
     <span>
         Estilo • Precisão • Presença
@@ -2393,7 +2730,10 @@ footer{
 
         <div class="modal-header">
 
-            <h3>Agendar horário</h3>
+            <h3>
+                Agendar horário
+            </h3>
+
 
             <button
                 class="close-modal"
@@ -2420,9 +2760,15 @@ footer{
 
             <!-- STEP 1 -->
 
-            <div class="booking-step active" data-step="1">
+            <div
+                class="booking-step active"
+                data-step="1"
+            >
 
-                <h4>Escolha o serviço</h4>
+                <h4>
+                    Escolha o serviço
+                </h4>
+
 
                 <div class="option-grid">
 
@@ -2431,38 +2777,66 @@ footer{
                         data-service="Corte + Barba Completo"
                         onclick="selectService(this)"
                     >
-                        <strong>Corte + Barba Completo</strong>
-                        <span>R$ 105</span>
+                        <strong>
+                            Corte + Barba Completo
+                        </strong>
+
+                        <span>
+                            R$ 105
+                        </span>
+
                     </div>
+
 
                     <div
                         class="option"
                         data-service="Corte Máquina"
                         onclick="selectService(this)"
                     >
-                        <strong>Corte Máquina</strong>
-                        <span>R$ 30</span>
+                        <strong>
+                            Corte Máquina
+                        </strong>
+
+                        <span>
+                            R$ 30
+                        </span>
+
                     </div>
+
 
                     <div
                         class="option"
                         data-service="Tesoura + Máquina"
                         onclick="selectService(this)"
                     >
-                        <strong>Tesoura + Máquina</strong>
-                        <span>R$ 40</span>
+                        <strong>
+                            Tesoura + Máquina
+                        </strong>
+
+                        <span>
+                            R$ 40
+                        </span>
+
                     </div>
+
 
                     <div
                         class="option"
                         data-service="Visagismo"
                         onclick="selectService(this)"
                     >
-                        <strong>Visagismo</strong>
-                        <span>R$ 150</span>
+                        <strong>
+                            Visagismo
+                        </strong>
+
+                        <span>
+                            R$ 150
+                        </span>
+
                     </div>
 
                 </div>
+
 
                 <div class="modal-footer">
 
@@ -2482,9 +2856,15 @@ footer{
 
             <!-- STEP 2 -->
 
-            <div class="booking-step" data-step="2">
+            <div
+                class="booking-step"
+                data-step="2"
+            >
 
-                <h4>Escolha o barbeiro</h4>
+                <h4>
+                    Escolha o barbeiro
+                </h4>
+
 
                 <div class="option-grid">
 
@@ -2492,27 +2872,48 @@ footer{
                         class="option"
                         onclick="selectBarber(this,'Rafael')"
                     >
-                        <strong>Rafael</strong>
-                        <span>Visagismo</span>
+                        <strong>
+                            Rafael
+                        </strong>
+
+                        <span>
+                            Visagismo
+                        </span>
+
                     </div>
+
 
                     <div
                         class="option"
                         onclick="selectBarber(this,'Matheus')"
                     >
-                        <strong>Matheus</strong>
-                        <span>Cortes</span>
+                        <strong>
+                            Matheus
+                        </strong>
+
+                        <span>
+                            Cortes
+                        </span>
+
                     </div>
+
 
                     <div
                         class="option"
                         onclick="selectBarber(this,'Lucas')"
                     >
-                        <strong>Lucas</strong>
-                        <span>Barba</span>
+                        <strong>
+                            Lucas
+                        </strong>
+
+                        <span>
+                            Barba
+                        </span>
+
                     </div>
 
                 </div>
+
 
                 <div class="modal-footer">
 
@@ -2522,6 +2923,7 @@ footer{
                     >
                         Voltar
                     </button>
+
 
                     <button
                         class="modal-btn primary"
@@ -2537,14 +2939,21 @@ footer{
 
             <!-- STEP 3 -->
 
-            <div class="booking-step" data-step="3">
+            <div
+                class="booking-step"
+                data-step="3"
+            >
 
-                <h4>Escolha a data</h4>
+                <h4>
+                    Escolha a data
+                </h4>
+
 
                 <div
                     class="calendar"
                     id="calendar"
                 ></div>
+
 
                 <div class="modal-footer">
 
@@ -2554,6 +2963,7 @@ footer{
                     >
                         Voltar
                     </button>
+
 
                     <button
                         class="modal-btn primary"
@@ -2569,14 +2979,21 @@ footer{
 
             <!-- STEP 4 -->
 
-            <div class="booking-step" data-step="4">
+            <div
+                class="booking-step"
+                data-step="4"
+            >
 
-                <h4>Escolha o horário</h4>
+                <h4>
+                    Escolha o horário
+                </h4>
+
 
                 <div
                     class="times"
                     id="times"
                 ></div>
+
 
                 <div class="modal-footer">
 
@@ -2586,6 +3003,7 @@ footer{
                     >
                         Voltar
                     </button>
+
 
                     <button
                         class="modal-btn primary"
@@ -2601,13 +3019,21 @@ footer{
 
             <!-- STEP 5 -->
 
-            <div class="booking-step" data-step="5">
+            <div
+                class="booking-step"
+                data-step="5"
+            >
 
-                <h4>Seus dados</h4>
+                <h4>
+                    Seus dados
+                </h4>
+
 
                 <div class="form-group">
 
-                    <label>Nome</label>
+                    <label>
+                        Nome
+                    </label>
 
                     <input
                         id="clientName"
@@ -2620,7 +3046,9 @@ footer{
 
                 <div class="form-group">
 
-                    <label>WhatsApp</label>
+                    <label>
+                        WhatsApp
+                    </label>
 
                     <input
                         id="clientPhone"
@@ -2639,6 +3067,7 @@ footer{
                     >
                         Voltar
                     </button>
+
 
                     <button
                         class="modal-btn primary"
@@ -2665,16 +3094,22 @@ footer{
                         ✓
                     </div>
 
-                    <h3>Agendamento confirmado</h3>
+
+                    <h3>
+                        Agendamento confirmado
+                    </h3>
+
 
                     <p>
                         Seu horário foi registrado com sucesso.
                     </p>
 
+
                     <div
                         class="summary"
                         id="summary"
                     ></div>
+
 
                     <div class="modal-footer">
 
@@ -2704,20 +3139,36 @@ footer{
    CURSOR GLOW
 ========================================================= */
 
-const cursorGlow = document.getElementById("cursorGlow");
+const cursorGlow =
+    document.getElementById(
+        "cursorGlow"
+    );
 
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
+let mouseX =
+    window.innerWidth / 2;
 
-document.addEventListener("mousemove",function(e){
+let mouseY =
+    window.innerHeight / 2;
 
-    mouseX = e.clientX;
-    mouseY = e.clientY;
 
-    cursorGlow.style.left = mouseX + "px";
-    cursorGlow.style.top = mouseY + "px";
+document.addEventListener(
+    "mousemove",
+    function(e){
 
-});
+        mouseX =
+            e.clientX;
+
+        mouseY =
+            e.clientY;
+
+        cursorGlow.style.left =
+            mouseX + "px";
+
+        cursorGlow.style.top =
+            mouseY + "px";
+
+    }
+);
 
 
 /* =========================================================
@@ -2725,10 +3176,20 @@ document.addEventListener("mousemove",function(e){
 ========================================================= */
 
 const miniBarberWrap =
-    document.getElementById("miniBarberWrap");
+    document.getElementById(
+        "miniBarberWrap"
+    );
 
 const miniBarber =
-    document.getElementById("miniBarber");
+    document.getElementById(
+        "miniBarber"
+    );
+
+const clipperTool =
+    document.getElementById(
+        "clipperTool"
+    );
+
 
 let barberX =
     window.innerWidth * .78;
@@ -2736,18 +3197,32 @@ let barberX =
 let barberY =
     window.innerHeight * .72;
 
-let targetX = barberX;
-let targetY = barberY;
+let targetX =
+    barberX;
+
+let targetY =
+    barberY;
 
 let velocityX = 0;
 let velocityY = 0;
 
 let running = false;
+
 let tiredTimer = null;
+
 let moveTimer = null;
+
 let waveTimer = null;
 
-let lastScrollY = window.scrollY;
+let wavePrepTimer = null;
+
+let waveReturnTimer = null;
+
+let isWaving = false;
+
+let lastScrollY =
+    window.scrollY;
+
 let scrollTargetTimeout = null;
 
 
@@ -2755,11 +3230,18 @@ let scrollTargetTimeout = null;
    LIMITA POSIÇÃO
 ========================================================= */
 
-function clamp(value,min,max){
+function clamp(
+    value,
+    min,
+    max
+){
 
     return Math.max(
         min,
-        Math.min(max,value)
+        Math.min(
+            max,
+            value
+        )
     );
 
 }
@@ -2823,19 +3305,73 @@ function distanceToTarget(){
 
 
 /* =========================================================
+   RESTAURAR MÁQUINA
+========================================================= */
+
+function restoreClipper(){
+
+    clearTimeout(
+        wavePrepTimer
+    );
+
+    clearTimeout(
+        waveReturnTimer
+    );
+
+    clipperTool.classList.remove(
+        "clipper-stowed"
+    );
+
+}
+
+
+/* =========================================================
+   CANCELAR ACENO
+========================================================= */
+
+function cancelWave(){
+
+    clearTimeout(
+        waveTimer
+    );
+
+    clearTimeout(
+        wavePrepTimer
+    );
+
+    clearTimeout(
+        waveReturnTimer
+    );
+
+    isWaving = false;
+
+    miniBarber.classList.remove(
+        "barber-wave-prep"
+    );
+
+    miniBarber.classList.remove(
+        "barber-waving"
+    );
+
+    restoreClipper();
+
+}
+
+
+/* =========================================================
    CANSADO
 ========================================================= */
 
 function makeBarberTired(){
 
-    clearTimeout(tiredTimer);
+    clearTimeout(
+        tiredTimer
+    );
+
+    cancelWave();
 
     miniBarber.classList.remove(
         "barber-running"
-    );
-
-    miniBarber.classList.remove(
-        "barber-waving"
     );
 
     miniBarber.classList.add(
@@ -2860,18 +3396,27 @@ function makeBarberTired(){
 
 function startBarberRun(){
 
+    if(
+        isWaving ||
+        miniBarber.classList.contains(
+            "barber-waving"
+        ) ||
+        miniBarber.classList.contains(
+            "barber-wave-prep"
+        )
+    ){
+
+        cancelWave();
+
+    }
+
+
     if(!running){
 
         running = true;
 
-        clearTimeout(waveTimer);
-
         miniBarber.classList.remove(
             "barber-tired"
-        );
-
-        miniBarber.classList.remove(
-            "barber-waving"
         );
 
         miniBarber.classList.add(
@@ -2880,7 +3425,9 @@ function startBarberRun(){
 
     }
 
-    clearTimeout(moveTimer);
+    clearTimeout(
+        moveTimer
+    );
 
 }
 
@@ -2898,12 +3445,14 @@ function setBarberTarget(
     const bounds =
         getBarberBounds();
 
+
     targetX =
         clamp(
             x,
             bounds.minX,
             bounds.maxX
         );
+
 
     targetY =
         clamp(
@@ -2912,7 +3461,9 @@ function setBarberTarget(
             bounds.maxY
         );
 
+
     startBarberRun();
+
 
     if(showTired){
 
@@ -2947,7 +3498,11 @@ function animateBarber(){
         targetY - barberY;
 
     const distance =
-        Math.hypot(dx,dy);
+        Math.hypot(
+            dx,
+            dy
+        );
+
 
     if(distance > 4){
 
@@ -2957,11 +3512,13 @@ function animateBarber(){
                 4 + distance * .035
             );
 
+
         velocityX +=
             (
                 dx / distance * speed
                 - velocityX
             ) * .18;
+
 
         velocityY +=
             (
@@ -2969,17 +3526,25 @@ function animateBarber(){
                 - velocityY
             ) * .18;
 
-        barberX += velocityX;
-        barberY += velocityY;
+
+        barberX +=
+            velocityX;
+
+        barberY +=
+            velocityY;
+
 
         miniBarber.classList.add(
             "barber-running"
         );
 
+
     }else{
 
         velocityX *= .72;
+
         velocityY *= .72;
+
 
         if(
             Math.abs(velocityX) < .15 &&
@@ -2987,20 +3552,19 @@ function animateBarber(){
         ){
 
             velocityX = 0;
+
             velocityY = 0;
+
 
             if(running){
 
                 running = false;
 
+
                 miniBarber.classList.remove(
                     "barber-running"
                 );
 
-                /*
-                    Quando termina uma corrida,
-                    ele fica cansado.
-                */
 
                 makeBarberTired();
 
@@ -3010,7 +3574,9 @@ function animateBarber(){
 
     }
 
+
     setBarberPosition();
+
 
     requestAnimationFrame(
         animateBarber
@@ -3027,6 +3593,7 @@ animateBarber();
 
 let cursorFollowTimer = null;
 
+
 document.addEventListener(
     "mousemove",
     function(e){
@@ -3034,6 +3601,7 @@ document.addEventListener(
         clearTimeout(
             cursorFollowTimer
         );
+
 
         cursorFollowTimer =
             setTimeout(()=>{
@@ -3068,6 +3636,7 @@ document.addEventListener(
 
         }
 
+
         setBarberTarget(
             e.clientX,
             e.clientY,
@@ -3095,8 +3664,10 @@ document.addEventListener(
 
         }
 
+
         const touch =
             e.touches[0];
+
 
         setBarberTarget(
             touch.clientX,
@@ -3105,7 +3676,9 @@ document.addEventListener(
         );
 
     },
-    {passive:true}
+    {
+        passive:true
+    }
 );
 
 
@@ -3120,14 +3693,19 @@ window.addEventListener(
         const currentScroll =
             window.scrollY;
 
+
         const difference =
-            currentScroll - lastScrollY;
+            currentScroll -
+            lastScrollY;
+
 
         lastScrollY =
             currentScroll;
 
+
         const bounds =
             getBarberBounds();
+
 
         if(
             Math.abs(difference) > 1
@@ -3137,6 +3715,7 @@ window.addEventListener(
                 difference > 0
                     ? bounds.maxY - 10
                     : bounds.minY + 10;
+
 
             const destinationX =
                 clamp(
@@ -3150,15 +3729,18 @@ window.addEventListener(
                     bounds.maxX
                 );
 
+
             setBarberTarget(
                 destinationX,
                 destinationY,
                 true
             );
 
+
             clearTimeout(
                 scrollTargetTimeout
             );
+
 
             scrollTargetTimeout =
                 setTimeout(()=>{
@@ -3167,9 +3749,11 @@ window.addEventListener(
                         window.innerWidth *
                         .78;
 
+
                     const finalY =
                         window.innerHeight *
                         .72;
+
 
                     setBarberTarget(
                         finalX,
@@ -3196,12 +3780,14 @@ window.addEventListener(
         const bounds =
             getBarberBounds();
 
+
         barberX =
             clamp(
                 barberX,
                 bounds.minX,
                 bounds.maxX
             );
+
 
         barberY =
             clamp(
@@ -3210,12 +3796,14 @@ window.addEventListener(
                 bounds.maxY
             );
 
+
         targetX =
             clamp(
                 targetX,
                 bounds.minX,
                 bounds.maxX
             );
+
 
         targetY =
             clamp(
@@ -3229,49 +3817,140 @@ window.addEventListener(
 
 
 /* =========================================================
-   ACENO AUTOMÁTICO
+   ACENO COMPLETO
 ========================================================= */
 
-/*
-   A cada 5 segundos verifica se ele está parado.
+function startWave(){
 
-   Se estiver parado:
-   - não estiver correndo
-   - não estiver cansado
-   - não estiver escondido
+    if(
+        running ||
+        document.hidden ||
+        isWaving ||
+        miniBarber.classList.contains(
+            "barber-tired"
+        )
+    ){
 
-   ele acena para a tela.
-*/
+        return;
+
+    }
+
+
+    isWaving = true;
+
+
+    clearTimeout(
+        waveTimer
+    );
+
+    clearTimeout(
+        wavePrepTimer
+    );
+
+    clearTimeout(
+        waveReturnTimer
+    );
+
+
+    /*
+       ETAPA 1:
+       ele começa a tirar a máquina da mão.
+    */
+
+    miniBarber.classList.add(
+        "barber-wave-prep"
+    );
+
+
+    wavePrepTimer =
+        setTimeout(()=>{
+
+            /*
+               ETAPA 2:
+               máquina já está no bolso.
+            */
+
+            miniBarber.classList.remove(
+                "barber-wave-prep"
+            );
+
+
+            clipperTool.classList.add(
+                "clipper-stowed"
+            );
+
+
+            /*
+               ETAPA 3:
+               agora ele levanta o braço
+               e começa a acenar.
+            */
+
+            miniBarber.classList.add(
+                "barber-waving"
+            );
+
+
+            waveTimer =
+                setTimeout(()=>{
+
+                    /*
+                       ETAPA 4:
+                       aceno terminou.
+                    */
+
+                    miniBarber.classList.remove(
+                        "barber-waving"
+                    );
+
+
+                    /*
+                       Dá um pequeno intervalo
+                       para a mão descer.
+                    */
+
+                    waveReturnTimer =
+                        setTimeout(()=>{
+
+                            /*
+                               ETAPA 5:
+                               pega novamente a máquina.
+                            */
+
+                            clipperTool.classList.remove(
+                                "clipper-stowed"
+                            );
+
+
+                            isWaving = false;
+
+                        },350);
+
+
+                },1650);
+
+
+        },350);
+
+}
+
+
+/* =========================================================
+   ACENO AUTOMÁTICO
+========================================================= */
 
 setInterval(()=>{
 
     if(
         !running &&
         !document.hidden &&
+        !isWaving &&
         !miniBarber.classList.contains(
             "barber-tired"
-        ) &&
-        !miniBarber.classList.contains(
-            "barber-waving"
         )
     ){
 
-        miniBarber.classList.add(
-            "barber-waving"
-        );
-
-        clearTimeout(
-            waveTimer
-        );
-
-        waveTimer =
-            setTimeout(()=>{
-
-                miniBarber.classList.remove(
-                    "barber-waving"
-                );
-
-            },1100);
+        startWave();
 
     }
 
@@ -3323,6 +4002,7 @@ const barbers = [
 ========================================================= */
 
 const timeSlots = [
+
     "09:00",
     "09:40",
     "10:20",
@@ -3337,6 +4017,7 @@ const timeSlots = [
     "17:00",
     "17:40",
     "18:20"
+
 ];
 
 
@@ -3377,8 +4058,10 @@ function openBooking(
         "active"
     );
 
+
     document.body.style.overflow =
         "hidden";
+
 
     state = {
 
@@ -3394,8 +4077,11 @@ function openBooking(
 
     };
 
+
     document
-        .querySelectorAll(".option")
+        .querySelectorAll(
+            ".option"
+        )
         .forEach(option=>{
 
             option.classList.remove(
@@ -3404,15 +4090,18 @@ function openBooking(
 
         });
 
+
     if(serviceName){
 
         state.service =
             serviceName;
 
+
         const option =
             document.querySelector(
                 `.option[data-service="${serviceName}"]`
             );
+
 
         if(option){
 
@@ -3424,6 +4113,7 @@ function openBooking(
 
     }
 
+
     showStep(1);
 
 }
@@ -3434,6 +4124,7 @@ function closeBooking(){
     modal.classList.remove(
         "active"
     );
+
 
     document.body.style.overflow =
         "";
@@ -3447,7 +4138,9 @@ function closeBooking(){
 
 function showStep(step){
 
-    state.step = step;
+    state.step =
+        step;
+
 
     document
         .querySelectorAll(
@@ -3461,10 +4154,12 @@ function showStep(step){
 
         });
 
+
     const current =
         document.querySelector(
             `.booking-step[data-step="${step}"]`
         );
+
 
     if(current){
 
@@ -3473,6 +4168,7 @@ function showStep(step){
         );
 
     }
+
 
     document
         .querySelectorAll(
@@ -3507,6 +4203,7 @@ function nextStep(){
 
     }
 
+
     if(
         state.step===2 &&
         !state.barber
@@ -3519,6 +4216,7 @@ function nextStep(){
         return;
 
     }
+
 
     if(
         state.step===3 &&
@@ -3533,6 +4231,7 @@ function nextStep(){
 
     }
 
+
     if(
         state.step===4 &&
         !state.time
@@ -3546,7 +4245,10 @@ function nextStep(){
 
     }
 
-    if(state.step < 5){
+
+    if(
+        state.step < 5
+    ){
 
         showStep(
             state.step + 1
@@ -3559,7 +4261,9 @@ function nextStep(){
 
 function prevStep(){
 
-    if(state.step > 1){
+    if(
+        state.step > 1
+    ){
 
         showStep(
             state.step - 1
@@ -3574,7 +4278,9 @@ function prevStep(){
    SERVIÇO
 ========================================================= */
 
-function selectService(element){
+function selectService(
+    element
+){
 
     document
         .querySelectorAll(
@@ -3588,9 +4294,11 @@ function selectService(element){
 
         });
 
+
     element.classList.add(
         "selected"
     );
+
 
     state.service =
         element.dataset.service;
@@ -3619,11 +4327,14 @@ function selectBarber(
 
         });
 
+
     element.classList.add(
         "selected"
     );
 
-    state.barber = name;
+
+    state.barber =
+        name;
 
 }
 
@@ -3639,9 +4350,13 @@ function renderCalendar(){
             "calendar"
         );
 
-    calendar.innerHTML="";
+
+    calendar.innerHTML =
+        "";
+
 
     const weekdays = [
+
         "Dom",
         "Seg",
         "Ter",
@@ -3649,7 +4364,9 @@ function renderCalendar(){
         "Qui",
         "Sex",
         "Sáb"
+
     ];
+
 
     weekdays.forEach(day=>{
 
@@ -3658,11 +4375,14 @@ function renderCalendar(){
                 "div"
             );
 
+
         el.className =
             "weekday";
 
+
         el.textContent =
             day;
+
 
         calendar.appendChild(
             el
@@ -3670,18 +4390,26 @@ function renderCalendar(){
 
     });
 
+
     const today =
         new Date();
 
+
     today.setHours(
-        0,0,0,0
+        0,
+        0,
+        0,
+        0
     );
+
 
     const year =
         today.getFullYear();
 
+
     const month =
         today.getMonth();
+
 
     const firstDay =
         new Date(
@@ -3690,12 +4418,14 @@ function renderCalendar(){
             1
         ).getDay();
 
+
     const daysInMonth =
         new Date(
             year,
             month + 1,
             0
         ).getDate();
+
 
     for(
         let i=0;
@@ -3708,11 +4438,13 @@ function renderCalendar(){
                 "div"
             );
 
+
         calendar.appendChild(
             empty
         );
 
     }
+
 
     for(
         let day=1;
@@ -3727,18 +4459,24 @@ function renderCalendar(){
                 day
             );
 
+
         const el =
             document.createElement(
                 "button"
             );
 
+
         el.className =
             "calendar-day";
+
 
         el.textContent =
             day;
 
-        if(date < today){
+
+        if(
+            date < today
+        ){
 
             el.classList.add(
                 "disabled"
@@ -3760,9 +4498,11 @@ function renderCalendar(){
 
                     });
 
+
                 el.classList.add(
                     "selected"
                 );
+
 
                 state.date =
                     `${day}/${month+1}/${year}`;
@@ -3770,6 +4510,7 @@ function renderCalendar(){
             };
 
         }
+
 
         calendar.appendChild(
             el
@@ -3793,7 +4534,10 @@ function renderTimes(){
             "times"
         );
 
-    container.innerHTML="";
+
+    container.innerHTML =
+        "";
+
 
     timeSlots.forEach(time=>{
 
@@ -3802,11 +4546,14 @@ function renderTimes(){
                 "button"
             );
 
+
         el.className =
             "time";
 
+
         el.textContent =
             time;
+
 
         el.onclick = ()=>{
 
@@ -3822,14 +4569,17 @@ function renderTimes(){
 
                 });
 
+
             el.classList.add(
                 "selected"
             );
+
 
             state.time =
                 time;
 
         };
+
 
         container.appendChild(
             el
@@ -3851,16 +4601,26 @@ const phone =
         "clientPhone"
     );
 
+
 phone.addEventListener(
     "input",
     function(e){
 
         let value =
             e.target.value
-                .replace(/\D/g,"")
-                .slice(0,11);
+                .replace(
+                    /\D/g,
+                    ""
+                )
+                .slice(
+                    0,
+                    11
+                );
 
-        if(value.length <= 10){
+
+        if(
+            value.length <= 10
+        ){
 
             value =
                 value.replace(
@@ -3877,6 +4637,7 @@ phone.addEventListener(
                 );
 
         }
+
 
         e.target.value =
             value;
@@ -3899,6 +4660,7 @@ function confirmBooking(){
             .value
             .trim();
 
+
     const clientPhone =
         document
             .getElementById(
@@ -3906,6 +4668,7 @@ function confirmBooking(){
             )
             .value
             .trim();
+
 
     if(!name){
 
@@ -3917,6 +4680,7 @@ function confirmBooking(){
 
     }
 
+
     if(!clientPhone){
 
         alert(
@@ -3927,10 +4691,12 @@ function confirmBooking(){
 
     }
 
+
     const price =
         services[
             state.service
         ].price;
+
 
     const booking = {
 
@@ -3953,12 +4719,14 @@ function confirmBooking(){
 
     };
 
+
     localStorage.setItem(
         "nero_last_booking",
         JSON.stringify(
             booking
         )
     );
+
 
     document.getElementById(
         "summary"
@@ -3996,6 +4764,7 @@ function confirmBooking(){
 
     `;
 
+
     showStep(
         "success"
     );
@@ -4011,7 +4780,9 @@ modal.addEventListener(
     "click",
     function(e){
 
-        if(e.target === modal){
+        if(
+            e.target === modal
+        ){
 
             closeBooking();
 
@@ -4029,7 +4800,9 @@ document.addEventListener(
     "keydown",
     function(e){
 
-        if(e.key === "Escape"){
+        if(
+            e.key === "Escape"
+        ){
 
             closeBooking();
 
@@ -4092,6 +4865,7 @@ const heroContent =
         ".hero-content"
     );
 
+
 document.addEventListener(
     "mousemove",
     function(e){
@@ -4104,15 +4878,18 @@ document.addEventListener(
 
         }
 
+
         const x =
             e.clientX /
             window.innerWidth -
             .5;
 
+
         const y =
             e.clientY /
             window.innerHeight -
             .5;
+
 
         heroContent.style.transform =
             `translate3d(
@@ -4131,22 +4908,23 @@ document.addEventListener(
 
 setTimeout(()=>{
 
-    const bounds =
-        getBarberBounds();
-
     barberX =
         window.innerWidth > 700
             ? window.innerWidth * .78
             : window.innerWidth * .72;
 
+
     barberY =
         window.innerHeight * .72;
+
 
     targetX =
         barberX;
 
+
     targetY =
         barberY;
+
 
     setBarberPosition();
 
@@ -4161,11 +4939,13 @@ setInterval(()=>{
 
     if(
         !running &&
-        !document.hidden
+        !document.hidden &&
+        !isWaving
     ){
 
         const bounds =
             getBarberBounds();
+
 
         const randomX =
             bounds.minX +
@@ -4175,6 +4955,7 @@ setInterval(()=>{
                 bounds.minX
             );
 
+
         const randomY =
             bounds.minY +
             Math.random() *
@@ -4183,6 +4964,7 @@ setInterval(()=>{
                 bounds.minY
             );
 
+
         const nearX =
             barberX +
             (
@@ -4190,12 +4972,14 @@ setInterval(()=>{
                 barberX
             ) * .18;
 
+
         const nearY =
             barberY +
             (
                 randomY -
                 barberY
             ) * .18;
+
 
         setBarberTarget(
             nearX,

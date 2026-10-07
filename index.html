@@ -3,28 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080808">
-<meta name="description" content="NERO BARBER — Barbearia premium. Agende seu horário online.">
+<meta name="theme-color" content="#050505">
+<meta name="description" content="NERO BARBER — Barbearia Premium">
 <title>NERO BARBER — Barbearia Premium</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-    --bg:#070707;
-    --bg2:#0d0d0d;
-    --card:#111111;
-    --card2:#151515;
-    --gold:#c9a45c;
-    --gold2:#f0d28c;
-    --white:#f7f4ed;
-    --muted:#969696;
-    --line:rgba(255,255,255,.09);
-    --green:#37d67a;
-    --danger:#ff5b5b;
-    --shadow:0 25px 80px rgba(0,0,0,.45);
+    --black:#050505;
+    --black2:#0b0b0b;
+    --black3:#111111;
+    --gold:#d7ad55;
+    --gold2:#f4d27a;
+    --gold3:#8d6a28;
+    --white:#f7f3e9;
+    --gray:#aaa69d;
+    --line:rgba(215,173,85,.18);
+    --glass:rgba(255,255,255,.045);
+    --shadow:0 25px 80px rgba(0,0,0,.55);
 }
 
 *{
@@ -39,922 +34,756 @@ html{
 
 body{
     background:
-        radial-gradient(circle at 80% 10%,rgba(201,164,92,.10),transparent 28%),
-        radial-gradient(circle at 10% 50%,rgba(201,164,92,.05),transparent 25%),
-        var(--bg);
+        radial-gradient(circle at 20% 10%,rgba(215,173,85,.06),transparent 28%),
+        radial-gradient(circle at 80% 40%,rgba(215,173,85,.04),transparent 30%),
+        var(--black);
     color:var(--white);
-    font-family:"DM Sans",sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     overflow-x:hidden;
 }
 
-body.modal-open{
-    overflow:hidden;
-}
-
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-button,
-input,
-select{
-    font:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-img{
-    max-width:100%;
-    display:block;
-}
-
-::selection{
-    background:var(--gold);
-    color:#000;
-}
-
-/* SCROLLBAR */
+/* =========================
+   SCROLLBAR
+========================= */
 
 ::-webkit-scrollbar{
     width:8px;
 }
 
 ::-webkit-scrollbar-track{
-    background:#080808;
+    background:#050505;
 }
 
 ::-webkit-scrollbar-thumb{
-    background:#383838;
-    border-radius:10px;
+    background:linear-gradient(var(--gold2),var(--gold3));
+    border-radius:20px;
 }
 
-::-webkit-scrollbar-thumb:hover{
-    background:var(--gold);
-}
-
-/* CURSOR GLOW */
+/* =========================
+   CURSOR GLOW
+========================= */
 
 .cursor-glow{
     position:fixed;
-    width:260px;
-    height:260px;
+    width:280px;
+    height:280px;
     border-radius:50%;
     pointer-events:none;
-    background:radial-gradient(circle,rgba(201,164,92,.09),transparent 68%);
+    z-index:1;
+    background:radial-gradient(
+        circle,
+        rgba(215,173,85,.08) 0%,
+        rgba(215,173,85,.025) 35%,
+        transparent 70%
+    );
     transform:translate(-50%,-50%);
-    z-index:0;
     transition:opacity .3s;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
     position:fixed;
     top:0;
     left:0;
     width:100%;
-    height:78px;
-    display:flex;
-    align-items:center;
+    height:82px;
     z-index:100;
-    border-bottom:1px solid transparent;
-    transition:.35s;
-}
-
-header.scrolled{
-    background:rgba(7,7,7,.82);
-    backdrop-filter:blur(20px);
-    border-color:var(--line);
-}
-
-.nav{
-    width:min(1180px,92%);
-    margin:auto;
     display:flex;
     align-items:center;
     justify-content:space-between;
+    padding:0 6%;
+    background:rgba(5,5,5,.72);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(215,173,85,.08);
 }
 
 .logo{
     display:flex;
     align-items:center;
     gap:12px;
-    font-family:"Manrope",sans-serif;
-    font-weight:800;
-    letter-spacing:4px;
-    font-size:17px;
+    text-decoration:none;
+    color:white;
 }
 
 .logo-mark{
-    width:35px;
-    height:35px;
+    width:42px;
+    height:42px;
     border:1px solid var(--gold);
-    display:grid;
-    place-items:center;
-    transform:rotate(45deg);
-    position:relative;
-}
-
-.logo-mark span{
-    transform:rotate(-45deg);
-    color:var(--gold2);
-    font-family:"Playfair Display",serif;
-    font-size:18px;
-}
-
-.nav-links{
+    border-radius:50%;
     display:flex;
-    gap:30px;
     align-items:center;
+    justify-content:center;
+    color:var(--gold2);
+    font-family:Georgia,serif;
+    font-size:20px;
+    box-shadow:
+        0 0 25px rgba(215,173,85,.12),
+        inset 0 0 20px rgba(215,173,85,.06);
 }
 
-.nav-links a{
-    color:#bdbdbd;
-    font-size:13px;
-    transition:.25s;
+.logo-text{
+    font-size:20px;
+    font-weight:800;
+    letter-spacing:4px;
 }
 
-.nav-links a:hover{
+.logo-text span{
     color:var(--gold2);
 }
 
-.nav-book{
-    border:1px solid var(--gold);
-    color:var(--gold2);
-    padding:11px 19px;
-    border-radius:3px;
+nav{
+    display:flex;
+    gap:32px;
+}
+
+nav a{
+    color:#c9c5bb;
+    text-decoration:none;
     font-size:12px;
-    font-weight:700;
-    letter-spacing:.5px;
-    background:rgba(201,164,92,.04);
+    letter-spacing:2px;
+    text-transform:uppercase;
     transition:.3s;
 }
 
-.nav-book:hover{
+nav a:hover{
+    color:var(--gold2);
+}
+
+.header-btn{
+    border:1px solid var(--gold);
+    color:var(--gold2);
+    background:rgba(215,173,85,.04);
+    padding:13px 20px;
+    border-radius:3px;
+    cursor:pointer;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    transition:.35s;
+}
+
+.header-btn:hover{
     background:var(--gold);
-    color:#050505;
-    box-shadow:0 0 30px rgba(201,164,92,.22);
+    color:#080808;
+    box-shadow:0 0 30px rgba(215,173,85,.2);
 }
 
 .mobile-menu{
     display:none;
-    background:none;
-    border:0;
-    color:white;
-    font-size:25px;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
     min-height:100vh;
     position:relative;
     display:flex;
     align-items:center;
+    padding:130px 8% 80px;
     overflow:hidden;
 }
 
 .hero-grid{
     position:absolute;
     inset:0;
-    opacity:.17;
     background-image:
-        linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+        linear-gradient(rgba(215,173,85,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(215,173,85,.025) 1px,transparent 1px);
     background-size:70px 70px;
-    mask-image:linear-gradient(to bottom,black,transparent 90%);
+    mask-image:linear-gradient(to bottom,black,transparent 85%);
 }
 
 .hero-orb{
     position:absolute;
-    width:600px;
-    height:600px;
-    right:-220px;
+    width:650px;
+    height:650px;
+    border-radius:50%;
+    right:-130px;
     top:50%;
     transform:translateY(-50%);
-    border-radius:50%;
-    background:
-        radial-gradient(circle,rgba(201,164,92,.18),transparent 56%);
+    background:radial-gradient(
+        circle,
+        rgba(215,173,85,.12),
+        rgba(215,173,85,.025) 42%,
+        transparent 70%
+    );
     filter:blur(2px);
 }
 
 .hero-ring{
     position:absolute;
-    width:650px;
-    height:650px;
-    right:-180px;
-    top:50%;
-    transform:translateY(-50%) rotate(15deg);
-    border:1px solid rgba(201,164,92,.14);
+    width:560px;
+    height:560px;
+    border:1px solid rgba(215,173,85,.15);
     border-radius:50%;
+    right:40px;
+    top:50%;
+    transform:translateY(-50%) rotate(0deg);
+    animation:ringRotate 18s linear infinite;
 }
 
 .hero-ring::before,
 .hero-ring::after{
     content:"";
     position:absolute;
-    inset:35px;
-    border:1px solid rgba(201,164,92,.08);
     border-radius:50%;
+    border:1px solid rgba(215,173,85,.08);
+}
+
+.hero-ring::before{
+    inset:35px;
 }
 
 .hero-ring::after{
-    inset:100px;
+    inset:75px;
+}
+
+@keyframes ringRotate{
+    from{transform:translateY(-50%) rotate(0deg)}
+    to{transform:translateY(-50%) rotate(360deg)}
 }
 
 .hero-content{
-    width:min(1180px,92%);
-    margin:auto;
     position:relative;
-    z-index:2;
-    padding-top:70px;
+    z-index:5;
+    max-width:700px;
 }
 
 .eyebrow{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:12px;
     color:var(--gold2);
+    font-size:11px;
+    letter-spacing:4px;
     text-transform:uppercase;
-    letter-spacing:3px;
-    font-size:10px;
-    font-weight:700;
-    margin-bottom:22px;
+    margin-bottom:24px;
 }
 
 .eyebrow::before{
     content:"";
-    width:35px;
+    width:40px;
     height:1px;
     background:var(--gold);
 }
 
 .hero h1{
-    max-width:760px;
-    font-family:"Playfair Display",serif;
-    font-size:clamp(55px,8vw,105px);
-    font-weight:600;
+    font-family:Georgia,serif;
+    font-size:clamp(58px,8vw,112px);
     line-height:.9;
-    letter-spacing:-4px;
+    font-weight:400;
+    letter-spacing:-5px;
+    margin-bottom:28px;
 }
 
 .hero h1 span{
-    color:var(--gold2);
-    font-style:italic;
+    display:block;
+    color:transparent;
+    -webkit-text-stroke:1px var(--gold2);
+    text-shadow:0 0 30px rgba(215,173,85,.12);
 }
 
-.hero-description{
-    max-width:510px;
-    margin-top:30px;
-    color:#a3a3a3;
+.hero p{
+    color:#aaa69d;
+    max-width:540px;
     line-height:1.8;
     font-size:15px;
+    margin-bottom:38px;
 }
 
 .hero-actions{
     display:flex;
-    gap:13px;
-    margin-top:35px;
+    gap:15px;
     flex-wrap:wrap;
 }
 
+.primary-btn,
+.secondary-btn{
+    padding:17px 27px;
+    cursor:pointer;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    transition:.35s;
+}
+
 .primary-btn{
-    border:1px solid var(--gold);
-    background:linear-gradient(135deg,#d7b76d,#a27b35);
-    color:#070707;
-    padding:15px 25px;
-    border-radius:3px;
-    font-weight:800;
-    font-size:12px;
-    letter-spacing:.5px;
-    transition:.3s;
+    background:linear-gradient(135deg,var(--gold2),var(--gold));
+    color:#090909;
+    border:1px solid var(--gold2);
+    font-weight:bold;
 }
 
 .primary-btn:hover{
     transform:translateY(-3px);
-    box-shadow:0 15px 40px rgba(201,164,92,.2);
+    box-shadow:0 15px 35px rgba(215,173,85,.2);
 }
 
 .secondary-btn{
-    border:1px solid var(--line);
-    background:rgba(255,255,255,.03);
-    color:#ddd;
-    padding:15px 25px;
-    border-radius:3px;
-    font-weight:600;
-    font-size:12px;
-    transition:.3s;
+    color:var(--gold2);
+    background:transparent;
+    border:1px solid rgba(215,173,85,.4);
 }
 
 .secondary-btn:hover{
-    border-color:rgba(201,164,92,.4);
-    background:rgba(201,164,92,.05);
+    background:rgba(215,173,85,.07);
 }
-
-.hero-stats{
-    display:flex;
-    gap:45px;
-    margin-top:65px;
-}
-
-.stat strong{
-    display:block;
-    font-family:"Manrope",sans-serif;
-    font-size:24px;
-}
-
-.stat span{
-    color:#777;
-    font-size:10px;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-}
-
-/* =========================================================
-   MINI BARBEIRO LUXO
-========================================================= */
-
-.mini-barber-wrap{
-    position:absolute;
-    right:30%;
-    bottom:4.5%;
-    width:155px;
-    height:210px;
-    z-index:5;
-    pointer-events:none;
-}
-
-.mini-barber-track{
-    position:absolute;
-    left:0;
-    bottom:0;
-    width:100%;
-    height:100%;
-    animation:
-        barberWalk 8s cubic-bezier(.45,.05,.55,.95) infinite alternate,
-        barberFloat 1.2s ease-in-out infinite;
-}
-
-.mini-barber{
-    position:absolute;
-    left:0;
-    bottom:0;
-    width:115px;
-    height:190px;
-    cursor:pointer;
-    pointer-events:auto;
-    filter:
-        drop-shadow(0 12px 12px rgba(0,0,0,.5))
-        drop-shadow(0 0 14px rgba(201,164,92,.08));
-    transition:filter .3s;
-}
-
-.mini-barber:hover{
-    filter:
-        drop-shadow(0 12px 12px rgba(0,0,0,.55))
-        drop-shadow(0 0 24px rgba(240,210,140,.28));
-}
-
-.mini-barber .barber-svg{
-    width:100%;
-    height:100%;
-    overflow:visible;
-}
-
-.mini-barber .barber-body{
-    transform-origin:58px 100px;
-    animation:bodyBreath 1.2s ease-in-out infinite;
-}
-
-.mini-barber .barber-head{
-    transform-origin:57px 62px;
-    animation:headMotion 1.8s ease-in-out infinite;
-}
-
-.mini-barber .barber-left-arm{
-    transform-origin:39px 105px;
-    animation:armLeft 1s ease-in-out infinite alternate;
-}
-
-.mini-barber .barber-right-arm{
-    transform-origin:76px 105px;
-    animation:armRight 1.1s ease-in-out infinite alternate;
-}
-
-.mini-barber .leg-left{
-    transform-origin:49px 151px;
-    animation:legLeft .6s ease-in-out infinite alternate;
-}
-
-.mini-barber .leg-right{
-    transform-origin:67px 151px;
-    animation:legRight .6s ease-in-out infinite alternate;
-}
-
-.mini-barber .scissor-blade-a{
-    transform-origin:22px 119px;
-    animation:scissorA .75s ease-in-out infinite alternate;
-}
-
-.mini-barber .scissor-blade-b{
-    transform-origin:22px 119px;
-    animation:scissorB .75s ease-in-out infinite alternate;
-}
-
-.mini-barber .clipper{
-    animation:clipperPulse .9s ease-in-out infinite alternate;
-}
-
-.barber-floor-shadow{
-    position:absolute;
-    bottom:1px;
-    left:2px;
-    width:110px;
-    height:13px;
-    border-radius:50%;
-    background:rgba(0,0,0,.6);
-    filter:blur(5px);
-    animation:shadowPulse 1.2s ease-in-out infinite;
-}
-
-.barber-label{
-    position:absolute;
-    bottom:-20px;
-    left:-4px;
-    white-space:nowrap;
-    color:rgba(240,210,140,.72);
-    font-size:7px;
-    font-family:"Manrope",sans-serif;
-    font-weight:800;
-    letter-spacing:2px;
-    text-transform:uppercase;
-}
-
-@keyframes barberWalk{
-    0%{
-        transform:translateX(0);
-    }
-
-    50%{
-        transform:translateX(18px);
-    }
-
-    100%{
-        transform:translateX(37px);
-    }
-}
-
-@keyframes barberFloat{
-    0%,100%{
-        margin-bottom:0;
-    }
-
-    50%{
-        margin-bottom:3px;
-    }
-}
-
-@keyframes bodyBreath{
-    0%,100%{
-        transform:scaleY(1);
-    }
-
-    50%{
-        transform:scaleY(1.015);
-    }
-}
-
-@keyframes headMotion{
-    0%,100%{
-        transform:rotate(-1deg);
-    }
-
-    50%{
-        transform:rotate(2deg);
-    }
-}
-
-@keyframes armLeft{
-    0%{
-        transform:rotate(7deg);
-    }
-
-    100%{
-        transform:rotate(-4deg);
-    }
-}
-
-@keyframes armRight{
-    0%{
-        transform:rotate(-7deg);
-    }
-
-    100%{
-        transform:rotate(5deg);
-    }
-}
-
-@keyframes legLeft{
-    0%{
-        transform:rotate(7deg);
-    }
-
-    100%{
-        transform:rotate(-10deg);
-    }
-}
-
-@keyframes legRight{
-    0%{
-        transform:rotate(-9deg);
-    }
-
-    100%{
-        transform:rotate(9deg);
-    }
-}
-
-@keyframes scissorA{
-    from{
-        transform:rotate(-8deg);
-    }
-
-    to{
-        transform:rotate(12deg);
-    }
-}
-
-@keyframes scissorB{
-    from{
-        transform:rotate(10deg);
-    }
-
-    to{
-        transform:rotate(-8deg);
-    }
-}
-
-@keyframes clipperPulse{
-    from{
-        transform:translateY(0);
-    }
-
-    to{
-        transform:translateY(2px);
-    }
-}
-
-@keyframes shadowPulse{
-    0%,100%{
-        transform:scaleX(1);
-        opacity:.6;
-    }
-
-    50%{
-        transform:scaleX(.88);
-        opacity:.4;
-    }
-}
-
-.mini-barber.touched{
-    animation:barberReaction .5s ease!important;
-}
-
-@keyframes barberReaction{
-    0%{
-        transform:rotate(0) scale(1);
-    }
-
-    30%{
-        transform:rotate(-5deg) scale(1.08);
-    }
-
-    60%{
-        transform:rotate(5deg) scale(.96);
-    }
-
-    100%{
-        transform:rotate(0) scale(1);
-    }
-}
-
-/* FLOATING CARD */
 
 .hero-card{
     position:absolute;
+    z-index:5;
     right:7%;
     bottom:13%;
-    width:245px;
-    padding:20px;
-    border:1px solid var(--line);
-    background:rgba(15,15,15,.74);
-    backdrop-filter:blur(18px);
+    width:230px;
+    padding:22px;
+    background:rgba(10,10,10,.75);
+    border:1px solid rgba(215,173,85,.22);
+    backdrop-filter:blur(15px);
     box-shadow:var(--shadow);
-    z-index:3;
 }
 
 .hero-card-top{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:17px;
+    margin-bottom:18px;
 }
 
-.status{
-    display:flex;
-    align-items:center;
-    gap:7px;
-    color:#cfcfcf;
-    font-size:10px;
+.hero-card small{
+    color:#89857d;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-size:9px;
 }
 
-.status-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 12px var(--green);
+.rating{
+    color:var(--gold2);
+    font-size:12px;
 }
 
-.hero-card h3{
-    font-size:16px;
-    margin-bottom:5px;
+.hero-card strong{
+    display:block;
+    font-family:Georgia,serif;
+    font-size:25px;
+    font-weight:400;
+    margin-bottom:7px;
 }
 
 .hero-card p{
     font-size:11px;
-    color:#777;
+    margin:0;
+    line-height:1.6;
+    color:#85817a;
 }
 
-.mini-time{
-    display:inline-block;
-    margin-top:17px;
-    border:1px solid rgba(201,164,92,.3);
-    color:var(--gold2);
-    padding:7px 10px;
-    font-size:10px;
+/* =========================
+   MINI BARBER FIXED
+========================= */
+
+.mini-barber-wrap{
+    position:fixed;
+    left:0;
+    top:0;
+    width:125px;
+    height:170px;
+    z-index:9999;
+    pointer-events:none;
+    transform:translate3d(0,0,0);
+    will-change:transform;
 }
 
-/* SECTIONS */
+.mini-barber-shadow{
+    position:absolute;
+    left:50%;
+    bottom:8px;
+    width:66px;
+    height:14px;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:rgba(0,0,0,.65);
+    filter:blur(6px);
+    transition:.25s;
+}
+
+.mini-barber{
+    position:absolute;
+    left:50%;
+    bottom:10px;
+    width:100px;
+    height:150px;
+    transform:translateX(-50%);
+    transform-origin:50% 90%;
+    filter:
+        drop-shadow(0 8px 12px rgba(0,0,0,.5))
+        drop-shadow(0 0 14px rgba(215,173,85,.15));
+}
+
+.barber-body{
+    transform-origin:50% 65%;
+}
+
+.barber-head{
+    transform-origin:50% 45px;
+}
+
+.barber-arm-left{
+    transform-origin:31px 78px;
+}
+
+.barber-arm-right{
+    transform-origin:69px 78px;
+}
+
+.barber-leg-left{
+    transform-origin:43px 111px;
+}
+
+.barber-leg-right{
+    transform-origin:57px 111px;
+}
+
+.barber-running .barber-body{
+    animation:bodyRun .28s infinite alternate ease-in-out;
+}
+
+.barber-running .barber-head{
+    animation:headRun .35s infinite alternate ease-in-out;
+}
+
+.barber-running .barber-arm-left{
+    animation:armLeftRun .22s infinite alternate ease-in-out;
+}
+
+.barber-running .barber-arm-right{
+    animation:armRightRun .22s infinite alternate ease-in-out;
+}
+
+.barber-running .barber-leg-left{
+    animation:legLeftRun .2s infinite alternate ease-in-out;
+}
+
+.barber-running .barber-leg-right{
+    animation:legRightRun .2s infinite alternate ease-in-out;
+}
+
+.barber-running + .mini-barber-shadow{
+    animation:shadowRun .22s infinite alternate ease-in-out;
+}
+
+@keyframes bodyRun{
+    from{transform:translateY(0) rotate(-2deg)}
+    to{transform:translateY(-4px) rotate(2deg)}
+}
+
+@keyframes headRun{
+    from{transform:rotate(-4deg)}
+    to{transform:rotate(4deg)}
+}
+
+@keyframes armLeftRun{
+    from{transform:rotate(17deg)}
+    to{transform:rotate(-18deg)}
+}
+
+@keyframes armRightRun{
+    from{transform:rotate(-17deg)}
+    to{transform:rotate(18deg)}
+}
+
+@keyframes legLeftRun{
+    from{transform:rotate(17deg)}
+    to{transform:rotate(-18deg)}
+}
+
+@keyframes legRightRun{
+    from{transform:rotate(-18deg)}
+    to{transform:rotate(17deg)}
+}
+
+@keyframes shadowRun{
+    from{transform:translateX(-50%) scaleX(.8)}
+    to{transform:translateX(-50%) scaleX(1.15)}
+}
+
+/* suor */
+
+.barber-sweat{
+    position:absolute;
+    width:7px;
+    height:13px;
+    background:#73d8ff;
+    border-radius:70% 30% 70% 30%;
+    opacity:0;
+    transform:translateY(0) rotate(15deg);
+    filter:drop-shadow(0 0 5px rgba(115,216,255,.7));
+}
+
+.sweat-one{
+    left:27px;
+    top:45px;
+}
+
+.sweat-two{
+    left:76px;
+    top:51px;
+    width:6px;
+    height:11px;
+}
+
+.sweat-three{
+    left:20px;
+    top:64px;
+    width:5px;
+    height:9px;
+}
+
+.barber-tired .barber-sweat{
+    animation:sweatDrop 1.2s ease-in infinite;
+}
+
+.barber-tired .sweat-two{
+    animation-delay:.35s;
+}
+
+.barber-tired .sweat-three{
+    animation-delay:.7s;
+}
+
+@keyframes sweatDrop{
+    0%{
+        opacity:0;
+        transform:translateY(-4px) scale(.6) rotate(15deg);
+    }
+    20%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+        transform:translateY(24px) scale(.9) rotate(15deg);
+    }
+}
+
+/* respiração cansada */
+
+.tired-breath{
+    position:absolute;
+    left:50%;
+    bottom:46px;
+    width:30px;
+    height:18px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.28);
+    opacity:0;
+    transform:translateX(-50%) scale(.5);
+}
+
+.barber-tired .tired-breath{
+    animation:breath .8s ease-out infinite;
+}
+
+@keyframes breath{
+    0%{
+        opacity:0;
+        transform:translateX(-50%) scale(.45);
+    }
+    35%{
+        opacity:.55;
+    }
+    100%{
+        opacity:0;
+        transform:translateX(-50%) translateY(-15px) scale(1.5);
+    }
+}
+
+.tired-face{
+    opacity:0;
+}
+
+.barber-tired .tired-face{
+    opacity:1;
+}
+
+.barber-tired .normal-face{
+    opacity:.25;
+}
+
+.barber-tired .barber-body{
+    animation:tiredBody .55s infinite alternate ease-in-out;
+}
+
+@keyframes tiredBody{
+    from{transform:translateY(1px) rotate(-3deg)}
+    to{transform:translateY(5px) rotate(3deg)}
+}
+
+/* =========================
+   SECTIONS
+========================= */
 
 section{
-    padding:110px 0;
     position:relative;
+    z-index:2;
 }
 
-.container{
-    width:min(1180px,92%);
-    margin:auto;
+.section{
+    padding:120px 8%;
 }
 
-.section-head{
+.section-header{
     display:flex;
     justify-content:space-between;
     align-items:end;
-    margin-bottom:50px;
     gap:30px;
+    margin-bottom:55px;
 }
 
 .section-kicker{
-    color:var(--gold);
+    color:var(--gold2);
     text-transform:uppercase;
-    letter-spacing:3px;
+    letter-spacing:4px;
     font-size:10px;
-    font-weight:700;
-    margin-bottom:12px;
+    margin-bottom:15px;
 }
 
 .section-title{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(38px,5vw,58px);
+    font-family:Georgia,serif;
+    font-weight:400;
+    font-size:clamp(38px,5vw,65px);
     line-height:1;
 }
 
-.section-description{
-    max-width:410px;
-    color:#777;
-    font-size:13px;
+.section-desc{
+    color:#8d8981;
+    max-width:390px;
     line-height:1.8;
+    font-size:13px;
 }
 
-/* SERVICES */
+/* =========================
+   SERVICES
+========================= */
 
 .services-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:16px;
+    gap:15px;
 }
 
-.service{
-    background:linear-gradient(145deg,#121212,#0b0b0b);
-    border:1px solid var(--line);
-    min-height:310px;
-    padding:30px;
+.service-card{
+    min-height:300px;
     position:relative;
+    padding:30px 25px;
+    border:1px solid rgba(215,173,85,.12);
+    background:
+        linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.008));
     overflow:hidden;
     transition:.4s;
+    cursor:pointer;
 }
 
-.service::before{
+.service-card::before{
     content:"";
     position:absolute;
-    width:160px;
-    height:160px;
-    right:-80px;
-    top:-80px;
+    width:120px;
+    height:120px;
     border-radius:50%;
-    background:rgba(201,164,92,.12);
-    transition:.4s;
+    right:-50px;
+    top:-50px;
+    background:rgba(215,173,85,.06);
+    transition:.5s;
 }
 
-.service::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-120%;
-    width:70%;
-    height:100%;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,.07),
-        transparent
-    );
-    transform:skewX(-18deg);
-    transition:.7s;
-    pointer-events:none;
+.service-card:hover{
+    transform:translateY(-8px);
+    border-color:rgba(215,173,85,.45);
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
 }
 
-.service:hover{
-    transform:translateY(-7px);
-    border-color:rgba(201,164,92,.35);
-    box-shadow:var(--shadow);
-}
-
-.service:hover::before{
-    width:260px;
-    height:260px;
-}
-
-.service:hover::after{
-    left:140%;
+.service-card:hover::before{
+    transform:scale(2.3);
 }
 
 .service-number{
-    color:#444;
-    font-size:11px;
-    letter-spacing:2px;
+    font-family:Georgia,serif;
+    color:rgba(215,173,85,.3);
+    font-size:40px;
 }
 
 .service-icon{
     width:45px;
     height:45px;
-    border:1px solid rgba(201,164,92,.4);
-    display:grid;
-    place-items:center;
-    margin:38px 0 25px;
+    border:1px solid rgba(215,173,85,.3);
+    display:flex;
+    align-items:center;
+    justify-content:center;
     color:var(--gold2);
-    font-size:18px;
-    transition:.35s;
+    margin:25px 0;
 }
-
-.service:hover .service-icon{
-    transform:rotate(8deg) scale(1.08);
-    box-shadow:0 0 25px rgba(201,164,92,.12);
-}
-
-.service h3{
-    font-size:16px;
-    margin-bottom:10px;
-    line-height:1.35;
-}
-
-/* SERVICE TITLE + PRICE */
 
 .service-title{
     display:flex;
-    align-items:center;
     justify-content:space-between;
+    align-items:center;
     gap:12px;
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
 .service-title h3{
-    margin:0;
+    font-family:Georgia,serif;
+    font-size:21px;
+    font-weight:400;
 }
 
 .price-inline{
-    position:relative;
-    flex-shrink:0;
-    color:var(--gold2);
-    font-family:"Manrope",sans-serif;
-    font-size:14px;
-    font-weight:800;
-    letter-spacing:.3px;
     white-space:nowrap;
-    padding:5px 8px;
-    border:1px solid rgba(201,164,92,.22);
-    background:rgba(201,164,92,.045);
-    transition:
-        transform .35s ease,
-        border-color .35s ease,
-        background .35s ease,
-        box-shadow .35s ease;
-}
-
-.price-inline::before{
-    content:"";
-    position:absolute;
-    inset:-1px;
-    border:1px solid transparent;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        rgba(240,210,140,.55),
-        transparent
-    );
-    background-size:200% 100%;
-    animation:priceShine 3.5s linear infinite;
-    opacity:.35;
-    pointer-events:none;
-    mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    mask-composite:exclude;
+    font-size:14px;
+    font-weight:700;
+    color:var(--gold2);
+    position:relative;
+    overflow:hidden;
 }
 
 .price-inline::after{
     content:"";
     position:absolute;
-    width:5px;
-    height:5px;
-    right:-3px;
-    top:-3px;
-    border-radius:50%;
-    background:var(--gold2);
-    box-shadow:0 0 10px var(--gold2);
-    opacity:.65;
-}
-
-.service:hover .price-inline{
-    transform:translateX(2px) scale(1.04);
-    border-color:rgba(201,164,92,.6);
-    background:rgba(201,164,92,.10);
-    box-shadow:
-        0 0 20px rgba(201,164,92,.10),
-        inset 0 0 15px rgba(201,164,92,.04);
+    top:0;
+    left:-100%;
+    width:45%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.8),
+        transparent
+    );
+    transform:skewX(-20deg);
+    animation:priceShine 3.5s infinite;
 }
 
 @keyframes priceShine{
-    from{
-        background-position:200% 0;
-    }
-
-    to{
-        background-position:-200% 0;
-    }
+    0%,65%{left:-100%}
+    100%{left:150%}
 }
 
-.service p{
-    color:#777;
-    font-size:12px;
+.service-card p{
+    color:#77736d;
     line-height:1.7;
-    max-width:270px;
+    font-size:12px;
 }
 
-.service-bottom{
-    position:absolute;
-    bottom:25px;
-    left:30px;
-    right:30px;
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-}
+/* =========================
+   BARBERS
+========================= */
 
-.service-book{
-    background:none;
-    border:0;
-    color:#777;
-    font-size:11px;
-    transition:.2s;
-}
-
-.service-book:hover{
-    color:var(--gold2);
-    transform:translateX(4px);
-}
-
-/* BARBERS */
-
-.barbers-section{
+.barbers{
     background:
-        linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-    background-size:80px 80px;
+        radial-gradient(circle at 50% 50%,rgba(215,173,85,.035),transparent 50%);
 }
 
 .barbers-grid{
@@ -963,63 +792,61 @@ section{
     gap:18px;
 }
 
-.barber{
+.barber-card{
+    min-height:430px;
     position:relative;
-    height:450px;
     overflow:hidden;
-    border:1px solid var(--line);
-    background:#101010;
+    border:1px solid rgba(215,173,85,.1);
+    background:#090909;
 }
 
-.barber-image{
-    height:100%;
-    background:
-        linear-gradient(to top,#070707 5%,transparent 55%),
-        radial-gradient(circle at 50% 25%,rgba(201,164,92,.3),transparent 25%),
-        linear-gradient(135deg,#242424,#080808);
+.barber-photo{
+    height:330px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-family:"Playfair Display",serif;
-    font-size:90px;
-    color:rgba(201,164,92,.35);
-    transition:.6s;
+    background:
+        radial-gradient(circle at 50% 40%,rgba(215,173,85,.14),transparent 35%),
+        linear-gradient(145deg,#151515,#070707);
 }
 
-.barber:hover .barber-image{
-    transform:scale(1.05);
+.barber-avatar{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    border:1px solid rgba(215,173,85,.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Georgia,serif;
+    font-size:52px;
+    color:var(--gold2);
+    box-shadow:
+        0 0 50px rgba(215,173,85,.1),
+        inset 0 0 30px rgba(215,173,85,.05);
 }
 
 .barber-info{
-    position:absolute;
-    bottom:0;
-    left:0;
-    right:0;
-    padding:25px;
-    background:linear-gradient(transparent,rgba(0,0,0,.96));
-    padding-top:100px;
+    padding:22px;
 }
 
 .barber-info h3{
-    font-family:"Playfair Display",serif;
-    font-size:26px;
+    font-family:Georgia,serif;
+    font-size:25px;
+    font-weight:400;
+    margin-bottom:6px;
 }
 
 .barber-info p{
-    color:#888;
+    color:#77736d;
     font-size:11px;
-    margin:4px 0 15px;
+    letter-spacing:1px;
+    text-transform:uppercase;
 }
 
-.barber-info button{
-    border:1px solid rgba(201,164,92,.35);
-    background:rgba(0,0,0,.45);
-    color:var(--gold2);
-    padding:8px 13px;
-    font-size:10px;
-}
-
-/* STORY */
+/* =========================
+   STORY
+========================= */
 
 .story{
     display:grid;
@@ -1030,808 +857,593 @@ section{
 
 .story-visual{
     min-height:500px;
-    border:1px solid var(--line);
     position:relative;
-    overflow:hidden;
+    border:1px solid rgba(215,173,85,.12);
     background:
-        radial-gradient(circle at 50% 40%,rgba(201,164,92,.16),transparent 28%),
-        linear-gradient(145deg,#171717,#080808);
+        radial-gradient(circle at 50% 50%,rgba(215,173,85,.08),transparent 50%),
+        #090909;
+    overflow:hidden;
 }
 
 .story-visual::before{
     content:"N";
     position:absolute;
     inset:0;
-    display:grid;
-    place-items:center;
-    font-family:"Playfair Display",serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Georgia,serif;
     font-size:300px;
-    color:rgba(201,164,92,.045);
+    color:rgba(215,173,85,.035);
 }
 
-.story-circle{
+.story-ring{
     position:absolute;
-    width:300px;
-    height:300px;
-    border:1px solid rgba(201,164,92,.25);
+    width:280px;
+    height:280px;
     border-radius:50%;
+    border:1px solid rgba(215,173,85,.2);
     left:50%;
     top:50%;
     transform:translate(-50%,-50%);
 }
 
-.story-circle::before{
+.story-ring::before{
     content:"";
     position:absolute;
-    inset:35px;
-    border:1px solid rgba(201,164,92,.15);
+    inset:25px;
+    border:1px dashed rgba(215,173,85,.14);
     border-radius:50%;
+    animation:ringRotate 15s linear infinite reverse;
 }
 
-/* CTA */
-
-.cta{
-    padding:90px 0;
+.story-content p{
+    color:#8d8981;
+    line-height:2;
+    font-size:14px;
+    margin:25px 0;
 }
 
-.cta-box{
-    border:1px solid rgba(201,164,92,.22);
-    background:
-        radial-gradient(circle at 85% 50%,rgba(201,164,92,.12),transparent 30%),
-        #0e0e0e;
-    padding:70px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:40px;
-}
-
-.cta-box h2{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(35px,5vw,60px);
-    max-width:650px;
-    line-height:1;
-}
-
-.cta-box h2 em{
-    color:var(--gold2);
-}
-
-.cta-box p{
-    color:#777;
-    margin-top:15px;
-}
-
-/* FOOTER */
-
-footer{
-    border-top:1px solid var(--line);
-    padding:55px 0 25px;
-}
-
-.footer-top{
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr 1fr;
-    gap:40px;
-    padding-bottom:45px;
-}
-
-.footer-brand p{
-    color:#777;
-    font-size:12px;
-    line-height:1.8;
-    max-width:280px;
-    margin-top:18px;
-}
-
-.footer-col h4{
-    font-size:11px;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    color:#ddd;
-    margin-bottom:18px;
-}
-
-.footer-col a,
-.footer-col p{
-    display:block;
-    color:#777;
-    font-size:12px;
-    margin-bottom:10px;
-}
-
-.footer-col a:hover{
-    color:var(--gold2);
-}
-
-.footer-bottom{
-    border-top:1px solid var(--line);
-    padding-top:22px;
-    display:flex;
-    justify-content:space-between;
-    color:#555;
-    font-size:10px;
-}
-
-/* MODAL */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.78);
-    backdrop-filter:blur(15px);
-    z-index:500;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.modal.active{
-    display:flex;
-}
-
-.booking{
-    width:min(700px,100%);
-    max-height:92vh;
-    overflow:auto;
-    background:#101010;
-    border:1px solid rgba(201,164,92,.25);
-    box-shadow:0 40px 120px rgba(0,0,0,.7);
-    position:relative;
-}
-
-.modal-close{
-    position:absolute;
-    top:16px;
-    right:18px;
-    border:0;
-    background:none;
-    color:#888;
-    font-size:25px;
-    z-index:5;
-}
-
-.modal-close:hover{
-    color:white;
-}
-
-.booking-header{
-    padding:30px 32px 20px;
-    border-bottom:1px solid var(--line);
-}
-
-.booking-header small{
-    color:var(--gold);
-    text-transform:uppercase;
-    letter-spacing:2px;
-    font-size:9px;
-}
-
-.booking-header h2{
-    font-family:"Playfair Display",serif;
-    font-size:34px;
-    margin-top:8px;
-}
-
-.steps{
-    display:flex;
-    padding:18px 32px;
-    gap:7px;
-    border-bottom:1px solid var(--line);
-}
-
-.step-dot{
-    flex:1;
-    height:3px;
-    background:#292929;
-    transition:.3s;
-}
-
-.step-dot.active{
-    background:var(--gold);
-}
-
-.booking-body{
-    padding:30px 32px;
-}
-
-.step-content{
-    display:none;
-}
-
-.step-content.active{
-    display:block;
-    animation:fadeUp .35s ease;
-}
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(10px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.booking-title{
-    font-size:17px;
-    margin-bottom:18px;
-}
-
-.options{
-    display:grid;
-    gap:10px;
-}
-
-.option{
-    width:100%;
-    border:1px solid var(--line);
-    background:#0c0c0c;
-    color:white;
-    padding:17px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    text-align:left;
-    transition:.25s;
-}
-
-.option:hover{
-    border-color:rgba(201,164,92,.4);
-}
-
-.option.selected{
-    border-color:var(--gold);
-    background:rgba(201,164,92,.06);
-}
-
-.option-main{
-    display:flex;
-    align-items:center;
-    gap:13px;
-}
-
-.option-icon{
-    width:35px;
-    height:35px;
-    display:grid;
-    place-items:center;
-    border:1px solid #303030;
-    color:var(--gold2);
-}
-
-.option strong{
-    display:block;
-    font-size:13px;
-}
-
-.option small{
-    display:block;
-    color:#666;
-    margin-top:3px;
-    font-size:10px;
-}
-
-.option-price{
-    color:var(--gold2);
-    font-weight:700;
-    font-size:12px;
-}
-
-/* CALENDAR */
-
-.calendar-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
-}
-
-.calendar-head button{
-    border:1px solid var(--line);
-    background:#0c0c0c;
-    color:#bbb;
-    width:32px;
-    height:32px;
-}
-
-.calendar-month{
-    font-weight:700;
-    font-size:13px;
-}
-
-.weekdays,
-.calendar{
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:5px;
-}
-
-.weekdays{
-    margin-bottom:5px;
-}
-
-.weekdays span{
-    text-align:center;
-    color:#555;
-    font-size:9px;
-    text-transform:uppercase;
-}
-
-.day{
-    aspect-ratio:1;
-    border:1px solid transparent;
-    background:#0c0c0c;
-    color:#aaa;
-    display:grid;
-    place-items:center;
-    font-size:11px;
-    transition:.2s;
-}
-
-.day:hover:not(.disabled){
-    border-color:var(--gold);
-}
-
-.day.selected{
-    background:var(--gold);
-    color:#050505;
-    font-weight:800;
-}
-
-.day.disabled{
-    color:#292929;
-    cursor:not-allowed;
-}
-
-.day.empty{
-    background:transparent;
-}
-
-/* TIME */
-
-.time-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-}
-
-.time{
-    border:1px solid var(--line);
-    background:#0c0c0c;
-    color:#aaa;
-    padding:12px 5px;
-    font-size:11px;
-    transition:.2s;
-}
-
-.time:hover{
-    border-color:var(--gold);
-}
-
-.time.selected{
-    background:var(--gold);
-    color:#000;
-    border-color:var(--gold);
-    font-weight:700;
-}
-
-.time.taken{
-    opacity:.25;
-    cursor:not-allowed;
-    text-decoration:line-through;
-}
-
-/* FORM */
-
-.form-grid{
+.story-list{
+    list-style:none;
     display:grid;
     gap:14px;
 }
 
-.field label{
-    display:block;
-    color:#777;
-    font-size:10px;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    margin-bottom:7px;
-}
-
-.field input{
-    width:100%;
-    border:1px solid var(--line);
-    background:#0b0b0b;
-    color:white;
-    outline:none;
-    padding:14px;
-    border-radius:0;
-}
-
-.field input:focus{
-    border-color:rgba(201,164,92,.6);
-}
-
-.booking-footer{
-    padding:20px 32px 30px;
+.story-list li{
     display:flex;
-    justify-content:space-between;
-    gap:12px;
-    border-top:1px solid var(--line);
-}
-
-.back-btn{
-    border:1px solid var(--line);
-    background:transparent;
-    color:#888;
-    padding:13px 20px;
-}
-
-.next-btn{
-    margin-left:auto;
-    border:1px solid var(--gold);
-    background:var(--gold);
-    color:#050505;
-    padding:13px 25px;
-    font-weight:800;
-    font-size:12px;
-}
-
-.next-btn:disabled{
-    opacity:.35;
-    cursor:not-allowed;
-}
-
-/* SUCCESS */
-
-.success{
-    text-align:center;
-    padding:25px 5px 10px;
-}
-
-.success-icon{
-    width:75px;
-    height:75px;
-    margin:0 auto 22px;
-    border:1px solid var(--gold);
-    border-radius:50%;
-    display:grid;
-    place-items:center;
-    color:var(--gold2);
-    font-size:28px;
-}
-
-.success h2{
-    font-family:"Playfair Display",serif;
-    font-size:34px;
-}
-
-.success p{
-    color:#777;
-    font-size:13px;
-    line-height:1.7;
-    margin:12px auto 25px;
-    max-width:420px;
-}
-
-.booking-summary{
-    border:1px solid var(--line);
-    background:#0b0b0b;
-    padding:17px;
-    text-align:left;
-    display:grid;
-    gap:9px;
-    font-size:11px;
-}
-
-.booking-summary div{
-    display:flex;
-    justify-content:space-between;
-    color:#777;
-}
-
-.booking-summary strong{
-    color:#ddd;
-}
-
-/* REVEAL */
-
-.reveal{
-    opacity:0;
-    transform:translateY(25px);
-    transition:opacity .8s ease,transform .8s ease;
-}
-
-.reveal.visible{
-    opacity:1;
-    transform:none;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:1100px){
-
-    .services-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .mini-barber-wrap{
-        right:24%;
-        transform:scale(.9);
-        transform-origin:bottom right;
-    }
-
-}
-
-@media(max-width:900px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .mobile-menu{
-        display:block;
-    }
-
-    .hero-card{
-        display:none;
-    }
-
-    .hero h1{
-        letter-spacing:-2px;
-    }
-
-    .services-grid,
-    .barbers-grid{
-        grid-template-columns:1fr;
-    }
-
-    .service{
-        min-height:250px;
-    }
-
-    .barber{
-        height:400px;
-    }
-
-    .story{
-        grid-template-columns:1fr;
-        gap:45px;
-    }
-
-    .story-visual{
-        min-height:380px;
-    }
-
-    .cta-box{
-        padding:45px 30px;
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .footer-top{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .mini-barber-wrap{
-        right:5%;
-        bottom:4%;
-        transform:scale(.78);
-        transform-origin:bottom right;
-    }
-
-}
-
-@media(max-width:600px){
-
-    section{
-        padding:80px 0;
-    }
-
-    .hero{
-        min-height:850px;
-    }
-
-    .hero-content{
-        padding-top:80px;
-    }
-
-    .hero-stats{
-        gap:25px;
-        flex-wrap:wrap;
-        margin-top:45px;
-    }
-
-    .stat strong{
-        font-size:20px;
-    }
-
-    .section-head{
-        display:block;
-    }
-
-    .section-description{
-        margin-top:18px;
-    }
-
-    .service-title{
-        align-items:flex-start;
-    }
-
-    .service-title h3{
-        max-width:62%;
-    }
-
-    .price-inline{
-        font-size:13px;
-    }
-
-    .booking-header,
-    .booking-body{
-        padding-left:20px;
-        padding-right:20px;
-    }
-
-    .booking-footer{
-        padding-left:20px;
-        padding-right:20px;
-    }
-
-    .time-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    .footer-top{
-        grid-template-columns:1fr;
-    }
-
-    .footer-bottom{
-        display:block;
-    }
-
-    .footer-bottom span{
-        display:block;
-        margin-top:8px;
-    }
-
-    .mini-barber-wrap{
-        right:2%;
-        bottom:3%;
-        width:125px;
-        height:175px;
-        transform:scale(.72);
-        transform-origin:bottom right;
-    }
-
-    .hero-actions{
-        position:relative;
-        z-index:8;
-    }
-
-}
-
-@media(prefers-reduced-motion:reduce){
-
-    html{
-        scroll-behavior:auto;
-    }
-
-    .mini-barber-track,
-    .mini-barber .barber-body,
-    .mini-barber .barber-head,
-    .mini-barber .barber-left-arm,
-    .mini-barber .barber-right-arm,
-    .mini-barber .leg-left,
-    .mini-barber .leg-right,
-    .mini-barber .scissor-blade-a,
-    .mini-barber .scissor-blade-b,
-    .mini-barber .clipper,
-    .barber-floor-shadow{
-        animation:none!important;
-    }
-
-}
-
-/* =========================================================
-   MINI BARBER SVG
-========================================================= */
-
-.barber-svg .gold{
-    fill:#e7c56f;
-}
-
-.barber-svg .gold-light{
-    fill:#f5dc94;
-}
-
-.barber-svg .gold-dark{
-    fill:#a87c32;
-}
-
-.barber-svg .black{
-    fill:#090909;
-}
-
-.barber-svg .black2{
-    fill:#151515;
-}
-
-.barber-svg .skin{
-    fill:#e6b66f;
-}
-
-.barber-svg .skin-dark{
-    fill:#c78c4c;
-}
-
-.barber-svg .white{
-    fill:#f4f0e5;
-}
-
-.barber-svg .metal{
-    fill:#bcbcbc;
-}
-
-.barber-svg .metal-dark{
-    fill:#626262;
-}
-
-.barber-svg .stroke-gold{
-    stroke:#dcb965;
-}
-
-.barber-svg .stroke-black{
-    stroke:#090909;
-}
-
-/* Small interaction pulse */
-
-.mini-barber.touched .barber-svg{
-    filter:drop-shadow(0 0 15px rgba(240,210,140,.5));
-}
-
-/* =========================================================
-   STORY LIST
-========================================================= */
-
-.story-list{
-    margin-top:28px;
-    display:grid;
-    gap:13px;
-}
-
-.story-list div{
-    display:flex;
-    gap:12px;
     align-items:center;
-    color:#aaa;
-    font-size:12px;
+    gap:12px;
+    color:#b8b4ac;
+    font-size:13px;
 }
 
 .story-list span{
     color:var(--gold2);
 }
 
-/* =========================================================
-   MOBILE TOUCH
-========================================================= */
+/* =========================
+   CTA
+========================= */
 
-@media(hover:none){
+.cta{
+    margin:0 8% 100px;
+    padding:80px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(215,173,85,.2);
+    background:
+        radial-gradient(circle at center,rgba(215,173,85,.1),transparent 60%),
+        #090909;
+}
 
-    .service:active{
-        transform:translateY(-4px);
-        border-color:rgba(201,164,92,.4);
+.cta::before,
+.cta::after{
+    content:"";
+    position:absolute;
+    width:220px;
+    height:220px;
+    border:1px solid rgba(215,173,85,.08);
+    border-radius:50%;
+}
+
+.cta::before{
+    left:-100px;
+    top:-100px;
+}
+
+.cta::after{
+    right:-100px;
+    bottom:-100px;
+}
+
+.cta h2{
+    position:relative;
+    z-index:2;
+    font-family:Georgia,serif;
+    font-size:clamp(40px,5vw,70px);
+    font-weight:400;
+    margin-bottom:20px;
+}
+
+.cta p{
+    position:relative;
+    z-index:2;
+    color:#88847d;
+    margin-bottom:30px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:40px 8%;
+    border-top:1px solid rgba(215,173,85,.08);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#625f59;
+    font-size:10px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.82);
+    backdrop-filter:blur(12px);
+    opacity:0;
+    visibility:hidden;
+    transition:.35s;
+}
+
+.modal.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.modal-box{
+    width:min(650px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#0b0b0b;
+    border:1px solid rgba(215,173,85,.25);
+    box-shadow:0 30px 100px rgba(0,0,0,.7);
+    transform:translateY(25px) scale(.97);
+    transition:.35s;
+}
+
+.modal.active .modal-box{
+    transform:translateY(0) scale(1);
+}
+
+.modal-header{
+    padding:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.modal-header h3{
+    font-family:Georgia,serif;
+    font-size:26px;
+    font-weight:400;
+}
+
+.close-modal{
+    width:36px;
+    height:36px;
+    border:1px solid rgba(215,173,85,.25);
+    background:transparent;
+    color:#aaa;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.modal-body{
+    padding:25px;
+}
+
+.steps{
+    display:flex;
+    gap:7px;
+    margin-bottom:30px;
+}
+
+.step{
+    height:3px;
+    flex:1;
+    background:#222;
+}
+
+.step.active{
+    background:var(--gold);
+}
+
+.booking-step{
+    display:none;
+}
+
+.booking-step.active{
+    display:block;
+}
+
+.booking-step h4{
+    font-family:Georgia,serif;
+    font-weight:400;
+    font-size:25px;
+    margin-bottom:20px;
+}
+
+.option-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+
+.option{
+    padding:18px;
+    border:1px solid rgba(255,255,255,.07);
+    background:#111;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.option:hover,
+.option.selected{
+    border-color:var(--gold);
+    background:rgba(215,173,85,.06);
+}
+
+.option strong{
+    display:block;
+    margin-bottom:7px;
+}
+
+.option span{
+    color:#777;
+    font-size:11px;
+}
+
+.calendar{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:5px;
+}
+
+.calendar-day{
+    min-height:44px;
+    border:1px solid rgba(255,255,255,.05);
+    background:#111;
+    color:#aaa;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+}
+
+.calendar-day:hover,
+.calendar-day.selected{
+    border-color:var(--gold);
+    color:var(--gold2);
+    background:rgba(215,173,85,.06);
+}
+
+.calendar-day.disabled{
+    opacity:.2;
+    pointer-events:none;
+}
+
+.weekday{
+    color:#555;
+    text-align:center;
+    font-size:9px;
+    padding:7px 0;
+    text-transform:uppercase;
+}
+
+.times{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+}
+
+.time{
+    padding:13px 5px;
+    border:1px solid rgba(255,255,255,.07);
+    background:#111;
+    color:#aaa;
+    cursor:pointer;
+    text-align:center;
+    font-size:11px;
+}
+
+.time:hover,
+.time.selected{
+    border-color:var(--gold);
+    color:var(--gold2);
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    color:#777;
+    font-size:10px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    margin-bottom:7px;
+}
+
+.form-group input{
+    width:100%;
+    padding:15px;
+    border:1px solid rgba(255,255,255,.08);
+    background:#111;
+    color:white;
+    outline:none;
+}
+
+.form-group input:focus{
+    border-color:rgba(215,173,85,.5);
+}
+
+.modal-footer{
+    margin-top:25px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.modal-btn{
+    padding:14px 20px;
+    border:1px solid rgba(215,173,85,.35);
+    background:transparent;
+    color:var(--gold2);
+    cursor:pointer;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:10px;
+}
+
+.modal-btn.primary{
+    background:var(--gold);
+    color:#050505;
+    border-color:var(--gold);
+}
+
+.success{
+    text-align:center;
+    padding:30px 10px;
+}
+
+.success-icon{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    border:1px solid var(--gold);
+    color:var(--gold2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 25px;
+    font-size:30px;
+}
+
+.success h3{
+    font-family:Georgia,serif;
+    font-weight:400;
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.success p{
+    color:#777;
+    line-height:1.7;
+}
+
+.summary{
+    margin-top:25px;
+    padding:18px;
+    background:#111;
+    border:1px solid rgba(255,255,255,.06);
+    text-align:left;
+    font-size:12px;
+    line-height:2;
+    color:#999;
+}
+
+.summary strong{
+    color:#eee;
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:1s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+    nav{
+        display:none;
     }
 
-    .service:active .price-inline{
-        transform:scale(1.04);
-        border-color:rgba(201,164,92,.6);
+    .mobile-menu{
+        display:block;
+        width:40px;
+        height:40px;
+        border:1px solid rgba(215,173,85,.3);
+        background:transparent;
+        color:var(--gold2);
+        cursor:pointer;
     }
 
+    .header-btn{
+        display:none;
+    }
+
+    .services-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .hero-ring{
+        right:-180px;
+    }
+
+    .hero-card{
+        right:4%;
+        bottom:8%;
+    }
+}
+
+@media(max-width:700px){
+
+    header{
+        height:70px;
+        padding:0 5%;
+    }
+
+    .logo-text{
+        font-size:15px;
+        letter-spacing:3px;
+    }
+
+    .hero{
+        min-height:100vh;
+        padding:110px 6% 80px;
+        align-items:flex-start;
+    }
+
+    .hero h1{
+        font-size:58px;
+        letter-spacing:-3px;
+        margin-top:20px;
+    }
+
+    .hero p{
+        font-size:13px;
+    }
+
+    .hero-orb{
+        width:420px;
+        height:420px;
+        right:-180px;
+        top:55%;
+    }
+
+    .hero-ring{
+        width:380px;
+        height:380px;
+        right:-190px;
+        top:55%;
+    }
+
+    .hero-card{
+        display:none;
+    }
+
+    .services-grid{
+        grid-template-columns:1fr;
+    }
+
+    .barbers-grid{
+        grid-template-columns:1fr;
+    }
+
+    .story{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .story-visual{
+        min-height:330px;
+    }
+
+    .cta{
+        margin:0 5% 70px;
+        padding:60px 25px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+    }
+
+    .option-grid{
+        grid-template-columns:1fr;
+    }
+
+    .times{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .mini-barber-wrap{
+        width:105px;
+        height:145px;
+    }
+
+    .mini-barber{
+        transform:translateX(-50%) scale(.82);
+        transform-origin:50% 90%;
+    }
+
+    .mini-barber-shadow{
+        transform:translateX(-50%) scale(.8);
+    }
+}
+
+@media(max-width:450px){
+
+    .hero h1{
+        font-size:50px;
+    }
+
+    .section{
+        padding:90px 6%;
+    }
+
+    .section-header{
+        display:block;
+    }
+
+    .section-desc{
+        margin-top:20px;
+    }
+
+    .times{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 </style>
 </head>
@@ -1840,49 +1452,393 @@ footer{
 
 <div class="cursor-glow" id="cursorGlow"></div>
 
-<!-- HEADER -->
+<!-- =========================================================
+     MINI BARBEIRO
+========================================================= -->
 
-<header id="header">
+<div class="mini-barber-wrap" id="miniBarberWrap">
 
-    <nav class="nav">
+    <div class="mini-barber" id="miniBarber">
 
-        <a href="#" class="logo">
+        <svg
+            width="100"
+            height="150"
+            viewBox="0 0 100 150"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+        >
 
-            <div class="logo-mark">
-                <span>N</span>
-            </div>
+            <!-- SOMBRA / CORPO PRINCIPAL -->
 
-            NERO
+            <g class="barber-body">
 
-        </a>
+                <!-- pernas -->
+                <g class="barber-leg-left">
+                    <path
+                        d="M39 108 L34 132 L27 140"
+                        stroke="#171717"
+                        stroke-width="9"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M27 140 L18 140"
+                        stroke="#050505"
+                        stroke-width="6"
+                        stroke-linecap="round"
+                    />
+                </g>
 
-        <div class="nav-links">
+                <g class="barber-leg-right">
+                    <path
+                        d="M58 108 L64 132 L73 140"
+                        stroke="#171717"
+                        stroke-width="9"
+                        stroke-linecap="round"
+                        fill="none"
+                    />
+                    <path
+                        d="M73 140 L82 140"
+                        stroke="#050505"
+                        stroke-width="6"
+                        stroke-linecap="round"
+                    />
+                </g>
 
-            <a href="#servicos">Serviços</a>
-            <a href="#barbeiros">Barbeiros</a>
-            <a href="#historia">A Barbearia</a>
-            <a href="#contato">Contato</a>
+                <!-- uniforme de luxo -->
+                <path
+                    d="M31 67
+                       Q50 60 69 67
+                       L76 111
+                       Q50 124 24 111
+                       Z"
+                    fill="#101010"
+                    stroke="#d7ad55"
+                    stroke-width="1.6"
+                />
 
-        </div>
+                <!-- camisa -->
+                <path
+                    d="M42 67 L50 77 L58 67 L57 94 L43 94 Z"
+                    fill="#eee8d8"
+                />
 
-        <button class="nav-book" onclick="openBooking()">
-            AGENDAR HORÁRIO
-        </button>
+                <!-- gravata -->
+                <path
+                    d="M47 72 L53 72 L55 83 L50 89 L45 83 Z"
+                    fill="#d7ad55"
+                />
 
-        <button class="mobile-menu" onclick="openBooking()">
-            ☰
-        </button>
+                <!-- lapelas -->
+                <path
+                    d="M32 70 L44 79 L42 94 L29 77 Z"
+                    fill="#171717"
+                    stroke="#d7ad55"
+                    stroke-width="1"
+                />
 
+                <path
+                    d="M68 70 L56 79 L58 94 L71 77 Z"
+                    fill="#171717"
+                    stroke="#d7ad55"
+                    stroke-width="1"
+                />
+
+                <!-- botões -->
+                <circle cx="50" cy="93" r="2" fill="#d7ad55"/>
+                <circle cx="50" cy="101" r="2" fill="#d7ad55"/>
+
+                <!-- crachá NERO -->
+                <rect
+                    x="56"
+                    y="88"
+                    width="10"
+                    height="7"
+                    rx="1"
+                    fill="#d7ad55"
+                />
+
+                <text
+                    x="61"
+                    y="93.5"
+                    text-anchor="middle"
+                    font-size="5"
+                    font-family="Georgia"
+                    fill="#111"
+                >N</text>
+
+            </g>
+
+            <!-- braço esquerdo -->
+            <g class="barber-arm-left">
+
+                <path
+                    d="M32 73 Q20 82 18 94"
+                    stroke="#101010"
+                    stroke-width="9"
+                    stroke-linecap="round"
+                    fill="none"
+                />
+
+                <!-- mão -->
+                <circle
+                    cx="18"
+                    cy="94"
+                    r="5"
+                    fill="#ffd36b"
+                    stroke="#171717"
+                    stroke-width="1"
+                />
+
+                <!-- TESOURA -->
+                <g transform="translate(2 88) rotate(-20)">
+                    <circle
+                        cx="0"
+                        cy="0"
+                        r="4"
+                        fill="none"
+                        stroke="#d8d8d8"
+                        stroke-width="2"
+                    />
+                    <circle
+                        cx="9"
+                        cy="0"
+                        r="4"
+                        fill="none"
+                        stroke="#d8d8d8"
+                        stroke-width="2"
+                    />
+                    <path
+                        d="M3 0 L20 -8"
+                        stroke="#d8d8d8"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+                    <path
+                        d="M6 0 L20 8"
+                        stroke="#d8d8d8"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+                </g>
+
+            </g>
+
+            <!-- braço direito -->
+            <g class="barber-arm-right">
+
+                <path
+                    d="M68 73 Q80 82 83 94"
+                    stroke="#101010"
+                    stroke-width="9"
+                    stroke-linecap="round"
+                    fill="none"
+                />
+
+                <!-- mão -->
+                <circle
+                    cx="83"
+                    cy="94"
+                    r="5"
+                    fill="#ffd36b"
+                    stroke="#171717"
+                    stroke-width="1"
+                />
+
+                <!-- MÁQUINA -->
+                <g transform="translate(78 86) rotate(8)">
+                    <rect
+                        x="0"
+                        y="0"
+                        width="12"
+                        height="21"
+                        rx="3"
+                        fill="#0a0a0a"
+                        stroke="#d7ad55"
+                        stroke-width="1.5"
+                    />
+
+                    <rect
+                        x="3"
+                        y="-4"
+                        width="6"
+                        height="5"
+                        rx="1"
+                        fill="#bcbcbc"
+                    />
+
+                    <rect
+                        x="3"
+                        y="5"
+                        width="6"
+                        height="2"
+                        fill="#d7ad55"
+                    />
+
+                    <circle
+                        cx="6"
+                        cy="14"
+                        r="2"
+                        fill="#d7ad55"
+                    />
+                </g>
+
+            </g>
+
+            <!-- cabeça -->
+            <g class="barber-head">
+
+                <!-- pescoço -->
+                <rect
+                    x="43"
+                    y="55"
+                    width="14"
+                    height="16"
+                    rx="6"
+                    fill="#ffd36b"
+                />
+
+                <!-- rosto -->
+                <ellipse
+                    cx="50"
+                    cy="44"
+                    rx="22"
+                    ry="25"
+                    fill="#ffd36b"
+                    stroke="#d7ad55"
+                    stroke-width="1"
+                />
+
+                <!-- cabelo -->
+                <path
+                    d="M29 43
+                       Q27 17 50 14
+                       Q74 16 71 43
+                       Q65 31 58 28
+                       Q49 37 29 43Z"
+                    fill="#141414"
+                />
+
+                <!-- cabelo brilho -->
+                <path
+                    d="M36 28 Q48 19 61 24"
+                    stroke="#d7ad55"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    fill="none"
+                    opacity=".6"
+                />
+
+                <!-- olhos normais -->
+                <g class="normal-face">
+                    <circle cx="42" cy="45" r="2" fill="#111"/>
+                    <circle cx="58" cy="45" r="2" fill="#111"/>
+
+                    <path
+                        d="M44 55 Q50 59 56 55"
+                        stroke="#111"
+                        stroke-width="2"
+                        fill="none"
+                        stroke-linecap="round"
+                    />
+                </g>
+
+                <!-- rosto cansado -->
+                <g class="tired-face">
+
+                    <path
+                        d="M38 45 Q42 42 46 45"
+                        stroke="#111"
+                        stroke-width="2"
+                        fill="none"
+                    />
+
+                    <path
+                        d="M54 45 Q58 42 62 45"
+                        stroke="#111"
+                        stroke-width="2"
+                        fill="none"
+                    />
+
+                    <path
+                        d="M44 57 Q50 54 56 57"
+                        stroke="#111"
+                        stroke-width="2"
+                        fill="none"
+                    />
+
+                    <path
+                        d="M37 49 L45 51"
+                        stroke="#8f672b"
+                        stroke-width="1"
+                    />
+
+                    <path
+                        d="M55 51 L63 49"
+                        stroke="#8f672b"
+                        stroke-width="1"
+                    />
+
+                </g>
+
+            </g>
+
+        </svg>
+
+        <!-- suor -->
+        <span class="barber-sweat sweat-one"></span>
+        <span class="barber-sweat sweat-two"></span>
+        <span class="barber-sweat sweat-three"></span>
+
+        <!-- respiração -->
+        <span class="tired-breath"></span>
+
+    </div>
+
+    <div class="mini-barber-shadow"></div>
+
+</div>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+    <a href="#inicio" class="logo">
+        <div class="logo-mark">N</div>
+        <div class="logo-text">NERO <span>BARBER</span></div>
+    </a>
+
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#barbeiros">Barbeiros</a>
+        <a href="#historia">Nossa história</a>
     </nav>
+
+    <button
+        class="header-btn"
+        onclick="openBooking()"
+    >
+        Agendar horário
+    </button>
+
+    <button class="mobile-menu" onclick="document.querySelector('nav').classList.toggle('mobile-open')">
+        ☰
+    </button>
 
 </header>
 
 
-<!-- HERO -->
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <main>
 
-<section class="hero">
+<section class="hero" id="inicio">
 
     <div class="hero-grid"></div>
     <div class="hero-orb"></div>
@@ -1895,1298 +1851,438 @@ footer{
         </div>
 
         <h1>
-            Seu estilo.<br>
-            Sua <span>presença.</span>
+            Seu estilo.
+            <span>Sua assinatura.</span>
         </h1>
 
-        <p class="hero-description">
-            Uma experiência de barbearia criada para quem entende que
-            aparência não é detalhe. É presença, identidade e atitude.
+        <p>
+            Mais do que um corte. Uma experiência criada para homens
+            que entendem que presença, precisão e estilo fazem parte
+            da mesma identidade.
         </p>
 
         <div class="hero-actions">
-
-            <button class="primary-btn" onclick="openBooking()">
-                AGENDAR AGORA →
-            </button>
-
-            <a class="secondary-btn" href="#servicos">
-                VER SERVIÇOS
-            </a>
-
-        </div>
-
-        <div class="hero-stats">
-
-            <div class="stat">
-                <strong>8+</strong>
-                <span>Anos de experiência</span>
-            </div>
-
-            <div class="stat">
-                <strong>4.9★</strong>
-                <span>Avaliação média</span>
-            </div>
-
-            <div class="stat">
-                <strong>3k+</strong>
-                <span>Clientes atendidos</span>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         MINI BARBEIRO LUXO
-    ====================================================== -->
-
-    <div class="mini-barber-wrap">
-
-        <div class="barber-floor-shadow"></div>
-
-        <div class="mini-barber-track">
-
-            <div
-                class="mini-barber"
-                id="miniBarber"
-                role="button"
-                tabindex="0"
-                aria-label="Mascote barbeiro do NERO BARBER"
-                title="NERO BARBER"
-            >
-
-                <svg
-                    class="barber-svg"
-                    viewBox="0 0 115 190"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                >
-
-                    <!-- CAPELO / CABEÇA -->
-
-                    <g class="barber-head">
-
-                        <!-- cabelo -->
-                        <path
-                            class="black"
-                            d="M39 39
-                               C40 24 50 17 62 18
-                               C75 18 83 27 82 40
-                               L77 50
-                               L43 50 Z"
-                        />
-
-                        <!-- rosto amarelo -->
-                        <path
-                            class="skin"
-                            d="M44 38
-                               C44 27 51 22 61 22
-                               C72 22 79 29 78 40
-                               L76 55
-                               C74 65 68 70 60 70
-                               C51 70 45 64 43 54 Z"
-                        />
-
-                        <!-- cabelo lateral -->
-                        <path
-                            class="black2"
-                            d="M43 39
-                               C44 29 51 21 62 21
-                               C70 21 77 26 79 35
-                               L72 32
-                               L68 27
-                               L64 33
-                               L58 27
-                               L53 34
-                               L48 31
-                               Z"
-                        />
-
-                        <!-- sobrancelhas -->
-                        <path
-                            d="M49 43 L56 41"
-                            stroke="#16100b"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                        />
-
-                        <path
-                            d="M65 41 L72 43"
-                            stroke="#16100b"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                        />
-
-                        <!-- olhos -->
-                        <circle
-                            cx="53"
-                            cy="47"
-                            r="2"
-                            fill="#080808"
-                        />
-
-                        <circle
-                            cx="68"
-                            cy="47"
-                            r="2"
-                            fill="#080808"
-                        />
-
-                        <!-- nariz -->
-                        <path
-                            d="M60 47 L58 55 L62 55"
-                            fill="none"
-                            stroke="#9b6236"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                        />
-
-                        <!-- barba -->
-                        <path
-                            class="gold-dark"
-                            d="M47 55
-                               C50 66 54 70 61 70
-                               C68 70 73 65 75 55
-                               L70 57
-                               L67 64
-                               L61 66
-                               L55 64
-                               L51 57 Z"
-                        />
-
-                        <!-- sorriso -->
-                        <path
-                            d="M56 57 Q61 60 66 57"
-                            fill="none"
-                            stroke="#160e09"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                        />
-
-                    </g>
-
-
-                    <!-- CORPO / UNIFORME -->
-
-                    <g class="barber-body">
-
-                        <!-- pescoço -->
-                        <rect
-                            x="55"
-                            y="65"
-                            width="12"
-                            height="11"
-                            rx="4"
-                            class="skin-dark"
-                        />
-
-                        <!-- camisa -->
-                        <path
-                            class="black2"
-                            d="M43 73
-                               L55 68
-                               L61 76
-                               L67 68
-                               L80 74
-                               L83 119
-                               L36 119
-                               Z"
-                        />
-
-                        <!-- colete luxuoso -->
-                        <path
-                            class="black"
-                            d="M50 72
-                               L60 79
-                               L70 72
-                               L76 116
-                               L44 116
-                               Z"
-                        />
-
-                        <!-- lapelas -->
-                        <path
-                            class="gold"
-                            d="M50 73
-                               L60 79
-                               L55 91
-                               L47 77 Z"
-                        />
-
-                        <path
-                            class="gold"
-                            d="M70 73
-                               L60 79
-                               L65 91
-                               L73 77 Z"
-                        />
-
-                        <!-- camisa dourada central -->
-                        <path
-                            class="gold-dark"
-                            d="M57 78
-                               L60 82
-                               L63 78
-                               L66 116
-                               L54 116
-                               Z"
-                        />
-
-                        <!-- gravata -->
-                        <path
-                            class="black"
-                            d="M57 82 L63 82 L65 91 L60 98 L55 91 Z"
-                        />
-
-                        <!-- botões -->
-                        <circle cx="60" cy="101" r="1.5" class="gold-light"/>
-                        <circle cx="60" cy="108" r="1.5" class="gold-light"/>
-
-                        <!-- cinto -->
-                        <rect
-                            x="43"
-                            y="113"
-                            width="34"
-                            height="7"
-                            rx="2"
-                            class="gold-dark"
-                        />
-
-                        <rect
-                            x="57"
-                            y="113"
-                            width="7"
-                            height="7"
-                            rx="1"
-                            class="gold-light"
-                        />
-
-                    </g>
-
-
-                    <!-- BRAÇO ESQUERDO / TESOURA -->
-
-                    <g class="barber-left-arm">
-
-                        <path
-                            class="black2"
-                            d="M43 78
-                               C37 83 32 94 28 105
-                               L36 109
-                               C42 99 48 91 51 85 Z"
-                        />
-
-                        <!-- mão -->
-                        <circle
-                            cx="31"
-                            cy="108"
-                            r="7"
-                            class="skin"
-                        />
-
-                        <!-- TESOURA -->
-                        <g>
-
-                            <!-- anel 1 -->
-                            <circle
-                                cx="21"
-                                cy="116"
-                                r="5"
-                                fill="none"
-                                stroke="#e7c56f"
-                                stroke-width="2"
-                            />
-
-                            <!-- anel 2 -->
-                            <circle
-                                cx="28"
-                                cy="120"
-                                r="5"
-                                fill="none"
-                                stroke="#e7c56f"
-                                stroke-width="2"
-                            />
-
-                            <!-- lâmina A -->
-                            <path
-                                class="metal"
-                                d="M24 117
-                                   L7 105
-                                   L6 108
-                                   L21 120 Z"
-                            />
-
-                            <!-- lâmina B -->
-                            <path
-                                class="metal-dark"
-                                d="M28 119
-                                   L9 127
-                                   L8 130
-                                   L31 123 Z"
-                            />
-
-                            <circle
-                                cx="25"
-                                cy="119"
-                                r="2"
-                                class="gold"
-                            />
-
-                        </g>
-
-                    </g>
-
-
-                    <!-- BRAÇO DIREITO / MÁQUINA -->
-
-                    <g class="barber-right-arm">
-
-                        <path
-                            class="black2"
-                            d="M77 77
-                               C84 83 89 94 91 104
-                               L82 108
-                               C79 98 74 91 70 86 Z"
-                        />
-
-                        <!-- mão -->
-                        <circle
-                            cx="87"
-                            cy="108"
-                            r="7"
-                            class="skin"
-                        />
-
-                        <!-- MÁQUINA -->
-                        <g class="clipper">
-
-                            <!-- corpo -->
-                            <rect
-                                x="86"
-                                y="91"
-                                width="17"
-                                height="29"
-                                rx="4"
-                                class="gold"
-                                transform="rotate(-14 94 105)"
-                            />
-
-                            <!-- acabamento preto -->
-                            <rect
-                                x="88"
-                                y="96"
-                                width="13"
-                                height="7"
-                                rx="2"
-                                class="black"
-                                transform="rotate(-14 94 105)"
-                            />
-
-                            <!-- botão -->
-                            <circle
-                                cx="95"
-                                cy="110"
-                                r="2"
-                                class="black"
-                            />
-
-                            <!-- lâmina -->
-                            <path
-                                class="metal"
-                                d="M88 90 L103 87 L105 94 L89 97 Z"
-                            />
-
-                            <path
-                                d="M91 91 L93 88 M95 91 L97 87 M99 90 L101 87"
-                                stroke="#555"
-                                stroke-width="1.5"
-                            />
-
-                        </g>
-
-                    </g>
-
-
-                    <!-- PERNAS -->
-
-                    <g class="leg-left">
-
-                        <path
-                            class="black2"
-                            d="M47 118
-                               L60 118
-                               L57 153
-                               L47 153
-                               Z"
-                        />
-
-                        <path
-                            class="black"
-                            d="M47 150
-                               L58 150
-                               L55 166
-                               L41 166
-                               C39 162 42 155 47 150 Z"
-                        />
-
-                        <path
-                            class="gold-dark"
-                            d="M42 161 L55 161 L54 165 L41 165 Z"
-                        />
-
-                    </g>
-
-
-                    <g class="leg-right">
-
-                        <path
-                            class="black2"
-                            d="M61 118
-                               L74 118
-                               L76 153
-                               L65 153
-                               Z"
-                        />
-
-                        <path
-                            class="black"
-                            d="M65 150
-                               L76 150
-                               L82 163
-                               C79 168 67 168 63 165 Z"
-                        />
-
-                        <path
-                            class="gold-dark"
-                            d="M64 161 L80 161 L82 165 L65 165 Z"
-                        />
-
-                    </g>
-
-
-                    <!-- DETALHE DE OURO NO UNIFORME -->
-
-                    <path
-                        d="M45 116 Q60 124 76 116"
-                        fill="none"
-                        stroke="#e7c56f"
-                        stroke-width="1.5"
-                        opacity=".8"
-                    />
-
-                    <!-- PEQUENO BRILHO -->
-
-                    <g opacity=".9">
-
-                        <circle
-                            cx="92"
-                            cy="66"
-                            r="1.5"
-                            class="gold-light"
-                        />
-
-                        <path
-                            d="M92 61 L92 71 M87 66 L97 66"
-                            stroke="#f0d28c"
-                            stroke-width="1"
-                        />
-
-                    </g>
-
-                </svg>
-
-                <div class="barber-label">
-                    NERO BARBER
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- CARD -->
-
-    <div class="hero-card">
-
-        <div class="hero-card-top">
-
-            <div class="status">
-                <span class="status-dot"></span>
-                Agenda online
-            </div>
-
-            <span style="color:#555;font-size:10px;">
-                N° 001
-            </span>
-
-        </div>
-
-        <h3>Próximo horário</h3>
-
-        <p>
-            Consulte os horários disponíveis em segundos.
-        </p>
-
-        <span class="mini-time">
-            DISPONIBILIDADE EM TEMPO REAL
-        </span>
-
-    </div>
-
-</section>
-
-
-<!-- SERVICES -->
-
-<section id="servicos">
-
-    <div class="container">
-
-        <div class="section-head reveal">
-
-            <div>
-
-                <div class="section-kicker">
-                    Experiência
-                </div>
-
-                <h2 class="section-title">
-                    Serviços
-                </h2>
-
-            </div>
-
-            <p class="section-description">
-                Técnicas clássicas, acabamento moderno e atenção
-                aos detalhes em cada atendimento.
-            </p>
-
-        </div>
-
-
-        <div class="services-grid">
-
-
-            <!-- 01 -->
-
-            <article class="service reveal">
-
-                <span class="service-number">
-                    01
-                </span>
-
-                <div class="service-icon">
-                    ✦
-                </div>
-
-                <div class="service-title">
-
-                    <h3>
-                        Corte + Barba Completo
-                    </h3>
-
-                    <span class="price-inline">
-                        R$ 105
-                    </span>
-
-                </div>
-
-                <p>
-                    Experiência completa com corte personalizado,
-                    barba modelada e acabamento preciso.
-                </p>
-
-                <div class="service-bottom">
-
-                    <button
-                        class="service-book"
-                        onclick="openBooking('Corte + Barba Completo')"
-                    >
-                        AGENDAR →
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- 02 -->
-
-            <article class="service reveal">
-
-                <span class="service-number">
-                    02
-                </span>
-
-                <div class="service-icon">
-                    ◈
-                </div>
-
-                <div class="service-title">
-
-                    <h3>
-                        Corte Máquina
-                    </h3>
-
-                    <span class="price-inline">
-                        R$ 30
-                    </span>
-
-                </div>
-
-                <p>
-                    Corte preciso realizado à máquina com acabamento
-                    limpo e visual alinhado.
-                </p>
-
-                <div class="service-bottom">
-
-                    <button
-                        class="service-book"
-                        onclick="openBooking('Corte Máquina')"
-                    >
-                        AGENDAR →
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- 03 -->
-
-            <article class="service reveal">
-
-                <span class="service-number">
-                    03
-                </span>
-
-                <div class="service-icon">
-                    ◆
-                </div>
-
-                <div class="service-title">
-
-                    <h3>
-                        Tesoura + Máquina
-                    </h3>
-
-                    <span class="price-inline">
-                        R$ 40
-                    </span>
-
-                </div>
-
-                <p>
-                    Combinação de tesoura e máquina para maior precisão,
-                    textura e acabamento profissional.
-                </p>
-
-                <div class="service-bottom">
-
-                    <button
-                        class="service-book"
-                        onclick="openBooking('Tesoura + Máquina')"
-                    >
-                        AGENDAR →
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <!-- 04 -->
-
-            <article class="service reveal">
-
-                <span class="service-number">
-                    04
-                </span>
-
-                <div class="service-icon">
-                    ◇
-                </div>
-
-                <div class="service-title">
-
-                    <h3>
-                        Visagismo
-                    </h3>
-
-                    <span class="price-inline">
-                        R$ 150
-                    </span>
-
-                </div>
-
-                <p>
-                    Análise personalizada para criar um visual que
-                    valorize seus traços, estilo e identidade.
-                </p>
-
-                <div class="service-bottom">
-
-                    <button
-                        class="service-book"
-                        onclick="openBooking('Visagismo')"
-                    >
-                        AGENDAR →
-                    </button>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- BARBERS -->
-
-<section
-    id="barbeiros"
-    class="barbers-section"
->
-
-    <div class="container">
-
-        <div class="section-head reveal">
-
-            <div>
-
-                <div class="section-kicker">
-                    Especialistas
-                </div>
-
-                <h2 class="section-title">
-                    Nossa equipe
-                </h2>
-
-            </div>
-
-            <p class="section-description">
-                Profissionais preparados para entender seu estilo
-                e entregar um resultado impecável.
-            </p>
-
-        </div>
-
-
-        <div class="barbers-grid">
-
-
-            <article class="barber reveal">
-
-                <div class="barber-image">
-                    N
-                </div>
-
-                <div class="barber-info">
-
-                    <h3>
-                        Rafael
-                    </h3>
-
-                    <p>
-                        Especialista em cortes modernos
-                    </p>
-
-                    <button
-                        onclick="openBooking(null,'Rafael')"
-                    >
-                        AGENDAR COM RAFAEL
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <article class="barber reveal">
-
-                <div class="barber-image">
-                    M
-                </div>
-
-                <div class="barber-info">
-
-                    <h3>
-                        Matheus
-                    </h3>
-
-                    <p>
-                        Especialista em fade e barba
-                    </p>
-
-                    <button
-                        onclick="openBooking(null,'Matheus')"
-                    >
-                        AGENDAR COM MATHEUS
-                    </button>
-
-                </div>
-
-            </article>
-
-
-            <article class="barber reveal">
-
-                <div class="barber-image">
-                    L
-                </div>
-
-                <div class="barber-info">
-
-                    <h3>
-                        Lucas
-                    </h3>
-
-                    <p>
-                        Especialista em visagismo
-                    </p>
-
-                    <button
-                        onclick="openBooking(null,'Lucas')"
-                    >
-                        AGENDAR COM LUCAS
-                    </button>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- STORY -->
-
-<section id="historia">
-
-    <div class="container">
-
-        <div class="story">
-
-            <div class="story-visual reveal">
-
-                <div class="story-circle"></div>
-
-            </div>
-
-
-            <div class="story-text reveal">
-
-                <div class="section-kicker">
-                    NERO BARBER
-                </div>
-
-                <h2 class="section-title">
-                    Mais que um corte.
-                    <br>
-                    Uma assinatura.
-                </h2>
-
-                <p class="section-description">
-                    Criamos a NERO para unir a tradição da barbearia
-                    clássica com uma experiência moderna, confortável
-                    e tecnológica.
-                </p>
-
-                <div class="story-list">
-
-                    <div>
-                        <span>✓</span>
-                        Atendimento com hora marcada
-                    </div>
-
-                    <div>
-                        <span>✓</span>
-                        Profissionais especializados
-                    </div>
-
-                    <div>
-                        <span>✓</span>
-                        Produtos profissionais
-                    </div>
-
-                    <div>
-                        <span>✓</span>
-                        Experiência premium do início ao fim
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- CTA -->
-
-<section class="cta">
-
-    <div class="container">
-
-        <div class="cta-box reveal">
-
-            <div>
-
-                <div class="section-kicker">
-                    Seu próximo visual
-                </div>
-
-                <h2>
-                    Pronto para sair
-                    <em>na régua?</em>
-                </h2>
-
-                <p>
-                    Escolha o serviço, profissional e horário.
-                    O resto é com a gente.
-                </p>
-
-            </div>
 
             <button
                 class="primary-btn"
                 onclick="openBooking()"
             >
-                AGENDAR MEU HORÁRIO →
+                Agendar experiência
             </button>
+
+            <a
+                href="#servicos"
+                class="secondary-btn"
+                style="text-decoration:none;display:inline-flex;align-items:center;"
+            >
+                Ver serviços
+            </a>
 
         </div>
 
     </div>
+
+    <div class="hero-card">
+
+        <div class="hero-card-top">
+            <small>Experiência NERO</small>
+            <div class="rating">★ 4.9</div>
+        </div>
+
+        <strong>Precisão.</strong>
+
+        <p>
+            Atendimento premium, ambiente exclusivo
+            e técnica pensada para cada cliente.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SERVIÇOS
+========================================================= -->
+
+<section class="section" id="servicos">
+
+    <div class="section-header reveal">
+
+        <div>
+            <div class="section-kicker">Nossos serviços</div>
+
+            <h2 class="section-title">
+                Precisão em<br>
+                cada detalhe.
+            </h2>
+        </div>
+
+        <p class="section-desc">
+            Escolha sua experiência e deixe o resto
+            por nossa conta.
+        </p>
+
+    </div>
+
+
+    <div class="services-grid">
+
+        <div
+            class="service-card reveal"
+            onclick="openBooking('Corte + Barba Completo')"
+        >
+
+            <div class="service-number">01</div>
+
+            <div class="service-icon">✂</div>
+
+            <div class="service-title">
+                <h3>Corte + Barba</h3>
+                <span class="price-inline">R$ 105</span>
+            </div>
+
+            <p>
+                Experiência completa para renovar
+                corte, barba e acabamento.
+            </p>
+
+        </div>
+
+
+        <div
+            class="service-card reveal"
+            onclick="openBooking('Corte Máquina')"
+        >
+
+            <div class="service-number">02</div>
+
+            <div class="service-icon">▣</div>
+
+            <div class="service-title">
+                <h3>Corte Máquina</h3>
+                <span class="price-inline">R$ 30</span>
+            </div>
+
+            <p>
+                Corte preciso utilizando máquina
+                e acabamento profissional.
+            </p>
+
+        </div>
+
+
+        <div
+            class="service-card reveal"
+            onclick="openBooking('Tesoura + Máquina')"
+        >
+
+            <div class="service-number">03</div>
+
+            <div class="service-icon">✂</div>
+
+            <div class="service-title">
+                <h3>Tesoura + Máquina</h3>
+                <span class="price-inline">R$ 40</span>
+            </div>
+
+            <p>
+                Combinação de técnica, máquina
+                e tesoura para um resultado preciso.
+            </p>
+
+        </div>
+
+
+        <div
+            class="service-card reveal"
+            onclick="openBooking('Visagismo')"
+        >
+
+            <div class="service-number">04</div>
+
+            <div class="service-icon">◇</div>
+
+            <div class="service-title">
+                <h3>Visagismo</h3>
+                <span class="price-inline">R$ 150</span>
+            </div>
+
+            <p>
+                Estudo visual para encontrar o estilo
+                que melhor representa sua identidade.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     BARBEIROS
+========================================================= -->
+
+<section class="section barbers" id="barbeiros">
+
+    <div class="section-header reveal">
+
+        <div>
+            <div class="section-kicker">Nossa equipe</div>
+
+            <h2 class="section-title">
+                Mestres do<br>
+                acabamento.
+            </h2>
+        </div>
+
+        <p class="section-desc">
+            Técnica, experiência e atenção aos mínimos
+            detalhes.
+        </p>
+
+    </div>
+
+
+    <div class="barbers-grid">
+
+        <div class="barber-card reveal">
+
+            <div class="barber-photo">
+                <div class="barber-avatar">R</div>
+            </div>
+
+            <div class="barber-info">
+                <h3>Rafael</h3>
+                <p>Especialista em visagismo</p>
+            </div>
+
+        </div>
+
+
+        <div class="barber-card reveal">
+
+            <div class="barber-photo">
+                <div class="barber-avatar">M</div>
+            </div>
+
+            <div class="barber-info">
+                <h3>Matheus</h3>
+                <p>Especialista em cortes</p>
+            </div>
+
+        </div>
+
+
+        <div class="barber-card reveal">
+
+            <div class="barber-photo">
+                <div class="barber-avatar">L</div>
+            </div>
+
+            <div class="barber-info">
+                <h3>Lucas</h3>
+                <p>Especialista em barba</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     HISTÓRIA
+========================================================= -->
+
+<section class="section story" id="historia">
+
+    <div class="story-visual reveal">
+
+        <div class="story-ring"></div>
+
+    </div>
+
+
+    <div class="story-content reveal">
+
+        <div class="section-kicker">
+            Nossa história
+        </div>
+
+        <h2 class="section-title">
+            Não é apenas<br>
+            uma barbearia.
+        </h2>
+
+        <p>
+            A NERO BARBER nasceu com uma ideia simples:
+            transformar o momento do corte em uma experiência.
+        </p>
+
+        <ul class="story-list">
+
+            <li>
+                <span>✦</span>
+                Ambiente premium
+            </li>
+
+            <li>
+                <span>✦</span>
+                Atendimento personalizado
+            </li>
+
+            <li>
+                <span>✦</span>
+                Técnicas modernas
+            </li>
+
+            <li>
+                <span>✦</span>
+                Acabamento de precisão
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CTA
+========================================================= -->
+
+<section class="cta reveal">
+
+    <h2>
+        Seu próximo visual<br>
+        começa aqui.
+    </h2>
+
+    <p>
+        Reserve seu horário e viva a experiência NERO.
+    </p>
+
+    <button
+        class="primary-btn"
+        onclick="openBooking()"
+    >
+        Agendar agora
+    </button>
 
 </section>
 
 </main>
 
 
-<!-- FOOTER -->
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
-<footer id="contato">
+<footer>
 
-    <div class="container">
+    <span>NERO BARBER © 2026</span>
 
-        <div class="footer-top">
-
-
-            <div class="footer-brand">
-
-                <a href="#" class="logo">
-
-                    <div class="logo-mark">
-                        <span>N</span>
-                    </div>
-
-                    NERO
-
-                </a>
-
-                <p>
-                    Barbearia premium para homens que valorizam
-                    estilo, precisão e experiência.
-                </p>
-
-            </div>
-
-
-            <div class="footer-col">
-
-                <h4>
-                    Navegação
-                </h4>
-
-                <a href="#servicos">
-                    Serviços
-                </a>
-
-                <a href="#barbeiros">
-                    Barbeiros
-                </a>
-
-                <a href="#historia">
-                    Sobre nós
-                </a>
-
-                <a
-                    href="#"
-                    onclick="openBooking();return false;"
-                >
-                    Agendamento
-                </a>
-
-            </div>
-
-
-            <div class="footer-col">
-
-                <h4>
-                    Contato
-                </h4>
-
-                <p>
-                    Rua da Barbearia, 120
-                </p>
-
-                <p>
-                    Centro · Rio Bonito/RJ
-                </p>
-
-                <p>
-                    (22) 99999-9999
-                </p>
-
-            </div>
-
-
-            <div class="footer-col">
-
-                <h4>
-                    Horários
-                </h4>
-
-                <p>
-                    Seg — Sex: 09h — 20h
-                </p>
-
-                <p>
-                    Sábado: 09h — 18h
-                </p>
-
-                <p>
-                    Domingo: Fechado
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            <span>
-                © 2026 NERO BARBER. Todos os direitos reservados.
-            </span>
-
-            <span>
-                Feito para elevar seu estilo.
-            </span>
-
-        </div>
-
-    </div>
+    <span>
+        Estilo • Precisão • Presença
+    </span>
 
 </footer>
 
 
-<!-- BOOKING MODAL -->
+<!-- =========================================================
+     MODAL DE AGENDAMENTO
+========================================================= -->
 
-<div
-    class="modal"
-    id="bookingModal"
->
+<div class="modal" id="bookingModal">
 
-    <div class="booking">
+    <div class="modal-box">
 
-        <button
-            class="modal-close"
-            onclick="closeBooking()"
-        >
-            ×
-        </button>
+        <div class="modal-header">
 
+            <h3>Agendar horário</h3>
 
-        <div class="booking-header">
-
-            <small>
-                NERO BARBER · AGENDAMENTO
-            </small>
-
-            <h2 id="bookingTitle">
-                Reserve seu horário
-            </h2>
+            <button
+                class="close-modal"
+                onclick="closeBooking()"
+            >
+                ×
+            </button>
 
         </div>
 
 
-        <div class="steps">
+        <div class="modal-body">
 
-            <div class="step-dot active"></div>
-            <div class="step-dot"></div>
-            <div class="step-dot"></div>
-            <div class="step-dot"></div>
-            <div class="step-dot"></div>
+            <div class="steps">
 
-        </div>
+                <div class="step active"></div>
+                <div class="step"></div>
+                <div class="step"></div>
+                <div class="step"></div>
+                <div class="step"></div>
 
-
-        <div class="booking-body">
+            </div>
 
 
             <!-- STEP 1 -->
 
-            <div
-                class="step-content active"
-                id="step1"
-            >
+            <div class="booking-step active" data-step="1">
 
-                <div class="booking-title">
-                    Escolha seu serviço
-                </div>
+                <h4>Escolha o serviço</h4>
 
-                <div class="options">
+                <div class="option-grid">
 
-
-                    <button
+                    <div
                         class="option"
                         data-service="Corte + Barba Completo"
-                        data-price="105"
                         onclick="selectService(this)"
                     >
+                        <strong>Corte + Barba Completo</strong>
+                        <span>R$ 105</span>
+                    </div>
 
-                        <div class="option-main">
-
-                            <div class="option-icon">
-                                ✦
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Corte + Barba Completo
-                                </strong>
-
-                                <small>
-                                    Atendimento premium
-                                </small>
-
-                            </div>
-
-                        </div>
-
-                        <span class="option-price">
-                            R$ 105
-                        </span>
-
-                    </button>
-
-
-                    <button
+                    <div
                         class="option"
                         data-service="Corte Máquina"
-                        data-price="30"
                         onclick="selectService(this)"
                     >
+                        <strong>Corte Máquina</strong>
+                        <span>R$ 30</span>
+                    </div>
 
-                        <div class="option-main">
-
-                            <div class="option-icon">
-                                ◈
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Corte Máquina
-                                </strong>
-
-                                <small>
-                                    Corte preciso
-                                </small>
-
-                            </div>
-
-                        </div>
-
-                        <span class="option-price">
-                            R$ 30
-                        </span>
-
-                    </button>
-
-
-                    <button
+                    <div
                         class="option"
                         data-service="Tesoura + Máquina"
-                        data-price="40"
                         onclick="selectService(this)"
                     >
+                        <strong>Tesoura + Máquina</strong>
+                        <span>R$ 40</span>
+                    </div>
 
-                        <div class="option-main">
-
-                            <div class="option-icon">
-                                ◆
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Tesoura + Máquina
-                                </strong>
-
-                                <small>
-                                    Precisão e acabamento
-                                </small>
-
-                            </div>
-
-                        </div>
-
-                        <span class="option-price">
-                            R$ 40
-                        </span>
-
-                    </button>
-
-
-                    <button
+                    <div
                         class="option"
                         data-service="Visagismo"
-                        data-price="150"
                         onclick="selectService(this)"
                     >
+                        <strong>Visagismo</strong>
+                        <span>R$ 150</span>
+                    </div>
 
-                        <div class="option-main">
+                </div>
 
-                            <div class="option-icon">
-                                ◇
-                            </div>
+                <div class="modal-footer">
 
-                            <div>
+                    <span></span>
 
-                                <strong>
-                                    Visagismo
-                                </strong>
-
-                                <small>
-                                    Visual personalizado
-                                </small>
-
-                            </div>
-
-                        </div>
-
-                        <span class="option-price">
-                            R$ 150
-                        </span>
-
+                    <button
+                        class="modal-btn primary"
+                        onclick="nextStep()"
+                    >
+                        Continuar
                     </button>
 
                 </div>
@@ -3196,147 +2292,52 @@ footer{
 
             <!-- STEP 2 -->
 
-            <div
-                class="step-content"
-                id="step2"
-            >
+            <div class="booking-step" data-step="2">
 
-                <div class="booking-title">
-                    Escolha o barbeiro
+                <h4>Escolha o barbeiro</h4>
+
+                <div class="option-grid">
+
+                    <div
+                        class="option"
+                        onclick="selectBarber(this,'Rafael')"
+                    >
+                        <strong>Rafael</strong>
+                        <span>Visagismo</span>
+                    </div>
+
+                    <div
+                        class="option"
+                        onclick="selectBarber(this,'Matheus')"
+                    >
+                        <strong>Matheus</strong>
+                        <span>Cortes</span>
+                    </div>
+
+                    <div
+                        class="option"
+                        onclick="selectBarber(this,'Lucas')"
+                    >
+                        <strong>Lucas</strong>
+                        <span>Barba</span>
+                    </div>
+
                 </div>
 
-                <div class="options">
-
+                <div class="modal-footer">
 
                     <button
-                        class="option"
-                        data-barber="Rafael"
-                        onclick="selectBarber(this)"
+                        class="modal-btn"
+                        onclick="prevStep()"
                     >
-
-                        <div class="option-main">
-
-                            <div class="option-icon">
-                                R
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Rafael
-                                </strong>
-
-                                <small>
-                                    Cortes modernos
-                                </small>
-
-                            </div>
-
-                        </div>
-
-                        <span class="option-price">
-                            →
-                        </span>
-
+                        Voltar
                     </button>
 
-
                     <button
-                        class="option"
-                        data-barber="Matheus"
-                        onclick="selectBarber(this)"
+                        class="modal-btn primary"
+                        onclick="nextStep()"
                     >
-
-                        <div class="option-main">
-
-                            <div class="option-icon">
-                                M
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Matheus
-                                </strong>
-
-                                <small>
-                                    Fade e barba
-                                </small>
-
-                            </div>
-
-                        </div>
-
-                        <span class="option-price">
-                            →
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        class="option"
-                        data-barber="Lucas"
-                        onclick="selectBarber(this)"
-                    >
-
-                        <div class="option-main">
-
-                            <div class="option-icon">
-                                L
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Lucas
-                                </strong>
-
-                                <small>
-                                    Visagismo
-                                </small>
-
-                            </div>
-
-                        </div>
-
-                        <span class="option-price">
-                            →
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        class="option"
-                        data-barber="Qualquer profissional"
-                        onclick="selectBarber(this)"
-                    >
-
-                        <div class="option-main">
-
-                            <div class="option-icon">
-                                ✦
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Qualquer profissional
-                                </strong>
-
-                                <small>
-                                    Primeiro horário disponível
-                                </small>
-
-                            </div>
-
-                        </div>
-
-                        <span class="option-price">
-                            →
-                        </span>
-
+                        Continuar
                     </button>
 
                 </div>
@@ -3346,147 +2347,115 @@ footer{
 
             <!-- STEP 3 -->
 
-            <div
-                class="step-content"
-                id="step3"
-            >
+            <div class="booking-step" data-step="3">
 
-                <div class="booking-title">
-                    Escolha o dia
-                </div>
-
-                <div class="calendar-head">
-
-                    <button onclick="changeMonth(-1)">
-                        ‹
-                    </button>
-
-                    <span
-                        class="calendar-month"
-                        id="calendarMonth"
-                    >
-                        —
-                    </span>
-
-                    <button onclick="changeMonth(1)">
-                        ›
-                    </button>
-
-                </div>
-
-
-                <div class="weekdays">
-
-                    <span>Dom</span>
-                    <span>Seg</span>
-                    <span>Ter</span>
-                    <span>Qua</span>
-                    <span>Qui</span>
-                    <span>Sex</span>
-                    <span>Sáb</span>
-
-                </div>
-
+                <h4>Escolha a data</h4>
 
                 <div
                     class="calendar"
                     id="calendar"
                 ></div>
 
+                <div class="modal-footer">
+
+                    <button
+                        class="modal-btn"
+                        onclick="prevStep()"
+                    >
+                        Voltar
+                    </button>
+
+                    <button
+                        class="modal-btn primary"
+                        onclick="nextStep()"
+                    >
+                        Continuar
+                    </button>
+
+                </div>
+
             </div>
 
 
             <!-- STEP 4 -->
 
-            <div
-                class="step-content"
-                id="step4"
-            >
+            <div class="booking-step" data-step="4">
 
-                <div class="booking-title">
-                    Escolha o horário
-                </div>
-
-                <p
-                    id="selectedDateText"
-                    style="
-                        color:#666;
-                        font-size:11px;
-                        margin-bottom:18px;
-                    "
-                ></p>
+                <h4>Escolha o horário</h4>
 
                 <div
-                    class="time-grid"
-                    id="timeGrid"
+                    class="times"
+                    id="times"
                 ></div>
+
+                <div class="modal-footer">
+
+                    <button
+                        class="modal-btn"
+                        onclick="prevStep()"
+                    >
+                        Voltar
+                    </button>
+
+                    <button
+                        class="modal-btn primary"
+                        onclick="nextStep()"
+                    >
+                        Continuar
+                    </button>
+
+                </div>
 
             </div>
 
 
             <!-- STEP 5 -->
 
-            <div
-                class="step-content"
-                id="step5"
-            >
+            <div class="booking-step" data-step="5">
 
-                <div class="booking-title">
-                    Seus dados
-                </div>
+                <h4>Seus dados</h4>
 
-                <div class="form-grid">
+                <div class="form-group">
 
+                    <label>Nome</label>
 
-                    <div class="field">
-
-                        <label for="clientName">
-                            Nome completo
-                        </label>
-
-                        <input
-                            id="clientName"
-                            type="text"
-                            placeholder="Digite seu nome"
-                            autocomplete="name"
-                            oninput="updateForm()"
-                        >
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label for="clientPhone">
-                            WhatsApp / telefone
-                        </label>
-
-                        <input
-                            id="clientPhone"
-                            type="tel"
-                            placeholder="(22) 99999-9999"
-                            maxlength="15"
-                            autocomplete="tel"
-                            oninput="maskPhone(this);updateForm()"
-                        >
-
-                    </div>
+                    <input
+                        id="clientName"
+                        type="text"
+                        placeholder="Seu nome"
+                    >
 
                 </div>
 
 
-                <div style="
-                    margin-top:18px;
-                    border:1px solid var(--line);
-                    background:#0b0b0b;
-                    padding:15px;
-                    color:#777;
-                    font-size:10px;
-                    line-height:1.7;
-                ">
+                <div class="form-group">
 
-                    Seus dados serão usados somente para confirmar
-                    seu agendamento e entrar em contato com você.
+                    <label>WhatsApp</label>
+
+                    <input
+                        id="clientPhone"
+                        type="tel"
+                        placeholder="(00) 00000-0000"
+                    >
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        class="modal-btn"
+                        onclick="prevStep()"
+                    >
+                        Voltar
+                    </button>
+
+                    <button
+                        class="modal-btn primary"
+                        onclick="confirmBooking()"
+                    >
+                        Confirmar
+                    </button>
 
                 </div>
 
@@ -3496,8 +2465,8 @@ footer{
             <!-- SUCCESS -->
 
             <div
-                class="step-content"
-                id="successStep"
+                class="booking-step"
+                data-step="success"
             >
 
                 <div class="success">
@@ -3506,100 +2475,31 @@ footer{
                         ✓
                     </div>
 
-                    <h2>
-                        Agendamento confirmado!
-                    </h2>
+                    <h3>Agendamento confirmado</h3>
 
                     <p>
-                        Seu horário foi reservado. Em uma versão
-                        conectada ao sistema real, esta confirmação
-                        também poderá ser enviada automaticamente
-                        pelo WhatsApp.
+                        Seu horário foi registrado com sucesso.
                     </p>
 
-                    <div class="booking-summary">
+                    <div
+                        class="summary"
+                        id="summary"
+                    ></div>
 
-                        <div>
-                            <span>Serviço</span>
-                            <strong id="summaryService">
-                                —
-                            </strong>
-                        </div>
+                    <div class="modal-footer">
 
-                        <div>
-                            <span>Valor</span>
-                            <strong id="summaryPrice">
-                                —
-                            </strong>
-                        </div>
-
-                        <div>
-                            <span>Barbeiro</span>
-                            <strong id="summaryBarber">
-                                —
-                            </strong>
-                        </div>
-
-                        <div>
-                            <span>Data</span>
-                            <strong id="summaryDate">
-                                —
-                            </strong>
-                        </div>
-
-                        <div>
-                            <span>Horário</span>
-                            <strong id="summaryTime">
-                                —
-                            </strong>
-                        </div>
-
-                        <div>
-                            <span>Cliente</span>
-                            <strong id="summaryClient">
-                                —
-                            </strong>
-                        </div>
+                        <button
+                            class="modal-btn primary"
+                            onclick="closeBooking()"
+                        >
+                            Fechar
+                        </button>
 
                     </div>
-
-                    <button
-                        class="primary-btn"
-                        style="margin-top:22px;"
-                        onclick="closeBooking()"
-                    >
-                        CONCLUIR
-                    </button>
 
                 </div>
 
             </div>
-
-        </div>
-
-
-        <div
-            class="booking-footer"
-            id="bookingFooter"
-        >
-
-            <button
-                class="back-btn"
-                id="backBtn"
-                onclick="previousStep()"
-                style="visibility:hidden;"
-            >
-                ← Voltar
-            </button>
-
-            <button
-                class="next-btn"
-                id="nextBtn"
-                onclick="nextStep()"
-                disabled
-            >
-                CONTINUAR →
-            </button>
 
         </div>
 
@@ -3611,74 +2511,484 @@ footer{
 <script>
 
 /* =========================================================
-   NERO BARBER
-   SISTEMA DE AGENDAMENTO + MASCOTE
+   CURSOR GLOW
 ========================================================= */
 
+const cursorGlow = document.getElementById("cursorGlow");
 
-/* -------------------------
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+document.addEventListener("mousemove", function(e){
+
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    cursorGlow.style.left = mouseX + "px";
+    cursorGlow.style.top = mouseY + "px";
+
+});
+
+
+/* =========================================================
+   MINI BARBER — SISTEMA DE MOVIMENTO
+========================================================= */
+
+const miniBarberWrap = document.getElementById("miniBarberWrap");
+const miniBarber = document.getElementById("miniBarber");
+
+let barberX = window.innerWidth * .78;
+let barberY = window.innerHeight * .72;
+
+let targetX = barberX;
+let targetY = barberY;
+
+let velocityX = 0;
+let velocityY = 0;
+
+let running = false;
+let tiredTimer = null;
+let moveTimer = null;
+
+let lastScrollY = window.scrollY;
+let scrollTargetTimeout = null;
+
+
+/* limita posição */
+
+function clamp(value,min,max){
+    return Math.max(min,Math.min(max,value));
+}
+
+
+/* atualiza o tamanho real do personagem */
+
+function getBarberBounds(){
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    return {
+        minX:70,
+        maxX:width - 70,
+        minY:85,
+        maxY:height - 75
+    };
+
+}
+
+
+/* coloca o personagem */
+
+function setBarberPosition(){
+
+    miniBarberWrap.style.transform =
+        `translate3d(${barberX - 62}px,${barberY - 85}px,0)`;
+
+}
+
+
+/* calcula distância */
+
+function distanceToTarget(){
+
+    return Math.hypot(
+        targetX - barberX,
+        targetY - barberY
+    );
+
+}
+
+
+/* faz o barbeiro ficar cansado */
+
+function makeBarberTired(){
+
+    clearTimeout(tiredTimer);
+
+    miniBarber.classList.remove("barber-running");
+    miniBarber.classList.add("barber-tired");
+
+    tiredTimer = setTimeout(()=>{
+
+        miniBarber.classList.remove("barber-tired");
+
+    },2300);
+
+}
+
+
+/* começa a correr */
+
+function startBarberRun(){
+
+    if(!running){
+
+        running = true;
+
+        miniBarber.classList.remove("barber-tired");
+        miniBarber.classList.add("barber-running");
+
+    }
+
+    clearTimeout(moveTimer);
+
+}
+
+
+/* define novo destino */
+
+function setBarberTarget(x,y,showTired=true){
+
+    const bounds = getBarberBounds();
+
+    targetX = clamp(
+        x,
+        bounds.minX,
+        bounds.maxX
+    );
+
+    targetY = clamp(
+        y,
+        bounds.minY,
+        bounds.maxY
+    );
+
+    startBarberRun();
+
+    if(showTired){
+
+        moveTimer = setTimeout(()=>{
+
+            if(distanceToTarget() < 18){
+
+                makeBarberTired();
+
+            }
+
+        },500);
+
+    }
+
+}
+
+
+/* animação principal */
+
+function animateBarber(){
+
+    const dx = targetX - barberX;
+    const dy = targetY - barberY;
+
+    const distance = Math.hypot(dx,dy);
+
+    if(distance > 4){
+
+        const speed = Math.min(
+            18,
+            4 + distance * .035
+        );
+
+        velocityX += (dx / distance * speed - velocityX) * .18;
+        velocityY += (dy / distance * speed - velocityY) * .18;
+
+        barberX += velocityX;
+        barberY += velocityY;
+
+        miniBarber.classList.add("barber-running");
+
+    }else{
+
+        velocityX *= .72;
+        velocityY *= .72;
+
+        if(
+            Math.abs(velocityX) < .15 &&
+            Math.abs(velocityY) < .15
+        ){
+
+            velocityX = 0;
+            velocityY = 0;
+
+            if(running){
+
+                running = false;
+
+                miniBarber.classList.remove("barber-running");
+
+                /*
+                    Só fica cansado se ele realmente
+                    estava correndo.
+                */
+
+                makeBarberTired();
+
+            }
+
+        }
+
+    }
+
+    setBarberPosition();
+
+    requestAnimationFrame(animateBarber);
+
+}
+
+animateBarber();
+
+
+/* =========================================================
+   SEGUIR O CURSOR
+========================================================= */
+
+let cursorFollowTimer = null;
+
+document.addEventListener("mousemove",function(e){
+
+    /*
+       Pequeno atraso proposital.
+       Assim parece que ele realmente está
+       correndo atrás do cursor.
+    */
+
+    clearTimeout(cursorFollowTimer);
+
+    cursorFollowTimer = setTimeout(()=>{
+
+        setBarberTarget(
+            e.clientX,
+            e.clientY,
+            false
+        );
+
+    },90);
+
+});
+
+
+/* =========================================================
+   CLIQUE — CORRER ATÉ ONDE CLICOU
+========================================================= */
+
+document.addEventListener("pointerdown",function(e){
+
+    /*
+       Ignora clique dentro do modal para não atrapalhar
+       o agendamento.
+    */
+
+    if(e.target.closest(".modal-box")){
+        return;
+    }
+
+    setBarberTarget(
+        e.clientX,
+        e.clientY,
+        true
+    );
+
+});
+
+
+/* =========================================================
+   TOQUE NO CELULAR
+========================================================= */
+
+document.addEventListener("touchstart",function(e){
+
+    if(!e.touches || !e.touches[0]){
+        return;
+    }
+
+    const touch = e.touches[0];
+
+    setBarberTarget(
+        touch.clientX,
+        touch.clientY,
+        true
+    );
+
+},{passive:true});
+
+
+/* =========================================================
+   SCROLL — ELE CORRE PELA TELA
+========================================================= */
+
+window.addEventListener("scroll",function(){
+
+    const currentScroll = window.scrollY;
+    const difference = currentScroll - lastScrollY;
+
+    lastScrollY = currentScroll;
+
+    const bounds = getBarberBounds();
+
+    /*
+       Descendo:
+       ele corre para a parte inferior da tela.
+
+       Subindo:
+       ele corre para a parte superior.
+    */
+
+    if(Math.abs(difference) > 1){
+
+        const destinationY =
+            difference > 0
+                ? bounds.maxY - 10
+                : bounds.minY + 10;
+
+        /*
+           Pequeno deslocamento lateral
+           para dar sensação de que ele está
+           correndo pela página.
+        */
+
+        const destinationX = clamp(
+            barberX + (difference > 0 ? 90 : -90),
+            bounds.minX,
+            bounds.maxX
+        );
+
+        setBarberTarget(
+            destinationX,
+            destinationY,
+            true
+        );
+
+        clearTimeout(scrollTargetTimeout);
+
+        scrollTargetTimeout = setTimeout(()=>{
+
+            /*
+               Depois da correria do scroll,
+               ele vai para uma posição agradável
+               próxima ao canto.
+            */
+
+            const finalX =
+                window.innerWidth > 700
+                    ? window.innerWidth * .78
+                    : window.innerWidth * .78;
+
+            const finalY =
+                window.innerHeight * .72;
+
+            setBarberTarget(
+                finalX,
+                finalY,
+                true
+            );
+
+        },650);
+
+    }
+
+});
+
+
+/* =========================================================
+   REDIMENSIONAMENTO
+========================================================= */
+
+window.addEventListener("resize",function(){
+
+    const bounds = getBarberBounds();
+
+    barberX = clamp(
+        barberX,
+        bounds.minX,
+        bounds.maxX
+    );
+
+    barberY = clamp(
+        barberY,
+        bounds.minY,
+        bounds.maxY
+    );
+
+    targetX = clamp(
+        targetX,
+        bounds.minX,
+        bounds.maxX
+    );
+
+    targetY = clamp(
+        targetY,
+        bounds.minY,
+        bounds.maxY
+    );
+
+});
+
+
+/* =========================================================
    SERVIÇOS
-------------------------- */
+========================================================= */
 
 const services = {
 
     "Corte + Barba Completo":{
-        price:105
+        price:105,
+        duration:"1h"
     },
 
     "Corte Máquina":{
-        price:30
+        price:30,
+        duration:"30 min"
     },
 
     "Tesoura + Máquina":{
-        price:40
+        price:40,
+        duration:"40 min"
     },
 
     "Visagismo":{
-        price:150
+        price:150,
+        duration:"1h30"
     }
 
 };
 
 
-/* -------------------------
+/* =========================================================
    BARBEIROS
-------------------------- */
+========================================================= */
 
 const barbers = [
     "Rafael",
     "Matheus",
-    "Lucas",
-    "Qualquer profissional"
+    "Lucas"
 ];
 
 
-/* -------------------------
+/* =========================================================
    HORÁRIOS
-------------------------- */
+========================================================= */
 
 const timeSlots = [
-
     "09:00",
-    "09:45",
-    "10:30",
-    "11:15",
-    "12:00",
-    "13:45",
-    "14:30",
-    "15:15",
-    "16:00",
-    "16:45",
-    "17:30",
-    "18:15",
-    "19:00"
-
+    "09:40",
+    "10:20",
+    "11:00",
+    "11:40",
+    "13:00",
+    "13:40",
+    "14:20",
+    "15:00",
+    "15:40",
+    "16:20",
+    "17:00",
+    "17:40",
+    "18:20"
 ];
 
 
-/* -------------------------
+/* =========================================================
    ESTADO
-------------------------- */
+========================================================= */
 
 let state = {
 
@@ -3686,1483 +2996,636 @@ let state = {
 
     service:null,
 
-    price:null,
-
     barber:null,
 
     date:null,
 
-    time:null,
-
-    name:"",
-
-    phone:""
+    time:null
 
 };
 
 
-let calendarDate = new Date();
-
-
-/* -------------------------
-   HEADER
-------------------------- */
-
-const header =
-    document.getElementById("header");
-
-
-window.addEventListener(
-    "scroll",
-    ()=>{
-
-        if(window.scrollY > 30){
-
-            header.classList.add(
-                "scrolled"
-            );
-
-        }else{
-
-            header.classList.remove(
-                "scrolled"
-            );
-
-        }
-
-    }
-);
-
-
-/* -------------------------
-   CURSOR
-------------------------- */
-
-const cursorGlow =
-    document.getElementById(
-        "cursorGlow"
-    );
-
-
-document.addEventListener(
-    "mousemove",
-    (e)=>{
-
-        cursorGlow.style.left =
-            e.clientX + "px";
-
-        cursorGlow.style.top =
-            e.clientY + "px";
-
-    }
-);
-
-
-/* -------------------------
-   REVEAL
-------------------------- */
-
-const observer =
-    new IntersectionObserver(
-
-        entries=>{
-
-            entries.forEach(
-                entry=>{
-
-                    if(
-                        entry.isIntersecting
-                    ){
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                    }
-
-                }
-            );
-
-        },
-
-        {
-            threshold:.12
-        }
-
-    );
-
-
-document
-    .querySelectorAll(".reveal")
-    .forEach(
-        el=>{
-
-            observer.observe(el);
-
-        }
-    );
-
-
 /* =========================================================
-   MASCOTE
+   MODAL
 ========================================================= */
 
-const miniBarber =
-    document.getElementById(
-        "miniBarber"
-    );
+const modal = document.getElementById("bookingModal");
 
 
-function barberReaction(){
+function openBooking(serviceName=null){
 
-    miniBarber.classList.remove(
-        "touched"
-    );
+    modal.classList.add("active");
 
-    void miniBarber.offsetWidth;
+    document.body.style.overflow="hidden";
 
-    miniBarber.classList.add(
-        "touched"
-    );
+    state = {
+        step:1,
+        service:null,
+        barber:null,
+        date:null,
+        time:null
+    };
 
-    setTimeout(
-        ()=>{
-            miniBarber.classList.remove(
-                "touched"
-            );
-        },
-        550
-    );
+    document
+        .querySelectorAll(".option")
+        .forEach(option=>{
+            option.classList.remove("selected");
+        });
 
-}
+    if(serviceName){
 
+        state.service = serviceName;
 
-miniBarber.addEventListener(
-    "click",
-    barberReaction
-);
+        const option = document.querySelector(
+            `.option[data-service="${serviceName}"]`
+        );
 
-
-miniBarber.addEventListener(
-    "keydown",
-    event=>{
-
-        if(
-            event.key === "Enter" ||
-            event.key === " "
-        ){
-
-            event.preventDefault();
-
-            barberReaction();
-
+        if(option){
+            option.classList.add("selected");
         }
 
     }
-);
 
-
-/* -------------------------
-   BOOKING
-------------------------- */
-
-function openBooking(
-    service = null,
-    barber = null
-){
-
-    resetBooking();
-
-
-    if(
-        service &&
-        services[service]
-    ){
-
-        state.service =
-            service;
-
-        state.price =
-            services[service].price;
-
-    }
-
-
-    if(barber){
-
-        state.barber =
-            barber;
-
-    }
-
-
-    document
-        .getElementById(
-            "bookingModal"
-        )
-        .classList.add(
-            "active"
-        );
-
-
-    document.body.classList.add(
-        "modal-open"
-    );
-
-
-    renderStep();
-
-
-    if(service){
-
-        document
-            .querySelectorAll(
-                "[data-service]"
-            )
-            .forEach(
-                btn=>{
-
-                    btn.classList.toggle(
-
-                        "selected",
-
-                        btn.dataset.service ===
-                        service
-
-                    );
-
-                }
-            );
-
-    }
-
-
-    if(barber){
-
-        document
-            .querySelectorAll(
-                "[data-barber]"
-            )
-            .forEach(
-                btn=>{
-
-                    btn.classList.toggle(
-
-                        "selected",
-
-                        btn.dataset.barber ===
-                        barber
-
-                    );
-
-                }
-            );
-
-    }
+    showStep(1);
 
 }
 
 
 function closeBooking(){
 
-    document
-        .getElementById(
-            "bookingModal"
-        )
-        .classList.remove(
-            "active"
-        );
+    modal.classList.remove("active");
 
-
-    document.body.classList.remove(
-        "modal-open"
-    );
+    document.body.style.overflow="";
 
 }
 
 
-function resetBooking(){
+/* =========================================================
+   STEPS
+========================================================= */
 
-    state = {
+function showStep(step){
 
-        step:1,
-
-        service:null,
-
-        price:null,
-
-        barber:null,
-
-        date:null,
-
-        time:null,
-
-        name:"",
-
-        phone:""
-
-    };
-
+    state.step = step;
 
     document
-        .querySelectorAll(
-            ".option"
-        )
-        .forEach(
-            el=>{
+        .querySelectorAll(".booking-step")
+        .forEach(el=>{
+            el.classList.remove("active");
+        });
 
-                el.classList.remove(
-                    "selected"
-                );
-
-            }
+    const current =
+        document.querySelector(
+            `.booking-step[data-step="${step}"]`
         );
 
+    if(current){
+        current.classList.add("active");
+    }
 
     document
-        .getElementById(
-            "clientName"
-        )
-        .value = "";
+        .querySelectorAll(".steps .step")
+        .forEach((el,index)=>{
 
+            el.classList.toggle(
+                "active",
+                index < step
+            );
 
-    document
-        .getElementById(
-            "clientPhone"
-        )
-        .value = "";
-
-
-    document
-        .getElementById(
-            "bookingFooter"
-        )
-        .style.display =
-        "flex";
+        });
 
 }
 
-
-/* -------------------------
-   SERVICE
-------------------------- */
-
-function selectService(
-    button
-){
-
-    document
-        .querySelectorAll(
-            "[data-service]"
-        )
-        .forEach(
-            btn=>{
-
-                btn.classList.remove(
-                    "selected"
-                );
-
-            }
-        );
-
-
-    button.classList.add(
-        "selected"
-    );
-
-
-    state.service =
-        button.dataset.service;
-
-
-    state.price =
-        Number(
-            button.dataset.price
-        );
-
-
-    updateButton();
-
-}
-
-
-/* -------------------------
-   BARBER
-------------------------- */
-
-function selectBarber(
-    button
-){
-
-    document
-        .querySelectorAll(
-            "[data-barber]"
-        )
-        .forEach(
-            btn=>{
-
-                btn.classList.remove(
-                    "selected"
-                );
-
-            }
-        );
-
-
-    button.classList.add(
-        "selected"
-    );
-
-
-    state.barber =
-        button.dataset.barber;
-
-
-    updateButton();
-
-}
-
-
-/* -------------------------
-   STEP SYSTEM
-------------------------- */
-
-function renderStep(){
-
-    document
-        .querySelectorAll(
-            ".step-content"
-        )
-        .forEach(
-            el=>{
-
-                el.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-
-    const step =
-        document.getElementById(
-            "step" + state.step
-        );
-
-
-    if(step){
-
-        step.classList.add(
-            "active"
-        );
-
-    }
-
-
-    document
-        .querySelectorAll(
-            ".step-dot"
-        )
-        .forEach(
-            (dot,index)=>{
-
-                dot.classList.toggle(
-
-                    "active",
-
-                    index < state.step
-
-                );
-
-            }
-        );
-
-
-    const backBtn =
-        document.getElementById(
-            "backBtn"
-        );
-
-
-    const nextBtn =
-        document.getElementById(
-            "nextBtn"
-        );
-
-
-    if(
-        state.step === 1
-    ){
-
-        backBtn.style.visibility =
-            "hidden";
-
-    }else{
-
-        backBtn.style.visibility =
-            "visible";
-
-    }
-
-
-    if(
-        state.step === 5
-    ){
-
-        nextBtn.textContent =
-            "CONFIRMAR AGENDAMENTO";
-
-    }else{
-
-        nextBtn.textContent =
-            "CONTINUAR →";
-
-    }
-
-
-    updateButton();
-
-
-    if(
-        state.step === 3
-    ){
-
-        renderCalendar();
-
-    }
-
-
-    if(
-        state.step === 4
-    ){
-
-        renderTimes();
-
-    }
-
-}
-
-
-/* -------------------------
-   VALIDATION
-------------------------- */
-
-function canContinue(){
-
-    if(
-        state.step === 1
-    ){
-
-        return !!state.service;
-
-    }
-
-
-    if(
-        state.step === 2
-    ){
-
-        return !!state.barber;
-
-    }
-
-
-    if(
-        state.step === 3
-    ){
-
-        return !!state.date;
-
-    }
-
-
-    if(
-        state.step === 4
-    ){
-
-        return !!state.time;
-
-    }
-
-
-    if(
-        state.step === 5
-    ){
-
-        return (
-
-            state.name
-                .trim()
-                .length >= 2 &&
-
-            state.phone
-                .replace(
-                    /\D/g,
-                    ""
-                )
-                .length >= 10
-
-        );
-
-    }
-
-
-    return false;
-
-}
-
-
-function updateButton(){
-
-    document
-        .getElementById(
-            "nextBtn"
-        )
-        .disabled =
-        !canContinue();
-
-}
-
-
-/* -------------------------
-   NEXT
-------------------------- */
 
 function nextStep(){
 
-    if(
-        !canContinue()
-    ){
-
+    if(state.step===1 && !state.service){
+        alert("Escolha um serviço.");
         return;
-
     }
 
-
-    if(
-        state.step < 5
-    ){
-
-        state.step++;
-
-        renderStep();
-
+    if(state.step===2 && !state.barber){
+        alert("Escolha um barbeiro.");
         return;
-
     }
 
+    if(state.step===3 && !state.date){
+        alert("Escolha uma data.");
+        return;
+    }
 
-    confirmBooking();
+    if(state.step===4 && !state.time){
+        alert("Escolha um horário.");
+        return;
+    }
 
-}
+    if(state.step < 5){
 
-
-/* -------------------------
-   BACK
-------------------------- */
-
-function previousStep(){
-
-    if(
-        state.step > 1
-    ){
-
-        state.step--;
-
-        renderStep();
+        showStep(state.step+1);
 
     }
 
 }
 
 
-/* -------------------------
-   CALENDAR
-------------------------- */
+function prevStep(){
+
+    if(state.step > 1){
+
+        showStep(state.step-1);
+
+    }
+
+}
+
+
+/* =========================================================
+   SELECIONAR SERVIÇO
+========================================================= */
+
+function selectService(element){
+
+    document
+        .querySelectorAll("[data-service]")
+        .forEach(el=>{
+            el.classList.remove("selected");
+        });
+
+    element.classList.add("selected");
+
+    state.service =
+        element.dataset.service;
+
+}
+
+
+/* =========================================================
+   SELECIONAR BARBEIRO
+========================================================= */
+
+function selectBarber(element,name){
+
+    document
+        .querySelectorAll(".booking-step[data-step='2'] .option")
+        .forEach(el=>{
+            el.classList.remove("selected");
+        });
+
+    element.classList.add("selected");
+
+    state.barber = name;
+
+}
+
+
+/* =========================================================
+   CALENDÁRIO
+========================================================= */
 
 function renderCalendar(){
 
     const calendar =
-        document.getElementById(
-            "calendar"
-        );
+        document.getElementById("calendar");
 
+    calendar.innerHTML="";
 
-    const monthLabel =
-        document.getElementById(
-            "calendarMonth"
-        );
-
-
-    calendar.innerHTML = "";
-
-
-    const year =
-        calendarDate.getFullYear();
-
-
-    const month =
-        calendarDate.getMonth();
-
-
-    const firstDay =
-        new Date(
-            year,
-            month,
-            1
-        ).getDay();
-
-
-    const daysInMonth =
-        new Date(
-            year,
-            month + 1,
-            0
-        ).getDate();
-
-
-    const monthNames = [
-
-        "Janeiro",
-        "Fevereiro",
-        "Março",
-        "Abril",
-        "Maio",
-        "Junho",
-        "Julho",
-        "Agosto",
-        "Setembro",
-        "Outubro",
-        "Novembro",
-        "Dezembro"
-
+    const weekdays = [
+        "Dom",
+        "Seg",
+        "Ter",
+        "Qua",
+        "Qui",
+        "Sex",
+        "Sáb"
     ];
 
+    weekdays.forEach(day=>{
 
-    monthLabel.textContent =
-        monthNames[month] +
-        " " +
-        year;
+        const el =
+            document.createElement("div");
+
+        el.className="weekday";
+        el.textContent=day;
+
+        calendar.appendChild(el);
+
+    });
 
 
-    for(
-        let i=0;
-        i<firstDay;
-        i++
-    ){
+    const today = new Date();
+
+    today.setHours(0,0,0,0);
+
+    const year = today.getFullYear();
+    const month = today.getMonth();
+
+    const firstDay =
+        new Date(year,month,1).getDay();
+
+    const daysInMonth =
+        new Date(year,month+1,0).getDate();
+
+
+    for(let i=0;i<firstDay;i++){
 
         const empty =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
-
-        empty.className =
-            "day empty";
-
-
-        calendar.appendChild(
-            empty
-        );
+        calendar.appendChild(empty);
 
     }
 
 
-    const today =
-        new Date();
-
-
-    today.setHours(
-        0,
-        0,
-        0,
-        0
-    );
-
-
-    for(
-        let day=1;
-        day<=daysInMonth;
-        day++
-    ){
+    for(let day=1;day<=daysInMonth;day++){
 
         const date =
-            new Date(
-                year,
-                month,
-                day
-            );
+            new Date(year,month,day);
 
+        const el =
+            document.createElement("button");
 
-        const button =
-            document.createElement(
-                "button"
-            );
+        el.className="calendar-day";
 
+        el.textContent=day;
 
-        button.className =
-            "day";
+        if(date < today){
 
-
-        button.textContent =
-            day;
-
-
-        const isPast =
-            date < today;
-
-
-        const isSunday =
-            date.getDay() === 0;
-
-
-        if(
-            isPast ||
-            isSunday
-        ){
-
-            button.classList.add(
-                "disabled"
-            );
-
-
-            button.disabled =
-                true;
+            el.classList.add("disabled");
 
         }else{
 
-            button.onclick =
-                ()=>{
+            el.onclick=()=>{
 
-                    state.date =
-                        date;
+                document
+                    .querySelectorAll(".calendar-day")
+                    .forEach(d=>{
+                        d.classList.remove("selected");
+                    });
 
+                el.classList.add("selected");
 
-                    state.time =
-                        null;
+                state.date =
+                    `${day}/${month+1}/${year}`;
 
-
-                    document
-                        .querySelectorAll(
-                            ".day"
-                        )
-                        .forEach(
-                            d=>{
-
-                                d.classList.remove(
-                                    "selected"
-                                );
-
-                            }
-                        );
-
-
-                    button.classList.add(
-                        "selected"
-                    );
-
-
-                    updateButton();
-
-                };
+            };
 
         }
 
-
-        if(
-
-            state.date &&
-
-            date.toDateString() ===
-            state.date.toDateString()
-
-        ){
-
-            button.classList.add(
-                "selected"
-            );
-
-        }
-
-
-        calendar.appendChild(
-            button
-        );
+        calendar.appendChild(el);
 
     }
 
 }
 
-
-/* -------------------------
-   MONTH
-------------------------- */
-
-function changeMonth(
-    amount
-){
-
-    calendarDate.setMonth(
-
-        calendarDate.getMonth() +
-        amount
-
-    );
+renderCalendar();
 
 
-    renderCalendar();
-
-}
-
-
-/* -------------------------
-   TIMES
-------------------------- */
+/* =========================================================
+   HORÁRIOS
+========================================================= */
 
 function renderTimes(){
 
-    const grid =
-        document.getElementById(
-            "timeGrid"
-        );
+    const container =
+        document.getElementById("times");
 
+    container.innerHTML="";
 
-    grid.innerHTML = "";
+    timeSlots.forEach(time=>{
 
+        const el =
+            document.createElement("button");
 
-    if(
-        !state.date
-    ){
+        el.className="time";
 
-        return;
+        el.textContent=time;
 
-    }
+        el.onclick=()=>{
 
+            document
+                .querySelectorAll(".time")
+                .forEach(t=>{
+                    t.classList.remove("selected");
+                });
 
-    const dateText =
-        state.date.toLocaleDateString(
+            el.classList.add("selected");
 
-            "pt-BR",
+            state.time=time;
 
-            {
+        };
 
-                weekday:"long",
+        container.appendChild(el);
 
-                day:"2-digit",
-
-                month:"long"
-
-            }
-
-        );
-
-
-    document
-        .getElementById(
-            "selectedDateText"
-        )
-        .textContent =
-
-        dateText.charAt(0).toUpperCase() +
-        dateText.slice(1);
-
-
-    timeSlots.forEach(
-        (time,index)=>{
-
-            const button =
-                document.createElement(
-                    "button"
-                );
-
-
-            button.className =
-                "time";
-
-
-            button.textContent =
-                time;
-
-
-            const dateNumber =
-                state.date.getDate();
-
-
-            const occupied =
-
-                (
-                    dateNumber +
-                    index
-                ) % 7 === 0 ||
-
-                (
-                    index === 4 &&
-                    dateNumber % 3 === 0
-                );
-
-
-            if(
-                occupied
-            ){
-
-                button.classList.add(
-                    "taken"
-                );
-
-
-                button.disabled =
-                    true;
-
-            }else{
-
-                button.onclick =
-                    ()=>{
-
-                        document
-                            .querySelectorAll(
-                                ".time"
-                            )
-                            .forEach(
-                                t=>{
-
-                                    t.classList.remove(
-                                        "selected"
-                                    );
-
-                                }
-                            );
-
-
-                        button.classList.add(
-                            "selected"
-                        );
-
-
-                        state.time =
-                            time;
-
-
-                        updateButton();
-
-                    };
-
-            }
-
-
-            if(
-                state.time === time
-            ){
-
-                button.classList.add(
-                    "selected"
-                );
-
-            }
-
-
-            grid.appendChild(
-                button
-            );
-
-        }
-    );
+    });
 
 }
 
-
-/* -------------------------
-   FORM
-------------------------- */
-
-function updateForm(){
-
-    state.name =
-        document
-            .getElementById(
-                "clientName"
-            )
-            .value;
+renderTimes();
 
 
-    state.phone =
-        document
-            .getElementById(
-                "clientPhone"
-            )
-            .value;
+/* =========================================================
+   MÁSCARA WHATSAPP
+========================================================= */
 
+const phone =
+    document.getElementById("clientPhone");
 
-    updateButton();
-
-}
-
-
-/* -------------------------
-   PHONE MASK
-------------------------- */
-
-function maskPhone(
-    input
-){
+phone.addEventListener("input",function(e){
 
     let value =
-        input.value
-            .replace(
-                /\D/g,
-                ""
-            );
+        e.target.value
+            .replace(/\D/g,"")
+            .slice(0,11);
 
-
-    value =
-        value.substring(
-            0,
-            11
-        );
-
-
-    if(
-        value.length <= 10
-    ){
+    if(value.length <= 10){
 
         value =
             value.replace(
-                /^(\d{2})(\d)/,
-                "($1) $2"
-            );
-
-
-        value =
-            value.replace(
-                /(\d{4})(\d)/,
-                "$1-$2"
+                /^(\d{2})(\d{4})(\d{0,4}).*/,
+                "($1) $2-$3"
             );
 
     }else{
 
         value =
             value.replace(
-                /^(\d{2})(\d)/,
-                "($1) $2"
-            );
-
-
-        value =
-            value.replace(
-                /(\d{5})(\d)/,
-                "$1-$2"
+                /^(\d{2})(\d{5})(\d{0,4}).*/,
+                "($1) $2-$3"
             );
 
     }
 
+    e.target.value=value;
 
-    input.value =
-        value;
-
-}
+});
 
 
-/* -------------------------
-   CONFIRM BOOKING
-------------------------- */
+/* =========================================================
+   CONFIRMAR AGENDAMENTO
+========================================================= */
 
 function confirmBooking(){
 
+    const name =
+        document
+            .getElementById("clientName")
+            .value
+            .trim();
+
+    const clientPhone =
+        document
+            .getElementById("clientPhone")
+            .value
+            .trim();
+
+
+    if(!name){
+
+        alert("Digite seu nome.");
+
+        return;
+
+    }
+
+    if(!clientPhone){
+
+        alert("Digite seu WhatsApp.");
+
+        return;
+
+    }
+
+
+    const price =
+        services[state.service].price;
+
+
     const booking = {
 
-        service:
-            state.service,
+        name:name,
 
-        price:
-            state.price,
+        phone:clientPhone,
 
-        barber:
-            state.barber,
+        service:state.service,
 
-        date:
-            state.date.toISOString(),
+        price:price,
 
-        time:
-            state.time,
+        barber:state.barber,
 
-        name:
-            state.name,
+        date:state.date,
 
-        phone:
-            state.phone,
+        time:state.time,
 
-        createdAt:
-            new Date().toISOString()
+        createdAt:new Date().toISOString()
 
     };
 
 
-    try{
+    localStorage.setItem(
+        "nero_last_booking",
+        JSON.stringify(booking)
+    );
 
-        localStorage.setItem(
 
-            "nero_last_booking",
+    document.getElementById("summary").innerHTML = `
 
-            JSON.stringify(
-                booking
-            )
+        <div>
+            <strong>Cliente:</strong>
+            ${name}
+        </div>
 
-        );
+        <div>
+            <strong>Serviço:</strong>
+            ${state.service}
+        </div>
 
-    }catch(error){
+        <div>
+            <strong>Valor:</strong>
+            R$ ${price}
+        </div>
 
-        console.warn(
-            "Não foi possível salvar localmente.",
-            error
-        );
+        <div>
+            <strong>Barbeiro:</strong>
+            ${state.barber}
+        </div>
+
+        <div>
+            <strong>Data:</strong>
+            ${state.date}
+        </div>
+
+        <div>
+            <strong>Horário:</strong>
+            ${state.time}
+        </div>
+
+    `;
+
+
+    showStep("success");
+
+}
+
+
+/* =========================================================
+   FECHAR CLICANDO FORA
+========================================================= */
+
+modal.addEventListener("click",function(e){
+
+    if(e.target === modal){
+
+        closeBooking();
 
     }
 
+});
 
-    showSuccess(
-        booking
+
+/* =========================================================
+   ESC
+========================================================= */
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key === "Escape"){
+
+        closeBooking();
+
+    }
+
+});
+
+
+/* =========================================================
+   REVEAL ANIMATION
+========================================================= */
+
+const revealObserver =
+    new IntersectionObserver(
+        entries=>{
+
+            entries.forEach(entry=>{
+
+                if(entry.isIntersecting){
+
+                    entry.target.classList.add("visible");
+
+                }
+
+            });
+
+        },
+        {
+            threshold:.12
+        }
     );
 
-}
-
-
-/* -------------------------
-   SUCCESS
-------------------------- */
-
-function showSuccess(
-    booking
-){
-
-    document
-        .querySelectorAll(
-            ".step-content"
-        )
-        .forEach(
-            el=>{
-
-                el.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-
-    document
-        .getElementById(
-            "successStep"
-        )
-        .classList.add(
-            "active"
-        );
-
-
-    document
-        .getElementById(
-            "bookingFooter"
-        )
-        .style.display =
-        "none";
-
-
-    document
-        .getElementById(
-            "summaryService"
-        )
-        .textContent =
-        booking.service;
-
-
-    document
-        .getElementById(
-            "summaryPrice"
-        )
-        .textContent =
-        "R$ " +
-        booking.price;
-
-
-    document
-        .getElementById(
-            "summaryBarber"
-        )
-        .textContent =
-        booking.barber;
-
-
-    const date =
-        new Date(
-            booking.date
-        );
-
-
-    document
-        .getElementById(
-            "summaryDate"
-        )
-        .textContent =
-
-        date.toLocaleDateString(
-            "pt-BR"
-        );
-
-
-    document
-        .getElementById(
-            "summaryTime"
-        )
-        .textContent =
-        booking.time;
-
-
-    document
-        .getElementById(
-            "summaryClient"
-        )
-        .textContent =
-        booking.name;
-
-}
-
-
-/* -------------------------
-   MODAL BACKDROP
-------------------------- */
 
 document
-    .getElementById(
-        "bookingModal"
-    )
-    .addEventListener(
-        "click",
-        event=>{
-
-            if(
-                event.target.id ===
-                "bookingModal"
-            ){
-
-                closeBooking();
-
-            }
-
-        }
-    );
+    .querySelectorAll(".reveal")
+    .forEach(el=>{
+        revealObserver.observe(el);
+    });
 
 
-/* -------------------------
-   ESC
-------------------------- */
+/* =========================================================
+   HERO PARALLAX
+========================================================= */
 
-document.addEventListener(
-    "keydown",
-    event=>{
+const heroContent =
+    document.querySelector(".hero-content");
 
-        if(
-            event.key ===
-            "Escape"
-        ){
+document.addEventListener("mousemove",function(e){
 
-            closeBooking();
+    if(window.innerWidth < 800){
+        return;
+    }
 
-        }
+    const x =
+        (e.clientX / window.innerWidth - .5);
+
+    const y =
+        (e.clientY / window.innerHeight - .5);
+
+    heroContent.style.transform =
+        `translate3d(${x * 7}px,${y * 5}px,0)`;
+
+});
+
+
+/* =========================================================
+   INÍCIO DO BARBEIRO
+========================================================= */
+
+setTimeout(()=>{
+
+    const bounds = getBarberBounds();
+
+    barberX =
+        window.innerWidth > 700
+            ? window.innerWidth * .78
+            : window.innerWidth * .72;
+
+    barberY =
+        window.innerHeight * .72;
+
+    targetX=barberX;
+    targetY=barberY;
+
+    setBarberPosition();
+
+},100);
+
+
+/* =========================================================
+   PEQUENO MOVIMENTO AUTOMÁTICO
+========================================================= */
+
+setInterval(()=>{
+
+    /*
+       Se o usuário não estiver movimentando
+       o cursor, ele dá uma pequena corrida
+       aleatória para não parecer "parado".
+    */
+
+    if(!running && !document.hidden){
+
+        const bounds = getBarberBounds();
+
+        const randomX =
+            bounds.minX +
+            Math.random() *
+            (bounds.maxX-bounds.minX);
+
+        const randomY =
+            bounds.minY +
+            Math.random() *
+            (bounds.maxY-bounds.minY);
+
+        /*
+           Movimento bem pequeno para não ficar
+           pulando loucamente pela tela.
+        */
+
+        const nearX =
+            barberX +
+            (randomX-barberX)*.18;
+
+        const nearY =
+            barberY +
+            (randomY-barberY)*.18;
+
+        setBarberTarget(
+            nearX,
+            nearY,
+            true
+        );
 
     }
-);
 
-
-/* -------------------------
-   MODAL OBSERVER
-------------------------- */
-
-const bookingModal =
-    document.getElementById(
-        "bookingModal"
-    );
-
-
-const modalObserver =
-    new MutationObserver(
-        ()=>{
-
-            if(
-                bookingModal.classList.contains(
-                    "active"
-                )
-            ){
-
-                document
-                    .getElementById(
-                        "bookingFooter"
-                    )
-                    .style.display =
-                    "flex";
-
-            }
-
-        }
-    );
-
-
-modalObserver.observe(
-    bookingModal,
-    {
-        attributes:true,
-        attributeFilter:[
-            "class"
-        ]
-    }
-);
-
-
-/* -------------------------
-   PARALLAX HERO
-------------------------- */
-
-window.addEventListener(
-    "mousemove",
-    e=>{
-
-        const x =
-            (
-                e.clientX /
-                window.innerWidth -
-                .5
-            ) * 20;
-
-
-        const y =
-            (
-                e.clientY /
-                window.innerHeight -
-                .5
-            ) * 20;
-
-
-        document
-            .querySelector(
-                ".hero-ring"
-            )
-            .style.marginLeft =
-            x + "px";
-
-
-        document
-            .querySelector(
-                ".hero-orb"
-            )
-            .style.marginTop =
-            y + "px";
-
-    }
-);
-
-
-/* -------------------------
-   INITIALIZATION
-------------------------- */
-
-renderCalendar();
+},9000);
 
 </script>
 

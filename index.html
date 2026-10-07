@@ -42,10 +42,6 @@ body{
     overflow-x:hidden;
 }
 
-/* =========================
-   SCROLLBAR
-========================= */
-
 ::-webkit-scrollbar{
     width:8px;
 }
@@ -58,10 +54,6 @@ body{
     background:linear-gradient(var(--gold2),var(--gold3));
     border-radius:20px;
 }
-
-/* =========================
-   CURSOR GLOW
-========================= */
 
 .cursor-glow{
     position:fixed;
@@ -383,7 +375,7 @@ nav a:hover{
 }
 
 /* =========================
-   MINI BARBER FIXED
+   MINI BARBER
 ========================= */
 
 .mini-barber-wrap{
@@ -448,6 +440,10 @@ nav a:hover{
     transform-origin:57px 111px;
 }
 
+/* =========================
+   CORRIDA
+========================= */
+
 .barber-running .barber-body{
     animation:bodyRun .28s infinite alternate ease-in-out;
 }
@@ -511,7 +507,89 @@ nav a:hover{
     to{transform:translateX(-50%) scaleX(1.15)}
 }
 
-/* suor */
+/* =========================
+   ACENO
+========================= */
+
+/*
+   O braço direito é o braço da máquina.
+   Quando o barbeiro está parado, esse braço
+   faz um pequeno aceno para a tela.
+*/
+
+.barber-waving .barber-arm-right{
+    animation:barberWave 1.05s ease-in-out;
+}
+
+@keyframes barberWave{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    15%{
+        transform:rotate(-12deg);
+    }
+
+    30%{
+        transform:rotate(18deg);
+    }
+
+    45%{
+        transform:rotate(-16deg);
+    }
+
+    60%{
+        transform:rotate(14deg);
+    }
+
+    75%{
+        transform:rotate(-10deg);
+    }
+
+    100%{
+        transform:rotate(0deg);
+    }
+
+}
+
+/*
+   Pequeno movimento da máquina durante o aceno,
+   deixando a animação mais natural.
+*/
+
+.barber-waving .clipper-tool{
+    animation:clipperWave 1.05s ease-in-out;
+    transform-origin:center;
+}
+
+@keyframes clipperWave{
+
+    0%{
+        transform:rotate(0deg);
+    }
+
+    30%{
+        transform:rotate(-8deg);
+    }
+
+    55%{
+        transform:rotate(8deg);
+    }
+
+    80%{
+        transform:rotate(-5deg);
+    }
+
+    100%{
+        transform:rotate(0deg);
+    }
+
+}
+
+/* =========================
+   SUOR
+========================= */
 
 .barber-sweat{
     position:absolute;
@@ -560,16 +638,20 @@ nav a:hover{
         opacity:0;
         transform:translateY(-4px) scale(.6) rotate(15deg);
     }
+
     20%{
         opacity:1;
     }
+
     100%{
         opacity:0;
         transform:translateY(24px) scale(.9) rotate(15deg);
     }
 }
 
-/* respiração cansada */
+/* =========================
+   RESPIRAÇÃO CANSADA
+========================= */
 
 .tired-breath{
     position:absolute;
@@ -592,9 +674,11 @@ nav a:hover{
         opacity:0;
         transform:translateX(-50%) scale(.45);
     }
+
     35%{
         opacity:.55;
     }
+
     100%{
         opacity:0;
         transform:translateX(-50%) translateY(-15px) scale(1.5);
@@ -1308,10 +1392,6 @@ footer{
         cursor:pointer;
     }
 
-    .header-btn{
-        display:none;
-    }
-
     .services-grid{
         grid-template-columns:repeat(2,1fr);
     }
@@ -1468,12 +1548,13 @@ footer{
             aria-hidden="true"
         >
 
-            <!-- SOMBRA / CORPO PRINCIPAL -->
+            <!-- CORPO -->
 
             <g class="barber-body">
 
-                <!-- pernas -->
+                <!-- PERNA ESQUERDA -->
                 <g class="barber-leg-left">
+
                     <path
                         d="M39 108 L34 132 L27 140"
                         stroke="#171717"
@@ -1481,15 +1562,19 @@ footer{
                         stroke-linecap="round"
                         fill="none"
                     />
+
                     <path
                         d="M27 140 L18 140"
                         stroke="#050505"
                         stroke-width="6"
                         stroke-linecap="round"
                     />
+
                 </g>
 
+                <!-- PERNA DIREITA -->
                 <g class="barber-leg-right">
+
                     <path
                         d="M58 108 L64 132 L73 140"
                         stroke="#171717"
@@ -1497,15 +1582,18 @@ footer{
                         stroke-linecap="round"
                         fill="none"
                     />
+
                     <path
                         d="M73 140 L82 140"
                         stroke="#050505"
                         stroke-width="6"
                         stroke-linecap="round"
                     />
+
                 </g>
 
-                <!-- uniforme de luxo -->
+                <!-- UNIFORME DE LUXO -->
+
                 <path
                     d="M31 67
                        Q50 60 69 67
@@ -1517,19 +1605,22 @@ footer{
                     stroke-width="1.6"
                 />
 
-                <!-- camisa -->
+                <!-- CAMISA -->
+
                 <path
                     d="M42 67 L50 77 L58 67 L57 94 L43 94 Z"
                     fill="#eee8d8"
                 />
 
-                <!-- gravata -->
+                <!-- GRAVATA -->
+
                 <path
                     d="M47 72 L53 72 L55 83 L50 89 L45 83 Z"
                     fill="#d7ad55"
                 />
 
-                <!-- lapelas -->
+                <!-- LAPELAS -->
+
                 <path
                     d="M32 70 L44 79 L42 94 L29 77 Z"
                     fill="#171717"
@@ -1544,11 +1635,13 @@ footer{
                     stroke-width="1"
                 />
 
-                <!-- botões -->
+                <!-- BOTÕES -->
+
                 <circle cx="50" cy="93" r="2" fill="#d7ad55"/>
                 <circle cx="50" cy="101" r="2" fill="#d7ad55"/>
 
-                <!-- crachá NERO -->
+                <!-- CRACHÁ -->
+
                 <rect
                     x="56"
                     y="88"
@@ -1569,7 +1662,11 @@ footer{
 
             </g>
 
-            <!-- braço esquerdo -->
+
+            <!-- =================================================
+                 BRAÇO ESQUERDO — TESOURA
+            ================================================= -->
+
             <g class="barber-arm-left">
 
                 <path
@@ -1581,6 +1678,7 @@ footer{
                 />
 
                 <!-- mão -->
+
                 <circle
                     cx="18"
                     cy="94"
@@ -1590,41 +1688,67 @@ footer{
                     stroke-width="1"
                 />
 
-                <!-- TESOURA -->
-                <g transform="translate(2 88) rotate(-20)">
+                <!-- TESOURA PROFISSIONAL -->
+
+                <g
+                    class="scissors-tool"
+                    transform="translate(8 88) rotate(-18)"
+                >
+
+                    <!-- argolas -->
+
                     <circle
                         cx="0"
                         cy="0"
-                        r="4"
-                        fill="none"
-                        stroke="#d8d8d8"
-                        stroke-width="2"
+                        r="4.5"
+                        fill="#101010"
+                        stroke="#e3e3e3"
+                        stroke-width="1.8"
                     />
+
                     <circle
                         cx="9"
                         cy="0"
-                        r="4"
-                        fill="none"
-                        stroke="#d8d8d8"
-                        stroke-width="2"
+                        r="4.5"
+                        fill="#101010"
+                        stroke="#e3e3e3"
+                        stroke-width="1.8"
                     />
+
+                    <!-- lâminas -->
+
                     <path
-                        d="M3 0 L20 -8"
-                        stroke="#d8d8d8"
-                        stroke-width="2"
+                        d="M3 0 L23 -9"
+                        stroke="#f0f0f0"
+                        stroke-width="2.2"
                         stroke-linecap="round"
                     />
+
                     <path
-                        d="M6 0 L20 8"
-                        stroke="#d8d8d8"
-                        stroke-width="2"
+                        d="M6 0 L23 9"
+                        stroke="#f0f0f0"
+                        stroke-width="2.2"
                         stroke-linecap="round"
                     />
+
+                    <!-- parafuso -->
+
+                    <circle
+                        cx="5"
+                        cy="0"
+                        r="1.6"
+                        fill="#d7ad55"
+                    />
+
                 </g>
 
             </g>
 
-            <!-- braço direito -->
+
+            <!-- =================================================
+                 BRAÇO DIREITO — MÁQUINA
+            ================================================= -->
+
             <g class="barber-arm-right">
 
                 <path
@@ -1636,6 +1760,7 @@ footer{
                 />
 
                 <!-- mão -->
+
                 <circle
                     cx="83"
                     cy="94"
@@ -1645,50 +1770,92 @@ footer{
                     stroke-width="1"
                 />
 
-                <!-- MÁQUINA -->
-                <g transform="translate(78 86) rotate(8)">
+                <!-- MÁQUINA PROFISSIONAL -->
+
+                <g
+                    class="clipper-tool"
+                    transform="translate(76 82) rotate(7)"
+                >
+
+                    <!-- corpo -->
+
                     <rect
                         x="0"
                         y="0"
-                        width="12"
-                        height="21"
-                        rx="3"
-                        fill="#0a0a0a"
+                        width="14"
+                        height="25"
+                        rx="4"
+                        fill="#090909"
                         stroke="#d7ad55"
-                        stroke-width="1.5"
+                        stroke-width="1.6"
                     />
+
+                    <!-- lâmina -->
+
+                    <path
+                        d="M3 -4 L11 -4 L10 2 L4 2 Z"
+                        fill="#cfcfcf"
+                        stroke="#777"
+                        stroke-width=".7"
+                    />
+
+                    <!-- dentes da lâmina -->
+
+                    <path
+                        d="M3 -4 L3 -7
+                           M5 -4 L5 -7
+                           M7 -4 L7 -7
+                           M9 -4 L9 -7
+                           M11 -4 L11 -7"
+                        stroke="#eeeeee"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                    />
+
+                    <!-- detalhe dourado -->
 
                     <rect
                         x="3"
-                        y="-4"
-                        width="6"
-                        height="5"
-                        rx="1"
-                        fill="#bcbcbc"
-                    />
-
-                    <rect
-                        x="3"
-                        y="5"
-                        width="6"
+                        y="6"
+                        width="8"
                         height="2"
+                        rx="1"
                         fill="#d7ad55"
                     />
+
+                    <!-- botão -->
 
                     <circle
-                        cx="6"
-                        cy="14"
-                        r="2"
+                        cx="7"
+                        cy="15"
+                        r="2.2"
                         fill="#d7ad55"
                     />
+
+                    <!-- detalhe inferior -->
+
+                    <rect
+                        x="4"
+                        y="20"
+                        width="6"
+                        height="2"
+                        rx="1"
+                        fill="#222"
+                    />
+
                 </g>
 
             </g>
 
-            <!-- cabeça -->
+
+            <!-- =================================================
+                 CABEÇA
+            ================================================= -->
+
             <g class="barber-head">
 
                 <!-- pescoço -->
+
                 <rect
                     x="43"
                     y="55"
@@ -1699,6 +1866,7 @@ footer{
                 />
 
                 <!-- rosto -->
+
                 <ellipse
                     cx="50"
                     cy="44"
@@ -1710,6 +1878,7 @@ footer{
                 />
 
                 <!-- cabelo -->
+
                 <path
                     d="M29 43
                        Q27 17 50 14
@@ -1719,7 +1888,8 @@ footer{
                     fill="#141414"
                 />
 
-                <!-- cabelo brilho -->
+                <!-- brilho do cabelo -->
+
                 <path
                     d="M36 28 Q48 19 61 24"
                     stroke="#d7ad55"
@@ -1729,10 +1899,23 @@ footer{
                     opacity=".6"
                 />
 
-                <!-- olhos normais -->
+                <!-- ROSTO NORMAL -->
+
                 <g class="normal-face">
-                    <circle cx="42" cy="45" r="2" fill="#111"/>
-                    <circle cx="58" cy="45" r="2" fill="#111"/>
+
+                    <circle
+                        cx="42"
+                        cy="45"
+                        r="2"
+                        fill="#111"
+                    />
+
+                    <circle
+                        cx="58"
+                        cy="45"
+                        r="2"
+                        fill="#111"
+                    />
 
                     <path
                         d="M44 55 Q50 59 56 55"
@@ -1741,9 +1924,11 @@ footer{
                         fill="none"
                         stroke-linecap="round"
                     />
+
                 </g>
 
-                <!-- rosto cansado -->
+                <!-- ROSTO CANSADO -->
+
                 <g class="tired-face">
 
                     <path
@@ -1785,12 +1970,14 @@ footer{
 
         </svg>
 
-        <!-- suor -->
+        <!-- SUOR -->
+
         <span class="barber-sweat sweat-one"></span>
         <span class="barber-sweat sweat-two"></span>
         <span class="barber-sweat sweat-three"></span>
 
-        <!-- respiração -->
+        <!-- RESPIRAÇÃO -->
+
         <span class="tired-breath"></span>
 
     </div>
@@ -1825,7 +2012,10 @@ footer{
         Agendar horário
     </button>
 
-    <button class="mobile-menu" onclick="document.querySelector('nav').classList.toggle('mobile-open')">
+    <button
+        class="mobile-menu"
+        onclick="document.querySelector('nav').classList.toggle('mobile-open')"
+    >
         ☰
     </button>
 
@@ -2194,7 +2384,7 @@ footer{
 
 
 <!-- =========================================================
-     MODAL DE AGENDAMENTO
+     MODAL
 ========================================================= -->
 
 <div class="modal" id="bookingModal">
@@ -2519,7 +2709,7 @@ const cursorGlow = document.getElementById("cursorGlow");
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 
-document.addEventListener("mousemove", function(e){
+document.addEventListener("mousemove",function(e){
 
     mouseX = e.clientX;
     mouseY = e.clientY;
@@ -2531,14 +2721,20 @@ document.addEventListener("mousemove", function(e){
 
 
 /* =========================================================
-   MINI BARBER — SISTEMA DE MOVIMENTO
+   MINI BARBER
 ========================================================= */
 
-const miniBarberWrap = document.getElementById("miniBarberWrap");
-const miniBarber = document.getElementById("miniBarber");
+const miniBarberWrap =
+    document.getElementById("miniBarberWrap");
 
-let barberX = window.innerWidth * .78;
-let barberY = window.innerHeight * .72;
+const miniBarber =
+    document.getElementById("miniBarber");
+
+let barberX =
+    window.innerWidth * .78;
+
+let barberY =
+    window.innerHeight * .72;
 
 let targetX = barberX;
 let targetY = barberY;
@@ -2549,46 +2745,72 @@ let velocityY = 0;
 let running = false;
 let tiredTimer = null;
 let moveTimer = null;
+let waveTimer = null;
 
 let lastScrollY = window.scrollY;
 let scrollTargetTimeout = null;
 
 
-/* limita posição */
+/* =========================================================
+   LIMITA POSIÇÃO
+========================================================= */
 
 function clamp(value,min,max){
-    return Math.max(min,Math.min(max,value));
+
+    return Math.max(
+        min,
+        Math.min(max,value)
+    );
+
 }
 
 
-/* atualiza o tamanho real do personagem */
+/* =========================================================
+   LIMITES
+========================================================= */
 
 function getBarberBounds(){
 
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    const width =
+        window.innerWidth;
+
+    const height =
+        window.innerHeight;
 
     return {
+
         minX:70,
+
         maxX:width - 70,
+
         minY:85,
+
         maxY:height - 75
+
     };
 
 }
 
 
-/* coloca o personagem */
+/* =========================================================
+   POSIÇÃO
+========================================================= */
 
 function setBarberPosition(){
 
     miniBarberWrap.style.transform =
-        `translate3d(${barberX - 62}px,${barberY - 85}px,0)`;
+        `translate3d(
+            ${barberX - 62}px,
+            ${barberY - 85}px,
+            0
+        )`;
 
 }
 
 
-/* calcula distância */
+/* =========================================================
+   DISTÂNCIA
+========================================================= */
 
 function distanceToTarget(){
 
@@ -2600,25 +2822,41 @@ function distanceToTarget(){
 }
 
 
-/* faz o barbeiro ficar cansado */
+/* =========================================================
+   CANSADO
+========================================================= */
 
 function makeBarberTired(){
 
     clearTimeout(tiredTimer);
 
-    miniBarber.classList.remove("barber-running");
-    miniBarber.classList.add("barber-tired");
+    miniBarber.classList.remove(
+        "barber-running"
+    );
 
-    tiredTimer = setTimeout(()=>{
+    miniBarber.classList.remove(
+        "barber-waving"
+    );
 
-        miniBarber.classList.remove("barber-tired");
+    miniBarber.classList.add(
+        "barber-tired"
+    );
 
-    },2300);
+    tiredTimer =
+        setTimeout(()=>{
+
+            miniBarber.classList.remove(
+                "barber-tired"
+            );
+
+        },2300);
 
 }
 
 
-/* começa a correr */
+/* =========================================================
+   CORRER
+========================================================= */
 
 function startBarberRun(){
 
@@ -2626,8 +2864,19 @@ function startBarberRun(){
 
         running = true;
 
-        miniBarber.classList.remove("barber-tired");
-        miniBarber.classList.add("barber-running");
+        clearTimeout(waveTimer);
+
+        miniBarber.classList.remove(
+            "barber-tired"
+        );
+
+        miniBarber.classList.remove(
+            "barber-waving"
+        );
+
+        miniBarber.classList.add(
+            "barber-running"
+        );
 
     }
 
@@ -2636,66 +2885,96 @@ function startBarberRun(){
 }
 
 
-/* define novo destino */
+/* =========================================================
+   NOVO DESTINO
+========================================================= */
 
-function setBarberTarget(x,y,showTired=true){
+function setBarberTarget(
+    x,
+    y,
+    showTired=true
+){
 
-    const bounds = getBarberBounds();
+    const bounds =
+        getBarberBounds();
 
-    targetX = clamp(
-        x,
-        bounds.minX,
-        bounds.maxX
-    );
+    targetX =
+        clamp(
+            x,
+            bounds.minX,
+            bounds.maxX
+        );
 
-    targetY = clamp(
-        y,
-        bounds.minY,
-        bounds.maxY
-    );
+    targetY =
+        clamp(
+            y,
+            bounds.minY,
+            bounds.maxY
+        );
 
     startBarberRun();
 
     if(showTired){
 
-        moveTimer = setTimeout(()=>{
+        moveTimer =
+            setTimeout(()=>{
 
-            if(distanceToTarget() < 18){
+                if(
+                    distanceToTarget() < 18
+                ){
 
-                makeBarberTired();
+                    makeBarberTired();
 
-            }
+                }
 
-        },500);
+            },500);
 
     }
 
 }
 
 
-/* animação principal */
+/* =========================================================
+   ANIMAÇÃO PRINCIPAL
+========================================================= */
 
 function animateBarber(){
 
-    const dx = targetX - barberX;
-    const dy = targetY - barberY;
+    const dx =
+        targetX - barberX;
 
-    const distance = Math.hypot(dx,dy);
+    const dy =
+        targetY - barberY;
+
+    const distance =
+        Math.hypot(dx,dy);
 
     if(distance > 4){
 
-        const speed = Math.min(
-            18,
-            4 + distance * .035
-        );
+        const speed =
+            Math.min(
+                18,
+                4 + distance * .035
+            );
 
-        velocityX += (dx / distance * speed - velocityX) * .18;
-        velocityY += (dy / distance * speed - velocityY) * .18;
+        velocityX +=
+            (
+                dx / distance * speed
+                - velocityX
+            ) * .18;
+
+        velocityY +=
+            (
+                dy / distance * speed
+                - velocityY
+            ) * .18;
 
         barberX += velocityX;
         barberY += velocityY;
 
-        miniBarber.classList.add("barber-running");
+        miniBarber.classList.add(
+            "barber-running"
+        );
 
     }else{
 
@@ -2714,11 +2993,13 @@ function animateBarber(){
 
                 running = false;
 
-                miniBarber.classList.remove("barber-running");
+                miniBarber.classList.remove(
+                    "barber-running"
+                );
 
                 /*
-                    Só fica cansado se ele realmente
-                    estava correndo.
+                    Quando termina uma corrida,
+                    ele fica cansado.
                 */
 
                 makeBarberTired();
@@ -2731,7 +3012,9 @@ function animateBarber(){
 
     setBarberPosition();
 
-    requestAnimationFrame(animateBarber);
+    requestAnimationFrame(
+        animateBarber
+    );
 
 }
 
@@ -2739,189 +3022,260 @@ animateBarber();
 
 
 /* =========================================================
-   SEGUIR O CURSOR
+   SEGUIR CURSOR
 ========================================================= */
 
 let cursorFollowTimer = null;
 
-document.addEventListener("mousemove",function(e){
+document.addEventListener(
+    "mousemove",
+    function(e){
 
-    /*
-       Pequeno atraso proposital.
-       Assim parece que ele realmente está
-       correndo atrás do cursor.
-    */
+        clearTimeout(
+            cursorFollowTimer
+        );
 
-    clearTimeout(cursorFollowTimer);
+        cursorFollowTimer =
+            setTimeout(()=>{
 
-    cursorFollowTimer = setTimeout(()=>{
+                setBarberTarget(
+                    e.clientX,
+                    e.clientY,
+                    false
+                );
+
+            },90);
+
+    }
+);
+
+
+/* =========================================================
+   CLIQUE
+========================================================= */
+
+document.addEventListener(
+    "pointerdown",
+    function(e){
+
+        if(
+            e.target.closest(
+                ".modal-box"
+            )
+        ){
+
+            return;
+
+        }
 
         setBarberTarget(
             e.clientX,
             e.clientY,
-            false
-        );
-
-    },90);
-
-});
-
-
-/* =========================================================
-   CLIQUE — CORRER ATÉ ONDE CLICOU
-========================================================= */
-
-document.addEventListener("pointerdown",function(e){
-
-    /*
-       Ignora clique dentro do modal para não atrapalhar
-       o agendamento.
-    */
-
-    if(e.target.closest(".modal-box")){
-        return;
-    }
-
-    setBarberTarget(
-        e.clientX,
-        e.clientY,
-        true
-    );
-
-});
-
-
-/* =========================================================
-   TOQUE NO CELULAR
-========================================================= */
-
-document.addEventListener("touchstart",function(e){
-
-    if(!e.touches || !e.touches[0]){
-        return;
-    }
-
-    const touch = e.touches[0];
-
-    setBarberTarget(
-        touch.clientX,
-        touch.clientY,
-        true
-    );
-
-},{passive:true});
-
-
-/* =========================================================
-   SCROLL — ELE CORRE PELA TELA
-========================================================= */
-
-window.addEventListener("scroll",function(){
-
-    const currentScroll = window.scrollY;
-    const difference = currentScroll - lastScrollY;
-
-    lastScrollY = currentScroll;
-
-    const bounds = getBarberBounds();
-
-    /*
-       Descendo:
-       ele corre para a parte inferior da tela.
-
-       Subindo:
-       ele corre para a parte superior.
-    */
-
-    if(Math.abs(difference) > 1){
-
-        const destinationY =
-            difference > 0
-                ? bounds.maxY - 10
-                : bounds.minY + 10;
-
-        /*
-           Pequeno deslocamento lateral
-           para dar sensação de que ele está
-           correndo pela página.
-        */
-
-        const destinationX = clamp(
-            barberX + (difference > 0 ? 90 : -90),
-            bounds.minX,
-            bounds.maxX
-        );
-
-        setBarberTarget(
-            destinationX,
-            destinationY,
             true
         );
 
-        clearTimeout(scrollTargetTimeout);
+    }
+);
 
-        scrollTargetTimeout = setTimeout(()=>{
 
-            /*
-               Depois da correria do scroll,
-               ele vai para uma posição agradável
-               próxima ao canto.
-            */
+/* =========================================================
+   TOQUE
+========================================================= */
 
-            const finalX =
-                window.innerWidth > 700
-                    ? window.innerWidth * .78
-                    : window.innerWidth * .78;
+document.addEventListener(
+    "touchstart",
+    function(e){
 
-            const finalY =
-                window.innerHeight * .72;
+        if(
+            !e.touches ||
+            !e.touches[0]
+        ){
+
+            return;
+
+        }
+
+        const touch =
+            e.touches[0];
+
+        setBarberTarget(
+            touch.clientX,
+            touch.clientY,
+            true
+        );
+
+    },
+    {passive:true}
+);
+
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        const currentScroll =
+            window.scrollY;
+
+        const difference =
+            currentScroll - lastScrollY;
+
+        lastScrollY =
+            currentScroll;
+
+        const bounds =
+            getBarberBounds();
+
+        if(
+            Math.abs(difference) > 1
+        ){
+
+            const destinationY =
+                difference > 0
+                    ? bounds.maxY - 10
+                    : bounds.minY + 10;
+
+            const destinationX =
+                clamp(
+                    barberX +
+                    (
+                        difference > 0
+                            ? 90
+                            : -90
+                    ),
+                    bounds.minX,
+                    bounds.maxX
+                );
 
             setBarberTarget(
-                finalX,
-                finalY,
+                destinationX,
+                destinationY,
                 true
             );
 
-        },650);
+            clearTimeout(
+                scrollTargetTimeout
+            );
+
+            scrollTargetTimeout =
+                setTimeout(()=>{
+
+                    const finalX =
+                        window.innerWidth *
+                        .78;
+
+                    const finalY =
+                        window.innerHeight *
+                        .72;
+
+                    setBarberTarget(
+                        finalX,
+                        finalY,
+                        true
+                    );
+
+                },650);
+
+        }
 
     }
-
-});
+);
 
 
 /* =========================================================
    REDIMENSIONAMENTO
 ========================================================= */
 
-window.addEventListener("resize",function(){
+window.addEventListener(
+    "resize",
+    function(){
 
-    const bounds = getBarberBounds();
+        const bounds =
+            getBarberBounds();
 
-    barberX = clamp(
-        barberX,
-        bounds.minX,
-        bounds.maxX
-    );
+        barberX =
+            clamp(
+                barberX,
+                bounds.minX,
+                bounds.maxX
+            );
 
-    barberY = clamp(
-        barberY,
-        bounds.minY,
-        bounds.maxY
-    );
+        barberY =
+            clamp(
+                barberY,
+                bounds.minY,
+                bounds.maxY
+            );
 
-    targetX = clamp(
-        targetX,
-        bounds.minX,
-        bounds.maxX
-    );
+        targetX =
+            clamp(
+                targetX,
+                bounds.minX,
+                bounds.maxX
+            );
 
-    targetY = clamp(
-        targetY,
-        bounds.minY,
-        bounds.maxY
-    );
+        targetY =
+            clamp(
+                targetY,
+                bounds.minY,
+                bounds.maxY
+            );
 
-});
+    }
+);
+
+
+/* =========================================================
+   ACENO AUTOMÁTICO
+========================================================= */
+
+/*
+   A cada 5 segundos verifica se ele está parado.
+
+   Se estiver parado:
+   - não estiver correndo
+   - não estiver cansado
+   - não estiver escondido
+
+   ele acena para a tela.
+*/
+
+setInterval(()=>{
+
+    if(
+        !running &&
+        !document.hidden &&
+        !miniBarber.classList.contains(
+            "barber-tired"
+        ) &&
+        !miniBarber.classList.contains(
+            "barber-waving"
+        )
+    ){
+
+        miniBarber.classList.add(
+            "barber-waving"
+        );
+
+        clearTimeout(
+            waveTimer
+        );
+
+        waveTimer =
+            setTimeout(()=>{
+
+                miniBarber.classList.remove(
+                    "barber-waving"
+                );
+
+            },1100);
+
+    }
+
+},5000);
 
 
 /* =========================================================
@@ -3009,39 +3363,63 @@ let state = {
    MODAL
 ========================================================= */
 
-const modal = document.getElementById("bookingModal");
+const modal =
+    document.getElementById(
+        "bookingModal"
+    );
 
 
-function openBooking(serviceName=null){
+function openBooking(
+    serviceName=null
+){
 
-    modal.classList.add("active");
+    modal.classList.add(
+        "active"
+    );
 
-    document.body.style.overflow="hidden";
+    document.body.style.overflow =
+        "hidden";
 
     state = {
+
         step:1,
+
         service:null,
+
         barber:null,
+
         date:null,
+
         time:null
+
     };
 
     document
         .querySelectorAll(".option")
         .forEach(option=>{
-            option.classList.remove("selected");
+
+            option.classList.remove(
+                "selected"
+            );
+
         });
 
     if(serviceName){
 
-        state.service = serviceName;
+        state.service =
+            serviceName;
 
-        const option = document.querySelector(
-            `.option[data-service="${serviceName}"]`
-        );
+        const option =
+            document.querySelector(
+                `.option[data-service="${serviceName}"]`
+            );
 
         if(option){
-            option.classList.add("selected");
+
+            option.classList.add(
+                "selected"
+            );
+
         }
 
     }
@@ -3053,9 +3431,12 @@ function openBooking(serviceName=null){
 
 function closeBooking(){
 
-    modal.classList.remove("active");
+    modal.classList.remove(
+        "active"
+    );
 
-    document.body.style.overflow="";
+    document.body.style.overflow =
+        "";
 
 }
 
@@ -3069,9 +3450,15 @@ function showStep(step){
     state.step = step;
 
     document
-        .querySelectorAll(".booking-step")
+        .querySelectorAll(
+            ".booking-step"
+        )
         .forEach(el=>{
-            el.classList.remove("active");
+
+            el.classList.remove(
+                "active"
+            );
+
         });
 
     const current =
@@ -3080,48 +3467,90 @@ function showStep(step){
         );
 
     if(current){
-        current.classList.add("active");
+
+        current.classList.add(
+            "active"
+        );
+
     }
 
     document
-        .querySelectorAll(".steps .step")
-        .forEach((el,index)=>{
+        .querySelectorAll(
+            ".steps .step"
+        )
+        .forEach(
+            (el,index)=>{
 
-            el.classList.toggle(
-                "active",
-                index < step
-            );
+                el.classList.toggle(
+                    "active",
+                    index < step
+                );
 
-        });
+            }
+        );
 
 }
 
 
 function nextStep(){
 
-    if(state.step===1 && !state.service){
-        alert("Escolha um serviço.");
+    if(
+        state.step===1 &&
+        !state.service
+    ){
+
+        alert(
+            "Escolha um serviço."
+        );
+
         return;
+
     }
 
-    if(state.step===2 && !state.barber){
-        alert("Escolha um barbeiro.");
+    if(
+        state.step===2 &&
+        !state.barber
+    ){
+
+        alert(
+            "Escolha um barbeiro."
+        );
+
         return;
+
     }
 
-    if(state.step===3 && !state.date){
-        alert("Escolha uma data.");
+    if(
+        state.step===3 &&
+        !state.date
+    ){
+
+        alert(
+            "Escolha uma data."
+        );
+
         return;
+
     }
 
-    if(state.step===4 && !state.time){
-        alert("Escolha um horário.");
+    if(
+        state.step===4 &&
+        !state.time
+    ){
+
+        alert(
+            "Escolha um horário."
+        );
+
         return;
+
     }
 
     if(state.step < 5){
 
-        showStep(state.step+1);
+        showStep(
+            state.step + 1
+        );
 
     }
 
@@ -3132,7 +3561,9 @@ function prevStep(){
 
     if(state.step > 1){
 
-        showStep(state.step-1);
+        showStep(
+            state.step - 1
+        );
 
     }
 
@@ -3140,18 +3571,26 @@ function prevStep(){
 
 
 /* =========================================================
-   SELECIONAR SERVIÇO
+   SERVIÇO
 ========================================================= */
 
 function selectService(element){
 
     document
-        .querySelectorAll("[data-service]")
+        .querySelectorAll(
+            "[data-service]"
+        )
         .forEach(el=>{
-            el.classList.remove("selected");
+
+            el.classList.remove(
+                "selected"
+            );
+
         });
 
-    element.classList.add("selected");
+    element.classList.add(
+        "selected"
+    );
 
     state.service =
         element.dataset.service;
@@ -3160,18 +3599,29 @@ function selectService(element){
 
 
 /* =========================================================
-   SELECIONAR BARBEIRO
+   BARBEIRO
 ========================================================= */
 
-function selectBarber(element,name){
+function selectBarber(
+    element,
+    name
+){
 
     document
-        .querySelectorAll(".booking-step[data-step='2'] .option")
+        .querySelectorAll(
+            ".booking-step[data-step='2'] .option"
+        )
         .forEach(el=>{
-            el.classList.remove("selected");
+
+            el.classList.remove(
+                "selected"
+            );
+
         });
 
-    element.classList.add("selected");
+    element.classList.add(
+        "selected"
+    );
 
     state.barber = name;
 
@@ -3185,7 +3635,9 @@ function selectBarber(element,name){
 function renderCalendar(){
 
     const calendar =
-        document.getElementById("calendar");
+        document.getElementById(
+            "calendar"
+        );
 
     calendar.innerHTML="";
 
@@ -3202,67 +3654,115 @@ function renderCalendar(){
     weekdays.forEach(day=>{
 
         const el =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        el.className="weekday";
-        el.textContent=day;
+        el.className =
+            "weekday";
 
-        calendar.appendChild(el);
+        el.textContent =
+            day;
+
+        calendar.appendChild(
+            el
+        );
 
     });
 
+    const today =
+        new Date();
 
-    const today = new Date();
+    today.setHours(
+        0,0,0,0
+    );
 
-    today.setHours(0,0,0,0);
+    const year =
+        today.getFullYear();
 
-    const year = today.getFullYear();
-    const month = today.getMonth();
+    const month =
+        today.getMonth();
 
     const firstDay =
-        new Date(year,month,1).getDay();
+        new Date(
+            year,
+            month,
+            1
+        ).getDay();
 
     const daysInMonth =
-        new Date(year,month+1,0).getDate();
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
 
-
-    for(let i=0;i<firstDay;i++){
+    for(
+        let i=0;
+        i<firstDay;
+        i++
+    ){
 
         const empty =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        calendar.appendChild(empty);
+        calendar.appendChild(
+            empty
+        );
 
     }
 
-
-    for(let day=1;day<=daysInMonth;day++){
+    for(
+        let day=1;
+        day<=daysInMonth;
+        day++
+    ){
 
         const date =
-            new Date(year,month,day);
+            new Date(
+                year,
+                month,
+                day
+            );
 
         const el =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
-        el.className="calendar-day";
+        el.className =
+            "calendar-day";
 
-        el.textContent=day;
+        el.textContent =
+            day;
 
         if(date < today){
 
-            el.classList.add("disabled");
+            el.classList.add(
+                "disabled"
+            );
 
         }else{
 
-            el.onclick=()=>{
+            el.onclick = ()=>{
 
                 document
-                    .querySelectorAll(".calendar-day")
+                    .querySelectorAll(
+                        ".calendar-day"
+                    )
                     .forEach(d=>{
-                        d.classList.remove("selected");
+
+                        d.classList.remove(
+                            "selected"
+                        );
+
                     });
 
-                el.classList.add("selected");
+                el.classList.add(
+                    "selected"
+                );
 
                 state.date =
                     `${day}/${month+1}/${year}`;
@@ -3271,7 +3771,9 @@ function renderCalendar(){
 
         }
 
-        calendar.appendChild(el);
+        calendar.appendChild(
+            el
+        );
 
     }
 
@@ -3287,34 +3789,51 @@ renderCalendar();
 function renderTimes(){
 
     const container =
-        document.getElementById("times");
+        document.getElementById(
+            "times"
+        );
 
     container.innerHTML="";
 
     timeSlots.forEach(time=>{
 
         const el =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
-        el.className="time";
+        el.className =
+            "time";
 
-        el.textContent=time;
+        el.textContent =
+            time;
 
-        el.onclick=()=>{
+        el.onclick = ()=>{
 
             document
-                .querySelectorAll(".time")
+                .querySelectorAll(
+                    ".time"
+                )
                 .forEach(t=>{
-                    t.classList.remove("selected");
+
+                    t.classList.remove(
+                        "selected"
+                    );
+
                 });
 
-            el.classList.add("selected");
+            el.classList.add(
+                "selected"
+            );
 
-            state.time=time;
+            state.time =
+                time;
 
         };
 
-        container.appendChild(el);
+        container.appendChild(
+            el
+        );
 
     });
 
@@ -3324,64 +3843,75 @@ renderTimes();
 
 
 /* =========================================================
-   MÁSCARA WHATSAPP
+   WHATSAPP
 ========================================================= */
 
 const phone =
-    document.getElementById("clientPhone");
+    document.getElementById(
+        "clientPhone"
+    );
 
-phone.addEventListener("input",function(e){
+phone.addEventListener(
+    "input",
+    function(e){
 
-    let value =
-        e.target.value
-            .replace(/\D/g,"")
-            .slice(0,11);
+        let value =
+            e.target.value
+                .replace(/\D/g,"")
+                .slice(0,11);
 
-    if(value.length <= 10){
+        if(value.length <= 10){
 
-        value =
-            value.replace(
-                /^(\d{2})(\d{4})(\d{0,4}).*/,
-                "($1) $2-$3"
-            );
+            value =
+                value.replace(
+                    /^(\d{2})(\d{4})(\d{0,4}).*/,
+                    "($1) $2-$3"
+                );
 
-    }else{
+        }else{
 
-        value =
-            value.replace(
-                /^(\d{2})(\d{5})(\d{0,4}).*/,
-                "($1) $2-$3"
-            );
+            value =
+                value.replace(
+                    /^(\d{2})(\d{5})(\d{0,4}).*/,
+                    "($1) $2-$3"
+                );
+
+        }
+
+        e.target.value =
+            value;
 
     }
-
-    e.target.value=value;
-
-});
+);
 
 
 /* =========================================================
-   CONFIRMAR AGENDAMENTO
+   CONFIRMAR
 ========================================================= */
 
 function confirmBooking(){
 
     const name =
         document
-            .getElementById("clientName")
+            .getElementById(
+                "clientName"
+            )
             .value
             .trim();
 
     const clientPhone =
         document
-            .getElementById("clientPhone")
+            .getElementById(
+                "clientPhone"
+            )
             .value
             .trim();
 
-
     if(!name){
 
-        alert("Digite seu nome.");
+        alert(
+            "Digite seu nome."
+        );
 
         return;
 
@@ -3389,16 +3919,18 @@ function confirmBooking(){
 
     if(!clientPhone){
 
-        alert("Digite seu WhatsApp.");
+        alert(
+            "Digite seu WhatsApp."
+        );
 
         return;
 
     }
 
-
     const price =
-        services[state.service].price;
-
+        services[
+            state.service
+        ].price;
 
     const booking = {
 
@@ -3416,18 +3948,21 @@ function confirmBooking(){
 
         time:state.time,
 
-        createdAt:new Date().toISOString()
+        createdAt:
+            new Date().toISOString()
 
     };
 
-
     localStorage.setItem(
         "nero_last_booking",
-        JSON.stringify(booking)
+        JSON.stringify(
+            booking
+        )
     );
 
-
-    document.getElementById("summary").innerHTML = `
+    document.getElementById(
+        "summary"
+    ).innerHTML = `
 
         <div>
             <strong>Cliente:</strong>
@@ -3461,59 +3996,72 @@ function confirmBooking(){
 
     `;
 
-
-    showStep("success");
+    showStep(
+        "success"
+    );
 
 }
 
 
 /* =========================================================
-   FECHAR CLICANDO FORA
+   FECHAR FORA
 ========================================================= */
 
-modal.addEventListener("click",function(e){
+modal.addEventListener(
+    "click",
+    function(e){
 
-    if(e.target === modal){
+        if(e.target === modal){
 
-        closeBooking();
+            closeBooking();
+
+        }
 
     }
-
-});
+);
 
 
 /* =========================================================
    ESC
 ========================================================= */
 
-document.addEventListener("keydown",function(e){
+document.addEventListener(
+    "keydown",
+    function(e){
 
-    if(e.key === "Escape"){
+        if(e.key === "Escape"){
 
-        closeBooking();
+            closeBooking();
+
+        }
 
     }
-
-});
+);
 
 
 /* =========================================================
-   REVEAL ANIMATION
+   REVEAL
 ========================================================= */
 
 const revealObserver =
     new IntersectionObserver(
         entries=>{
 
-            entries.forEach(entry=>{
+            entries.forEach(
+                entry=>{
 
-                if(entry.isIntersecting){
+                    if(
+                        entry.isIntersecting
+                    ){
 
-                    entry.target.classList.add("visible");
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                    }
 
                 }
-
-            });
+            );
 
         },
         {
@@ -3523,9 +4071,15 @@ const revealObserver =
 
 
 document
-    .querySelectorAll(".reveal")
+    .querySelectorAll(
+        ".reveal"
+    )
     .forEach(el=>{
-        revealObserver.observe(el);
+
+        revealObserver.observe(
+            el
+        );
+
     });
 
 
@@ -3534,24 +4088,41 @@ document
 ========================================================= */
 
 const heroContent =
-    document.querySelector(".hero-content");
+    document.querySelector(
+        ".hero-content"
+    );
 
-document.addEventListener("mousemove",function(e){
+document.addEventListener(
+    "mousemove",
+    function(e){
 
-    if(window.innerWidth < 800){
-        return;
+        if(
+            window.innerWidth < 800
+        ){
+
+            return;
+
+        }
+
+        const x =
+            e.clientX /
+            window.innerWidth -
+            .5;
+
+        const y =
+            e.clientY /
+            window.innerHeight -
+            .5;
+
+        heroContent.style.transform =
+            `translate3d(
+                ${x * 7}px,
+                ${y * 5}px,
+                0
+            )`;
+
     }
-
-    const x =
-        (e.clientX / window.innerWidth - .5);
-
-    const y =
-        (e.clientY / window.innerHeight - .5);
-
-    heroContent.style.transform =
-        `translate3d(${x * 7}px,${y * 5}px,0)`;
-
-});
+);
 
 
 /* =========================================================
@@ -3560,7 +4131,8 @@ document.addEventListener("mousemove",function(e){
 
 setTimeout(()=>{
 
-    const bounds = getBarberBounds();
+    const bounds =
+        getBarberBounds();
 
     barberX =
         window.innerWidth > 700
@@ -3570,8 +4142,11 @@ setTimeout(()=>{
     barberY =
         window.innerHeight * .72;
 
-    targetX=barberX;
-    targetY=barberY;
+    targetX =
+        barberX;
+
+    targetY =
+        barberY;
 
     setBarberPosition();
 
@@ -3579,43 +4154,48 @@ setTimeout(()=>{
 
 
 /* =========================================================
-   PEQUENO MOVIMENTO AUTOMÁTICO
+   MOVIMENTO AUTOMÁTICO
 ========================================================= */
 
 setInterval(()=>{
 
-    /*
-       Se o usuário não estiver movimentando
-       o cursor, ele dá uma pequena corrida
-       aleatória para não parecer "parado".
-    */
+    if(
+        !running &&
+        !document.hidden
+    ){
 
-    if(!running && !document.hidden){
-
-        const bounds = getBarberBounds();
+        const bounds =
+            getBarberBounds();
 
         const randomX =
             bounds.minX +
             Math.random() *
-            (bounds.maxX-bounds.minX);
+            (
+                bounds.maxX -
+                bounds.minX
+            );
 
         const randomY =
             bounds.minY +
             Math.random() *
-            (bounds.maxY-bounds.minY);
-
-        /*
-           Movimento bem pequeno para não ficar
-           pulando loucamente pela tela.
-        */
+            (
+                bounds.maxY -
+                bounds.minY
+            );
 
         const nearX =
             barberX +
-            (randomX-barberX)*.18;
+            (
+                randomX -
+                barberX
+            ) * .18;
 
         const nearY =
             barberY +
-            (randomY-barberY)*.18;
+            (
+                randomY -
+                barberY
+            ) * .18;
 
         setBarberTarget(
             nearX,
@@ -3630,4 +4210,4 @@ setInterval(()=>{
 </script>
 
 </body>
-</html> 
+</html>

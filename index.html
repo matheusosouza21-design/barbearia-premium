@@ -515,6 +515,12 @@ nav a:hover{
     transform-box:view-box;
 }
 
+/*
+   Agora o braço sobe de verdade.
+   Primeiro ele sobe acima da cabeça,
+   depois faz o movimento lateral com a mão.
+*/
+
 .barber-waving .barber-arm-right{
     animation:barberWaveHigh 1.65s ease-in-out forwards;
 }
@@ -522,39 +528,39 @@ nav a:hover{
 @keyframes barberWaveHigh{
 
     0%{
-        transform:rotate(0deg);
+        transform:translate(0,0) rotate(0deg);
     }
 
-    12%{
-        transform:rotate(-32deg);
+    14%{
+        transform:translate(-20px,-40px) rotate(-90deg);
     }
 
     25%{
-        transform:rotate(-58deg);
+        transform:translate(-20px,-40px) rotate(-75deg);
     }
 
-    38%{
-        transform:rotate(-43deg);
+    37%{
+        transform:translate(-20px,-40px) rotate(-105deg);
     }
 
-    51%{
-        transform:rotate(-64deg);
+    49%{
+        transform:translate(-20px,-40px) rotate(-75deg);
     }
 
-    64%{
-        transform:rotate(-42deg);
+    61%{
+        transform:translate(-20px,-40px) rotate(-105deg);
     }
 
-    77%{
-        transform:rotate(-60deg);
+    73%{
+        transform:translate(-20px,-40px) rotate(-75deg);
     }
 
-    90%{
-        transform:rotate(-35deg);
+    85%{
+        transform:translate(-20px,-40px) rotate(-95deg);
     }
 
     100%{
-        transform:rotate(0deg);
+        transform:translate(0,0) rotate(0deg);
     }
 
 }
@@ -562,12 +568,6 @@ nav a:hover{
 /* =========================
    MÁQUINA — MÃO / CINTURA
 ========================= */
-
-/*
-   A máquina fica FORA do braço.
-   Assim ela nunca acompanha a rotação
-   do braço durante o aceno.
-*/
 
 .clipper-tool{
     transform-box:fill-box;
@@ -577,32 +577,15 @@ nav a:hover{
         opacity .2s ease;
 }
 
-/*
-   Posição normal:
-   máquina encaixada na mão direita.
-*/
-
 .clipper-in-hand{
     transform:translate(0,0) rotate(7deg);
     opacity:1;
 }
 
-/*
-   Posição guardada:
-   máquina vai para a cintura,
-   exatamente sobre a região do bolso.
-*/
-
 .clipper-tool.clipper-stowed{
     transform:translate(-18px,10px) rotate(-12deg);
     opacity:1;
 }
-
-/*
-   Preparação:
-   máquina sai da mão e desce
-   até a cintura.
-*/
 
 .barber-wave-prep .clipper-tool{
     animation:clipperToWaist .42s cubic-bezier(.2,.8,.2,1) forwards;
@@ -627,12 +610,6 @@ nav a:hover{
     }
 
 }
-
-/*
-   Quando o aceno termina,
-   a máquina sai da cintura e volta
-   suavemente para a mão.
-*/
 
 .clipper-tool.clipper-returning{
     animation:clipperBackToHand .42s cubic-bezier(.2,.8,.2,1) forwards;
@@ -1641,9 +1618,7 @@ footer{
             aria-hidden="true"
         >
 
-            <!-- =================================================
-                 CORPO
-            ================================================= -->
+            <!-- CORPO -->
 
             <g class="barber-body">
 
@@ -1668,7 +1643,6 @@ footer{
 
                 </g>
 
-
                 <!-- PERNA DIREITA -->
 
                 <g class="barber-leg-right">
@@ -1690,7 +1664,6 @@ footer{
 
                 </g>
 
-
                 <!-- UNIFORME DE LUXO -->
 
                 <path
@@ -1704,7 +1677,6 @@ footer{
                     stroke-width="1.6"
                 />
 
-
                 <!-- CAMISA -->
 
                 <path
@@ -1712,14 +1684,12 @@ footer{
                     fill="#eee8d8"
                 />
 
-
                 <!-- GRAVATA -->
 
                 <path
                     d="M47 72 L53 72 L55 83 L50 89 L45 83 Z"
                     fill="#d7ad55"
                 />
-
 
                 <!-- LAPELAS -->
 
@@ -1737,12 +1707,10 @@ footer{
                     stroke-width="1"
                 />
 
-
                 <!-- BOTÕES -->
 
                 <circle cx="50" cy="93" r="2" fill="#d7ad55"/>
                 <circle cx="50" cy="101" r="2" fill="#d7ad55"/>
-
 
                 <!-- CRACHÁ -->
 
@@ -1764,10 +1732,7 @@ footer{
                     fill="#111"
                 >N</text>
 
-
-                <!-- =================================================
-                     BOLSO DA CINTURA
-                ================================================= -->
+                <!-- BOLSO DA CINTURA -->
 
                 <path
                     d="M58 91 L70 91 L69 105 L57 105 Z"
@@ -1791,10 +1756,7 @@ footer{
 
             </g>
 
-
-            <!-- =================================================
-                 BRAÇO ESQUERDO — TESOURA PEQUENA
-            ================================================= -->
+            <!-- BRAÇO ESQUERDO -->
 
             <g class="barber-arm-left">
 
@@ -1806,9 +1768,6 @@ footer{
                     fill="none"
                 />
 
-
-                <!-- MÃO -->
-
                 <circle
                     cx="18"
                     cy="94"
@@ -1818,14 +1777,9 @@ footer{
                     stroke-width="1"
                 />
 
+                <!-- TESOURA -->
 
-                <!-- TESOURA PEQUENA E PROPORCIONAL -->
-
-                <g
-                    class="scissors-tool"
-                >
-
-                    <!-- ARGOLA 1 -->
+                <g class="scissors-tool">
 
                     <circle
                         cx="0"
@@ -1845,9 +1799,6 @@ footer{
                         stroke-width=".8"
                     />
 
-
-                    <!-- ARGOLA 2 -->
-
                     <circle
                         cx="6"
                         cy="7"
@@ -1865,9 +1816,6 @@ footer{
                         stroke="#777"
                         stroke-width=".8"
                     />
-
-
-                    <!-- LÂMINA SUPERIOR -->
 
                     <path
                         d="M3 2 L26 -8"
@@ -1885,9 +1833,6 @@ footer{
                         fill="none"
                     />
 
-
-                    <!-- LÂMINA INFERIOR -->
-
                     <path
                         d="M7 6 L26 13"
                         stroke="#f2f2f2"
@@ -1904,9 +1849,6 @@ footer{
                         fill="none"
                     />
 
-
-                    <!-- PONTA DAS LÂMINAS -->
-
                     <path
                         d="M26 -8 L30 -10"
                         stroke="#ededed"
@@ -1920,9 +1862,6 @@ footer{
                         stroke-width="1"
                         stroke-linecap="round"
                     />
-
-
-                    <!-- PIVÔ DOURADO -->
 
                     <circle
                         cx="5"
@@ -1944,10 +1883,7 @@ footer{
 
             </g>
 
-
-            <!-- =================================================
-                 BRAÇO DIREITO — MÃO LIVRE PARA ACENAR
-            ================================================= -->
+            <!-- BRAÇO DIREITO -->
 
             <g class="barber-arm-right">
 
@@ -1958,9 +1894,6 @@ footer{
                     stroke-linecap="round"
                     fill="none"
                 />
-
-
-                <!-- MÃO -->
 
                 <circle
                     cx="83"
@@ -1973,18 +1906,12 @@ footer{
 
             </g>
 
-
-            <!-- =================================================
-                 MÁQUINA
-                 INDEPENDENTE DO BRAÇO
-            ================================================= -->
+            <!-- MÁQUINA -->
 
             <g
                 class="clipper-tool clipper-in-hand"
                 id="clipperTool"
             >
-
-                <!-- CORPO -->
 
                 <rect
                     x="76"
@@ -1997,23 +1924,12 @@ footer{
                     stroke-width="1.6"
                 />
 
-
-                <!-- LÂMINA -->
-
-                <path
-                    d="M79 -? "
-                    fill="none"
-                />
-
                 <path
                     d="M79 78 L87 78 L86 84 L80 84 Z"
                     fill="#cfcfcf"
                     stroke="#777"
                     stroke-width=".7"
                 />
-
-
-                <!-- DENTES DA LÂMINA -->
 
                 <path
                     d="M79 78 L79 75
@@ -2026,9 +1942,6 @@ footer{
                     stroke-linecap="round"
                 />
 
-
-                <!-- DETALHE DOURADO -->
-
                 <rect
                     x="79"
                     y="88"
@@ -2038,18 +1951,12 @@ footer{
                     fill="#d7ad55"
                 />
 
-
-                <!-- BOTÃO -->
-
                 <circle
                     cx="83"
                     cy="97"
                     r="2.2"
                     fill="#d7ad55"
                 />
-
-
-                <!-- DETALHE INFERIOR -->
 
                 <rect
                     x="80"
@@ -2062,14 +1969,9 @@ footer{
 
             </g>
 
-
-            <!-- =================================================
-                 CABEÇA
-            ================================================= -->
+            <!-- CABEÇA -->
 
             <g class="barber-head">
-
-                <!-- PESCOÇO -->
 
                 <rect
                     x="43"
@@ -2079,9 +1981,6 @@ footer{
                     rx="6"
                     fill="#ffd36b"
                 />
-
-
-                <!-- ROSTO -->
 
                 <ellipse
                     cx="50"
@@ -2093,9 +1992,6 @@ footer{
                     stroke-width="1"
                 />
 
-
-                <!-- CABELO -->
-
                 <path
                     d="M29 43
                        Q27 17 50 14
@@ -2105,9 +2001,6 @@ footer{
                     fill="#141414"
                 />
 
-
-                <!-- BRILHO DO CABELO -->
-
                 <path
                     d="M36 28 Q48 19 61 24"
                     stroke="#d7ad55"
@@ -2116,7 +2009,6 @@ footer{
                     fill="none"
                     opacity=".6"
                 />
-
 
                 <!-- ROSTO NORMAL -->
 
@@ -2145,7 +2037,6 @@ footer{
                     />
 
                 </g>
-
 
                 <!-- ROSTO CANSADO -->
 
@@ -2190,20 +2081,13 @@ footer{
 
         </svg>
 
-
-        <!-- SUOR -->
-
         <span class="barber-sweat sweat-one"></span>
         <span class="barber-sweat sweat-two"></span>
         <span class="barber-sweat sweat-three"></span>
 
-
-        <!-- RESPIRAÇÃO -->
-
         <span class="tired-breath"></span>
 
     </div>
-
 
     <div class="mini-barber-shadow"></div>
 
@@ -2228,7 +2112,6 @@ footer{
 
     </a>
 
-
     <nav>
 
         <a href="#inicio">
@@ -2249,14 +2132,12 @@ footer{
 
     </nav>
 
-
     <button
         class="header-btn"
         onclick="openBooking()"
     >
         Agendar horário
     </button>
-
 
     <button
         class="mobile-menu"
@@ -2282,31 +2163,24 @@ footer{
 
     <div class="hero-ring"></div>
 
-
     <div class="hero-content">
 
         <div class="eyebrow">
             Barbearia Premium
         </div>
 
-
         <h1>
-
             Seu estilo.
-
             <span>
                 Sua assinatura.
             </span>
-
         </h1>
-
 
         <p>
             Mais do que um corte. Uma experiência criada para homens
             que entendem que presença, precisão e estilo fazem parte
             da mesma identidade.
         </p>
-
 
         <div class="hero-actions">
 
@@ -2316,7 +2190,6 @@ footer{
             >
                 Agendar experiência
             </button>
-
 
             <a
                 href="#servicos"
@@ -2329,7 +2202,6 @@ footer{
         </div>
 
     </div>
-
 
     <div class="hero-card">
 
@@ -2345,11 +2217,9 @@ footer{
 
         </div>
 
-
         <strong>
             Precisão.
         </strong>
-
 
         <p>
             Atendimento premium, ambiente exclusivo
@@ -2382,14 +2252,12 @@ footer{
 
         </div>
 
-
         <p class="section-desc">
             Escolha sua experiência e deixe o resto
             por nossa conta.
         </p>
 
     </div>
-
 
     <div class="services-grid">
 
@@ -2550,14 +2418,12 @@ footer{
 
         </div>
 
-
         <p class="section-desc">
             Técnica, experiência e atenção aos mínimos
             detalhes.
         </p>
 
     </div>
-
 
     <div class="barbers-grid">
 
@@ -2570,7 +2436,6 @@ footer{
                 </div>
 
             </div>
-
 
             <div class="barber-info">
 
@@ -2597,7 +2462,6 @@ footer{
 
             </div>
 
-
             <div class="barber-info">
 
                 <h3>
@@ -2622,7 +2486,6 @@ footer{
                 </div>
 
             </div>
-
 
             <div class="barber-info">
 
@@ -2655,25 +2518,21 @@ footer{
 
     </div>
 
-
     <div class="story-content reveal">
 
         <div class="section-kicker">
             Nossa história
         </div>
 
-
         <h2 class="section-title">
             Não é apenas<br>
             uma barbearia.
         </h2>
 
-
         <p>
             A NERO BARBER nasceu com uma ideia simples:
             transformar o momento do corte em uma experiência.
         </p>
-
 
         <ul class="story-list">
 
@@ -2715,11 +2574,9 @@ footer{
         começa aqui.
     </h2>
 
-
     <p>
         Reserve seu horário e viva a experiência NERO.
     </p>
-
 
     <button
         class="primary-btn"
@@ -2764,7 +2621,6 @@ footer{
                 Agendar horário
             </h3>
 
-
             <button
                 class="close-modal"
                 onclick="closeBooking()"
@@ -2773,7 +2629,6 @@ footer{
             </button>
 
         </div>
-
 
         <div class="modal-body">
 
@@ -2787,7 +2642,6 @@ footer{
 
             </div>
 
-
             <!-- STEP 1 -->
 
             <div
@@ -2798,7 +2652,6 @@ footer{
                 <h4>
                     Escolha o serviço
                 </h4>
-
 
                 <div class="option-grid">
 
@@ -2817,7 +2670,6 @@ footer{
 
                     </div>
 
-
                     <div
                         class="option"
                         data-service="Corte Máquina"
@@ -2833,7 +2685,6 @@ footer{
 
                     </div>
 
-
                     <div
                         class="option"
                         data-service="Tesoura + Máquina"
@@ -2848,7 +2699,6 @@ footer{
                         </span>
 
                     </div>
-
 
                     <div
                         class="option"
@@ -2866,7 +2716,6 @@ footer{
                     </div>
 
                 </div>
-
 
                 <div class="modal-footer">
 
@@ -2895,7 +2744,6 @@ footer{
                     Escolha o barbeiro
                 </h4>
 
-
                 <div class="option-grid">
 
                     <div
@@ -2912,7 +2760,6 @@ footer{
 
                     </div>
 
-
                     <div
                         class="option"
                         onclick="selectBarber(this,'Matheus')"
@@ -2926,7 +2773,6 @@ footer{
                         </span>
 
                     </div>
-
 
                     <div
                         class="option"
@@ -2944,7 +2790,6 @@ footer{
 
                 </div>
 
-
                 <div class="modal-footer">
 
                     <button
@@ -2953,7 +2798,6 @@ footer{
                     >
                         Voltar
                     </button>
-
 
                     <button
                         class="modal-btn primary"
@@ -2978,12 +2822,10 @@ footer{
                     Escolha a data
                 </h4>
 
-
                 <div
                     class="calendar"
                     id="calendar"
                 ></div>
-
 
                 <div class="modal-footer">
 
@@ -2993,7 +2835,6 @@ footer{
                     >
                         Voltar
                     </button>
-
 
                     <button
                         class="modal-btn primary"
@@ -3018,12 +2859,10 @@ footer{
                     Escolha o horário
                 </h4>
 
-
                 <div
                     class="times"
                     id="times"
                 ></div>
-
 
                 <div class="modal-footer">
 
@@ -3033,7 +2872,6 @@ footer{
                     >
                         Voltar
                     </button>
-
 
                     <button
                         class="modal-btn primary"
@@ -3058,7 +2896,6 @@ footer{
                     Seus dados
                 </h4>
 
-
                 <div class="form-group">
 
                     <label>
@@ -3072,7 +2909,6 @@ footer{
                     >
 
                 </div>
-
 
                 <div class="form-group">
 
@@ -3088,7 +2924,6 @@ footer{
 
                 </div>
 
-
                 <div class="modal-footer">
 
                     <button
@@ -3097,7 +2932,6 @@ footer{
                     >
                         Voltar
                     </button>
-
 
                     <button
                         class="modal-btn primary"
@@ -3124,22 +2958,18 @@ footer{
                         ✓
                     </div>
 
-
                     <h3>
                         Agendamento confirmado
                     </h3>
-
 
                     <p>
                         Seu horário foi registrado com sucesso.
                     </p>
 
-
                     <div
                         class="summary"
                         id="summary"
                     ></div>
-
 
                     <div class="modal-footer">
 
@@ -3254,6 +3084,15 @@ let lastScrollY =
     window.scrollY;
 
 let scrollTargetTimeout = null;
+
+
+/*
+   NOVO CONTROLE:
+   somente o movimento provocado
+   pelo scroll pode terminar em cansaço.
+*/
+
+let tiredOnArrival = false;
 
 
 /* =========================================================
@@ -3473,7 +3312,7 @@ function startBarberRun(){
 function setBarberTarget(
     x,
     y,
-    showTired=true
+    showTired=false
 ){
 
     const bounds =
@@ -3496,25 +3335,21 @@ function setBarberTarget(
         );
 
 
+    /*
+       Aqui fica definido se essa corrida
+       pode gerar suor quando terminar.
+    */
+
+    tiredOnArrival =
+        showTired;
+
+
     startBarberRun();
 
 
-    if(showTired){
-
-        moveTimer =
-            setTimeout(()=>{
-
-                if(
-                    distanceToTarget() < 18
-                ){
-
-                    makeBarberTired();
-
-                }
-
-            },500);
-
-    }
+    clearTimeout(
+        moveTimer
+    );
 
 }
 
@@ -3600,7 +3435,18 @@ function animateBarber(){
                 );
 
 
-                makeBarberTired();
+                /*
+                   SOMENTE corrida de scroll
+                   pode deixar o barbeiro cansado.
+                */
+
+                if(tiredOnArrival){
+
+                    tiredOnArrival = false;
+
+                    makeBarberTired();
+
+                }
 
             }
 
@@ -3623,6 +3469,7 @@ animateBarber();
 
 /* =========================================================
    SEGUIR CURSOR
+   NÃO GERA SUOR
 ========================================================= */
 
 let cursorFollowTimer = null;
@@ -3654,6 +3501,7 @@ document.addEventListener(
 
 /* =========================================================
    CLIQUE
+   NÃO GERA SUOR
 ========================================================= */
 
 document.addEventListener(
@@ -3674,7 +3522,7 @@ document.addEventListener(
         setBarberTarget(
             e.clientX,
             e.clientY,
-            true
+            false
         );
 
     }
@@ -3683,6 +3531,7 @@ document.addEventListener(
 
 /* =========================================================
    TOQUE
+   NÃO GERA SUOR
 ========================================================= */
 
 document.addEventListener(
@@ -3706,7 +3555,7 @@ document.addEventListener(
         setBarberTarget(
             touch.clientX,
             touch.clientY,
-            true
+            false
         );
 
     },
@@ -3718,6 +3567,7 @@ document.addEventListener(
 
 /* =========================================================
    SCROLL
+   ÚNICO MOVIMENTO QUE GERA SUOR
 ========================================================= */
 
 window.addEventListener(
@@ -3764,6 +3614,12 @@ window.addEventListener(
                 );
 
 
+            /*
+               TRUE:
+               essa corrida veio do scroll
+               e pode gerar suor.
+            */
+
             setBarberTarget(
                 destinationX,
                 destinationY,
@@ -3788,6 +3644,12 @@ window.addEventListener(
                         window.innerHeight *
                         .72;
 
+
+                    /*
+                       Continua sendo movimento
+                       de scroll, portanto pode
+                       gerar cansaço.
+                    */
 
                     setBarberTarget(
                         finalX,
@@ -3915,7 +3777,7 @@ function startWave(){
 
             /*
                ETAPA 2:
-               máquina já chegou à cintura.
+               máquina chegou à cintura.
             */
 
             miniBarber.classList.remove(
@@ -3934,8 +3796,8 @@ function startWave(){
 
             /*
                ETAPA 3:
-               agora ele acena com a mão
-               completamente livre.
+               braço sobe acima da cabeça
+               e faz o aceno lateral.
             */
 
             miniBarber.classList.add(
@@ -3948,7 +3810,7 @@ function startWave(){
 
                     /*
                        ETAPA 4:
-                       o aceno terminou.
+                       aceno terminou.
                     */
 
                     miniBarber.classList.remove(
@@ -3957,8 +3819,8 @@ function startWave(){
 
 
                     /*
-                       Dá tempo para o braço
-                       voltar para a posição normal.
+                       Aguarda o braço
+                       voltar para baixo.
                     */
 
                     waveReturnTimer =
@@ -3966,7 +3828,8 @@ function startWave(){
 
                             /*
                                ETAPA 5:
-                               pega a máquina da cintura.
+                               pega novamente
+                               a máquina.
                             */
 
                             clipperTool.classList.remove(
@@ -5005,6 +4868,7 @@ setTimeout(()=>{
 
 /* =========================================================
    MOVIMENTO AUTOMÁTICO
+   NÃO GERA SUOR
 ========================================================= */
 
 setInterval(()=>{
@@ -5056,7 +4920,7 @@ setInterval(()=>{
         setBarberTarget(
             nearX,
             nearY,
-            true
+            false
         );
 
     }

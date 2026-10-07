@@ -373,6 +373,274 @@ header.scrolled{
     letter-spacing:1.5px;
 }
 
+/* =========================================================
+   MINI BARBEIRO LUXO
+========================================================= */
+
+.mini-barber-wrap{
+    position:absolute;
+    right:30%;
+    bottom:4.5%;
+    width:155px;
+    height:210px;
+    z-index:5;
+    pointer-events:none;
+}
+
+.mini-barber-track{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:100%;
+    animation:
+        barberWalk 8s cubic-bezier(.45,.05,.55,.95) infinite alternate,
+        barberFloat 1.2s ease-in-out infinite;
+}
+
+.mini-barber{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:115px;
+    height:190px;
+    cursor:pointer;
+    pointer-events:auto;
+    filter:
+        drop-shadow(0 12px 12px rgba(0,0,0,.5))
+        drop-shadow(0 0 14px rgba(201,164,92,.08));
+    transition:filter .3s;
+}
+
+.mini-barber:hover{
+    filter:
+        drop-shadow(0 12px 12px rgba(0,0,0,.55))
+        drop-shadow(0 0 24px rgba(240,210,140,.28));
+}
+
+.mini-barber .barber-svg{
+    width:100%;
+    height:100%;
+    overflow:visible;
+}
+
+.mini-barber .barber-body{
+    transform-origin:58px 100px;
+    animation:bodyBreath 1.2s ease-in-out infinite;
+}
+
+.mini-barber .barber-head{
+    transform-origin:57px 62px;
+    animation:headMotion 1.8s ease-in-out infinite;
+}
+
+.mini-barber .barber-left-arm{
+    transform-origin:39px 105px;
+    animation:armLeft 1s ease-in-out infinite alternate;
+}
+
+.mini-barber .barber-right-arm{
+    transform-origin:76px 105px;
+    animation:armRight 1.1s ease-in-out infinite alternate;
+}
+
+.mini-barber .leg-left{
+    transform-origin:49px 151px;
+    animation:legLeft .6s ease-in-out infinite alternate;
+}
+
+.mini-barber .leg-right{
+    transform-origin:67px 151px;
+    animation:legRight .6s ease-in-out infinite alternate;
+}
+
+.mini-barber .scissor-blade-a{
+    transform-origin:22px 119px;
+    animation:scissorA .75s ease-in-out infinite alternate;
+}
+
+.mini-barber .scissor-blade-b{
+    transform-origin:22px 119px;
+    animation:scissorB .75s ease-in-out infinite alternate;
+}
+
+.mini-barber .clipper{
+    animation:clipperPulse .9s ease-in-out infinite alternate;
+}
+
+.barber-floor-shadow{
+    position:absolute;
+    bottom:1px;
+    left:2px;
+    width:110px;
+    height:13px;
+    border-radius:50%;
+    background:rgba(0,0,0,.6);
+    filter:blur(5px);
+    animation:shadowPulse 1.2s ease-in-out infinite;
+}
+
+.barber-label{
+    position:absolute;
+    bottom:-20px;
+    left:-4px;
+    white-space:nowrap;
+    color:rgba(240,210,140,.72);
+    font-size:7px;
+    font-family:"Manrope",sans-serif;
+    font-weight:800;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+@keyframes barberWalk{
+    0%{
+        transform:translateX(0);
+    }
+
+    50%{
+        transform:translateX(18px);
+    }
+
+    100%{
+        transform:translateX(37px);
+    }
+}
+
+@keyframes barberFloat{
+    0%,100%{
+        margin-bottom:0;
+    }
+
+    50%{
+        margin-bottom:3px;
+    }
+}
+
+@keyframes bodyBreath{
+    0%,100%{
+        transform:scaleY(1);
+    }
+
+    50%{
+        transform:scaleY(1.015);
+    }
+}
+
+@keyframes headMotion{
+    0%,100%{
+        transform:rotate(-1deg);
+    }
+
+    50%{
+        transform:rotate(2deg);
+    }
+}
+
+@keyframes armLeft{
+    0%{
+        transform:rotate(7deg);
+    }
+
+    100%{
+        transform:rotate(-4deg);
+    }
+}
+
+@keyframes armRight{
+    0%{
+        transform:rotate(-7deg);
+    }
+
+    100%{
+        transform:rotate(5deg);
+    }
+}
+
+@keyframes legLeft{
+    0%{
+        transform:rotate(7deg);
+    }
+
+    100%{
+        transform:rotate(-10deg);
+    }
+}
+
+@keyframes legRight{
+    0%{
+        transform:rotate(-9deg);
+    }
+
+    100%{
+        transform:rotate(9deg);
+    }
+}
+
+@keyframes scissorA{
+    from{
+        transform:rotate(-8deg);
+    }
+
+    to{
+        transform:rotate(12deg);
+    }
+}
+
+@keyframes scissorB{
+    from{
+        transform:rotate(10deg);
+    }
+
+    to{
+        transform:rotate(-8deg);
+    }
+}
+
+@keyframes clipperPulse{
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(2px);
+    }
+}
+
+@keyframes shadowPulse{
+    0%,100%{
+        transform:scaleX(1);
+        opacity:.6;
+    }
+
+    50%{
+        transform:scaleX(.88);
+        opacity:.4;
+    }
+}
+
+.mini-barber.touched{
+    animation:barberReaction .5s ease!important;
+}
+
+@keyframes barberReaction{
+    0%{
+        transform:rotate(0) scale(1);
+    }
+
+    30%{
+        transform:rotate(-5deg) scale(1.08);
+    }
+
+    60%{
+        transform:rotate(5deg) scale(.96);
+    }
+
+    100%{
+        transform:rotate(0) scale(1);
+    }
+}
+
 /* FLOATING CARD */
 
 .hero-card{
@@ -644,6 +912,7 @@ section{
     from{
         background-position:200% 0;
     }
+
     to{
         background-position:-200% 0;
     }
@@ -981,6 +1250,7 @@ footer{
         opacity:0;
         transform:translateY(10px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
@@ -1289,6 +1559,12 @@ footer{
         grid-template-columns:repeat(2,1fr);
     }
 
+    .mini-barber-wrap{
+        right:24%;
+        transform:scale(.9);
+        transform-origin:bottom right;
+    }
+
 }
 
 @media(max-width:900px){
@@ -1339,6 +1615,13 @@ footer{
 
     .footer-top{
         grid-template-columns:1fr 1fr;
+    }
+
+    .mini-barber-wrap{
+        right:5%;
+        bottom:4%;
+        transform:scale(.78);
+        transform-origin:bottom right;
     }
 
 }
@@ -1415,6 +1698,140 @@ footer{
         margin-top:8px;
     }
 
+    .mini-barber-wrap{
+        right:2%;
+        bottom:3%;
+        width:125px;
+        height:175px;
+        transform:scale(.72);
+        transform-origin:bottom right;
+    }
+
+    .hero-actions{
+        position:relative;
+        z-index:8;
+    }
+
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    .mini-barber-track,
+    .mini-barber .barber-body,
+    .mini-barber .barber-head,
+    .mini-barber .barber-left-arm,
+    .mini-barber .barber-right-arm,
+    .mini-barber .leg-left,
+    .mini-barber .leg-right,
+    .mini-barber .scissor-blade-a,
+    .mini-barber .scissor-blade-b,
+    .mini-barber .clipper,
+    .barber-floor-shadow{
+        animation:none!important;
+    }
+
+}
+
+/* =========================================================
+   MINI BARBER SVG
+========================================================= */
+
+.barber-svg .gold{
+    fill:#e7c56f;
+}
+
+.barber-svg .gold-light{
+    fill:#f5dc94;
+}
+
+.barber-svg .gold-dark{
+    fill:#a87c32;
+}
+
+.barber-svg .black{
+    fill:#090909;
+}
+
+.barber-svg .black2{
+    fill:#151515;
+}
+
+.barber-svg .skin{
+    fill:#e6b66f;
+}
+
+.barber-svg .skin-dark{
+    fill:#c78c4c;
+}
+
+.barber-svg .white{
+    fill:#f4f0e5;
+}
+
+.barber-svg .metal{
+    fill:#bcbcbc;
+}
+
+.barber-svg .metal-dark{
+    fill:#626262;
+}
+
+.barber-svg .stroke-gold{
+    stroke:#dcb965;
+}
+
+.barber-svg .stroke-black{
+    stroke:#090909;
+}
+
+/* Small interaction pulse */
+
+.mini-barber.touched .barber-svg{
+    filter:drop-shadow(0 0 15px rgba(240,210,140,.5));
+}
+
+/* =========================================================
+   STORY LIST
+========================================================= */
+
+.story-list{
+    margin-top:28px;
+    display:grid;
+    gap:13px;
+}
+
+.story-list div{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    color:#aaa;
+    font-size:12px;
+}
+
+.story-list span{
+    color:var(--gold2);
+}
+
+/* =========================================================
+   MOBILE TOUCH
+========================================================= */
+
+@media(hover:none){
+
+    .service:active{
+        transform:translateY(-4px);
+        border-color:rgba(201,164,92,.4);
+    }
+
+    .service:active .price-inline{
+        transform:scale(1.04);
+        border-color:rgba(201,164,92,.6);
+    }
+
 }
 </style>
 </head>
@@ -1426,29 +1843,38 @@ footer{
 <!-- HEADER -->
 
 <header id="header">
+
     <nav class="nav">
 
         <a href="#" class="logo">
+
             <div class="logo-mark">
                 <span>N</span>
             </div>
+
             NERO
+
         </a>
 
         <div class="nav-links">
+
             <a href="#servicos">Serviços</a>
             <a href="#barbeiros">Barbeiros</a>
             <a href="#historia">A Barbearia</a>
             <a href="#contato">Contato</a>
+
         </div>
 
         <button class="nav-book" onclick="openBooking()">
             AGENDAR HORÁRIO
         </button>
 
-        <button class="mobile-menu" onclick="openBooking()">☰</button>
+        <button class="mobile-menu" onclick="openBooking()">
+            ☰
+        </button>
 
     </nav>
+
 </header>
 
 
@@ -1511,6 +1937,479 @@ footer{
 
     </div>
 
+
+    <!-- =====================================================
+         MINI BARBEIRO LUXO
+    ====================================================== -->
+
+    <div class="mini-barber-wrap">
+
+        <div class="barber-floor-shadow"></div>
+
+        <div class="mini-barber-track">
+
+            <div
+                class="mini-barber"
+                id="miniBarber"
+                role="button"
+                tabindex="0"
+                aria-label="Mascote barbeiro do NERO BARBER"
+                title="NERO BARBER"
+            >
+
+                <svg
+                    class="barber-svg"
+                    viewBox="0 0 115 190"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                >
+
+                    <!-- CAPELO / CABEÇA -->
+
+                    <g class="barber-head">
+
+                        <!-- cabelo -->
+                        <path
+                            class="black"
+                            d="M39 39
+                               C40 24 50 17 62 18
+                               C75 18 83 27 82 40
+                               L77 50
+                               L43 50 Z"
+                        />
+
+                        <!-- rosto amarelo -->
+                        <path
+                            class="skin"
+                            d="M44 38
+                               C44 27 51 22 61 22
+                               C72 22 79 29 78 40
+                               L76 55
+                               C74 65 68 70 60 70
+                               C51 70 45 64 43 54 Z"
+                        />
+
+                        <!-- cabelo lateral -->
+                        <path
+                            class="black2"
+                            d="M43 39
+                               C44 29 51 21 62 21
+                               C70 21 77 26 79 35
+                               L72 32
+                               L68 27
+                               L64 33
+                               L58 27
+                               L53 34
+                               L48 31
+                               Z"
+                        />
+
+                        <!-- sobrancelhas -->
+                        <path
+                            d="M49 43 L56 41"
+                            stroke="#16100b"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+
+                        <path
+                            d="M65 41 L72 43"
+                            stroke="#16100b"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+
+                        <!-- olhos -->
+                        <circle
+                            cx="53"
+                            cy="47"
+                            r="2"
+                            fill="#080808"
+                        />
+
+                        <circle
+                            cx="68"
+                            cy="47"
+                            r="2"
+                            fill="#080808"
+                        />
+
+                        <!-- nariz -->
+                        <path
+                            d="M60 47 L58 55 L62 55"
+                            fill="none"
+                            stroke="#9b6236"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                        />
+
+                        <!-- barba -->
+                        <path
+                            class="gold-dark"
+                            d="M47 55
+                               C50 66 54 70 61 70
+                               C68 70 73 65 75 55
+                               L70 57
+                               L67 64
+                               L61 66
+                               L55 64
+                               L51 57 Z"
+                        />
+
+                        <!-- sorriso -->
+                        <path
+                            d="M56 57 Q61 60 66 57"
+                            fill="none"
+                            stroke="#160e09"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                        />
+
+                    </g>
+
+
+                    <!-- CORPO / UNIFORME -->
+
+                    <g class="barber-body">
+
+                        <!-- pescoço -->
+                        <rect
+                            x="55"
+                            y="65"
+                            width="12"
+                            height="11"
+                            rx="4"
+                            class="skin-dark"
+                        />
+
+                        <!-- camisa -->
+                        <path
+                            class="black2"
+                            d="M43 73
+                               L55 68
+                               L61 76
+                               L67 68
+                               L80 74
+                               L83 119
+                               L36 119
+                               Z"
+                        />
+
+                        <!-- colete luxuoso -->
+                        <path
+                            class="black"
+                            d="M50 72
+                               L60 79
+                               L70 72
+                               L76 116
+                               L44 116
+                               Z"
+                        />
+
+                        <!-- lapelas -->
+                        <path
+                            class="gold"
+                            d="M50 73
+                               L60 79
+                               L55 91
+                               L47 77 Z"
+                        />
+
+                        <path
+                            class="gold"
+                            d="M70 73
+                               L60 79
+                               L65 91
+                               L73 77 Z"
+                        />
+
+                        <!-- camisa dourada central -->
+                        <path
+                            class="gold-dark"
+                            d="M57 78
+                               L60 82
+                               L63 78
+                               L66 116
+                               L54 116
+                               Z"
+                        />
+
+                        <!-- gravata -->
+                        <path
+                            class="black"
+                            d="M57 82 L63 82 L65 91 L60 98 L55 91 Z"
+                        />
+
+                        <!-- botões -->
+                        <circle cx="60" cy="101" r="1.5" class="gold-light"/>
+                        <circle cx="60" cy="108" r="1.5" class="gold-light"/>
+
+                        <!-- cinto -->
+                        <rect
+                            x="43"
+                            y="113"
+                            width="34"
+                            height="7"
+                            rx="2"
+                            class="gold-dark"
+                        />
+
+                        <rect
+                            x="57"
+                            y="113"
+                            width="7"
+                            height="7"
+                            rx="1"
+                            class="gold-light"
+                        />
+
+                    </g>
+
+
+                    <!-- BRAÇO ESQUERDO / TESOURA -->
+
+                    <g class="barber-left-arm">
+
+                        <path
+                            class="black2"
+                            d="M43 78
+                               C37 83 32 94 28 105
+                               L36 109
+                               C42 99 48 91 51 85 Z"
+                        />
+
+                        <!-- mão -->
+                        <circle
+                            cx="31"
+                            cy="108"
+                            r="7"
+                            class="skin"
+                        />
+
+                        <!-- TESOURA -->
+                        <g>
+
+                            <!-- anel 1 -->
+                            <circle
+                                cx="21"
+                                cy="116"
+                                r="5"
+                                fill="none"
+                                stroke="#e7c56f"
+                                stroke-width="2"
+                            />
+
+                            <!-- anel 2 -->
+                            <circle
+                                cx="28"
+                                cy="120"
+                                r="5"
+                                fill="none"
+                                stroke="#e7c56f"
+                                stroke-width="2"
+                            />
+
+                            <!-- lâmina A -->
+                            <path
+                                class="metal"
+                                d="M24 117
+                                   L7 105
+                                   L6 108
+                                   L21 120 Z"
+                            />
+
+                            <!-- lâmina B -->
+                            <path
+                                class="metal-dark"
+                                d="M28 119
+                                   L9 127
+                                   L8 130
+                                   L31 123 Z"
+                            />
+
+                            <circle
+                                cx="25"
+                                cy="119"
+                                r="2"
+                                class="gold"
+                            />
+
+                        </g>
+
+                    </g>
+
+
+                    <!-- BRAÇO DIREITO / MÁQUINA -->
+
+                    <g class="barber-right-arm">
+
+                        <path
+                            class="black2"
+                            d="M77 77
+                               C84 83 89 94 91 104
+                               L82 108
+                               C79 98 74 91 70 86 Z"
+                        />
+
+                        <!-- mão -->
+                        <circle
+                            cx="87"
+                            cy="108"
+                            r="7"
+                            class="skin"
+                        />
+
+                        <!-- MÁQUINA -->
+                        <g class="clipper">
+
+                            <!-- corpo -->
+                            <rect
+                                x="86"
+                                y="91"
+                                width="17"
+                                height="29"
+                                rx="4"
+                                class="gold"
+                                transform="rotate(-14 94 105)"
+                            />
+
+                            <!-- acabamento preto -->
+                            <rect
+                                x="88"
+                                y="96"
+                                width="13"
+                                height="7"
+                                rx="2"
+                                class="black"
+                                transform="rotate(-14 94 105)"
+                            />
+
+                            <!-- botão -->
+                            <circle
+                                cx="95"
+                                cy="110"
+                                r="2"
+                                class="black"
+                            />
+
+                            <!-- lâmina -->
+                            <path
+                                class="metal"
+                                d="M88 90 L103 87 L105 94 L89 97 Z"
+                            />
+
+                            <path
+                                d="M91 91 L93 88 M95 91 L97 87 M99 90 L101 87"
+                                stroke="#555"
+                                stroke-width="1.5"
+                            />
+
+                        </g>
+
+                    </g>
+
+
+                    <!-- PERNAS -->
+
+                    <g class="leg-left">
+
+                        <path
+                            class="black2"
+                            d="M47 118
+                               L60 118
+                               L57 153
+                               L47 153
+                               Z"
+                        />
+
+                        <path
+                            class="black"
+                            d="M47 150
+                               L58 150
+                               L55 166
+                               L41 166
+                               C39 162 42 155 47 150 Z"
+                        />
+
+                        <path
+                            class="gold-dark"
+                            d="M42 161 L55 161 L54 165 L41 165 Z"
+                        />
+
+                    </g>
+
+
+                    <g class="leg-right">
+
+                        <path
+                            class="black2"
+                            d="M61 118
+                               L74 118
+                               L76 153
+                               L65 153
+                               Z"
+                        />
+
+                        <path
+                            class="black"
+                            d="M65 150
+                               L76 150
+                               L82 163
+                               C79 168 67 168 63 165 Z"
+                        />
+
+                        <path
+                            class="gold-dark"
+                            d="M64 161 L80 161 L82 165 L65 165 Z"
+                        />
+
+                    </g>
+
+
+                    <!-- DETALHE DE OURO NO UNIFORME -->
+
+                    <path
+                        d="M45 116 Q60 124 76 116"
+                        fill="none"
+                        stroke="#e7c56f"
+                        stroke-width="1.5"
+                        opacity=".8"
+                    />
+
+                    <!-- PEQUENO BRILHO -->
+
+                    <g opacity=".9">
+
+                        <circle
+                            cx="92"
+                            cy="66"
+                            r="1.5"
+                            class="gold-light"
+                        />
+
+                        <path
+                            d="M92 61 L92 71 M87 66 L97 66"
+                            stroke="#f0d28c"
+                            stroke-width="1"
+                        />
+
+                    </g>
+
+                </svg>
+
+                <div class="barber-label">
+                    NERO BARBER
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CARD -->
+
     <div class="hero-card">
 
         <div class="hero-card-top">
@@ -1520,13 +2419,17 @@ footer{
                 Agenda online
             </div>
 
-            <span style="color:#555;font-size:10px;">N° 001</span>
+            <span style="color:#555;font-size:10px;">
+                N° 001
+            </span>
 
         </div>
 
         <h3>Próximo horário</h3>
 
-        <p>Consulte os horários disponíveis em segundos.</p>
+        <p>
+            Consulte os horários disponíveis em segundos.
+        </p>
 
         <span class="mini-time">
             DISPONIBILIDADE EM TEMPO REAL
@@ -1546,10 +2449,15 @@ footer{
         <div class="section-head reveal">
 
             <div>
-                <div class="section-kicker">Experiência</div>
+
+                <div class="section-kicker">
+                    Experiência
+                </div>
+
                 <h2 class="section-title">
                     Serviços
                 </h2>
+
             </div>
 
             <p class="section-description">
@@ -1559,19 +2467,32 @@ footer{
 
         </div>
 
+
         <div class="services-grid">
 
-            <!-- SERVIÇO 01 -->
+
+            <!-- 01 -->
 
             <article class="service reveal">
 
-                <span class="service-number">01</span>
+                <span class="service-number">
+                    01
+                </span>
 
-                <div class="service-icon">✦</div>
+                <div class="service-icon">
+                    ✦
+                </div>
 
                 <div class="service-title">
-                    <h3>Corte + Barba Completo</h3>
-                    <span class="price-inline">R$ 105</span>
+
+                    <h3>
+                        Corte + Barba Completo
+                    </h3>
+
+                    <span class="price-inline">
+                        R$ 105
+                    </span>
+
                 </div>
 
                 <p>
@@ -1581,8 +2502,10 @@ footer{
 
                 <div class="service-bottom">
 
-                    <button class="service-book"
-                        onclick="openBooking('Corte + Barba Completo')">
+                    <button
+                        class="service-book"
+                        onclick="openBooking('Corte + Barba Completo')"
+                    >
                         AGENDAR →
                     </button>
 
@@ -1591,17 +2514,28 @@ footer{
             </article>
 
 
-            <!-- SERVIÇO 02 -->
+            <!-- 02 -->
 
             <article class="service reveal">
 
-                <span class="service-number">02</span>
+                <span class="service-number">
+                    02
+                </span>
 
-                <div class="service-icon">◈</div>
+                <div class="service-icon">
+                    ◈
+                </div>
 
                 <div class="service-title">
-                    <h3>Corte Máquina</h3>
-                    <span class="price-inline">R$ 30</span>
+
+                    <h3>
+                        Corte Máquina
+                    </h3>
+
+                    <span class="price-inline">
+                        R$ 30
+                    </span>
+
                 </div>
 
                 <p>
@@ -1611,8 +2545,10 @@ footer{
 
                 <div class="service-bottom">
 
-                    <button class="service-book"
-                        onclick="openBooking('Corte Máquina')">
+                    <button
+                        class="service-book"
+                        onclick="openBooking('Corte Máquina')"
+                    >
                         AGENDAR →
                     </button>
 
@@ -1621,17 +2557,28 @@ footer{
             </article>
 
 
-            <!-- SERVIÇO 03 -->
+            <!-- 03 -->
 
             <article class="service reveal">
 
-                <span class="service-number">03</span>
+                <span class="service-number">
+                    03
+                </span>
 
-                <div class="service-icon">◆</div>
+                <div class="service-icon">
+                    ◆
+                </div>
 
                 <div class="service-title">
-                    <h3>Tesoura + Máquina</h3>
-                    <span class="price-inline">R$ 40</span>
+
+                    <h3>
+                        Tesoura + Máquina
+                    </h3>
+
+                    <span class="price-inline">
+                        R$ 40
+                    </span>
+
                 </div>
 
                 <p>
@@ -1641,8 +2588,10 @@ footer{
 
                 <div class="service-bottom">
 
-                    <button class="service-book"
-                        onclick="openBooking('Tesoura + Máquina')">
+                    <button
+                        class="service-book"
+                        onclick="openBooking('Tesoura + Máquina')"
+                    >
                         AGENDAR →
                     </button>
 
@@ -1651,17 +2600,28 @@ footer{
             </article>
 
 
-            <!-- SERVIÇO 04 -->
+            <!-- 04 -->
 
             <article class="service reveal">
 
-                <span class="service-number">04</span>
+                <span class="service-number">
+                    04
+                </span>
 
-                <div class="service-icon">◇</div>
+                <div class="service-icon">
+                    ◇
+                </div>
 
                 <div class="service-title">
-                    <h3>Visagismo</h3>
-                    <span class="price-inline">R$ 150</span>
+
+                    <h3>
+                        Visagismo
+                    </h3>
+
+                    <span class="price-inline">
+                        R$ 150
+                    </span>
+
                 </div>
 
                 <p>
@@ -1671,8 +2631,10 @@ footer{
 
                 <div class="service-bottom">
 
-                    <button class="service-book"
-                        onclick="openBooking('Visagismo')">
+                    <button
+                        class="service-book"
+                        onclick="openBooking('Visagismo')"
+                    >
                         AGENDAR →
                     </button>
 
@@ -1689,17 +2651,25 @@ footer{
 
 <!-- BARBERS -->
 
-<section id="barbeiros" class="barbers-section">
+<section
+    id="barbeiros"
+    class="barbers-section"
+>
 
     <div class="container">
 
         <div class="section-head reveal">
 
             <div>
-                <div class="section-kicker">Especialistas</div>
+
+                <div class="section-kicker">
+                    Especialistas
+                </div>
+
                 <h2 class="section-title">
                     Nossa equipe
                 </h2>
+
             </div>
 
             <p class="section-description">
@@ -1712,6 +2682,7 @@ footer{
 
         <div class="barbers-grid">
 
+
             <article class="barber reveal">
 
                 <div class="barber-image">
@@ -1720,13 +2691,17 @@ footer{
 
                 <div class="barber-info">
 
-                    <h3>Rafael</h3>
+                    <h3>
+                        Rafael
+                    </h3>
 
                     <p>
                         Especialista em cortes modernos
                     </p>
 
-                    <button onclick="openBooking(null,'Rafael')">
+                    <button
+                        onclick="openBooking(null,'Rafael')"
+                    >
                         AGENDAR COM RAFAEL
                     </button>
 
@@ -1743,13 +2718,17 @@ footer{
 
                 <div class="barber-info">
 
-                    <h3>Matheus</h3>
+                    <h3>
+                        Matheus
+                    </h3>
 
                     <p>
                         Especialista em fade e barba
                     </p>
 
-                    <button onclick="openBooking(null,'Matheus')">
+                    <button
+                        onclick="openBooking(null,'Matheus')"
+                    >
                         AGENDAR COM MATHEUS
                     </button>
 
@@ -1766,13 +2745,17 @@ footer{
 
                 <div class="barber-info">
 
-                    <h3>Lucas</h3>
+                    <h3>
+                        Lucas
+                    </h3>
 
                     <p>
                         Especialista em visagismo
                     </p>
 
-                    <button onclick="openBooking(null,'Lucas')">
+                    <button
+                        onclick="openBooking(null,'Lucas')"
+                    >
                         AGENDAR COM LUCAS
                     </button>
 
@@ -1879,7 +2862,10 @@ footer{
 
             </div>
 
-            <button class="primary-btn" onclick="openBooking()">
+            <button
+                class="primary-btn"
+                onclick="openBooking()"
+            >
                 AGENDAR MEU HORÁRIO →
             </button>
 
@@ -1900,13 +2886,17 @@ footer{
 
         <div class="footer-top">
 
+
             <div class="footer-brand">
 
                 <a href="#" class="logo">
+
                     <div class="logo-mark">
                         <span>N</span>
                     </div>
+
                     NERO
+
                 </a>
 
                 <p>
@@ -1919,12 +2909,26 @@ footer{
 
             <div class="footer-col">
 
-                <h4>Navegação</h4>
+                <h4>
+                    Navegação
+                </h4>
 
-                <a href="#servicos">Serviços</a>
-                <a href="#barbeiros">Barbeiros</a>
-                <a href="#historia">Sobre nós</a>
-                <a href="#" onclick="openBooking();return false;">
+                <a href="#servicos">
+                    Serviços
+                </a>
+
+                <a href="#barbeiros">
+                    Barbeiros
+                </a>
+
+                <a href="#historia">
+                    Sobre nós
+                </a>
+
+                <a
+                    href="#"
+                    onclick="openBooking();return false;"
+                >
                     Agendamento
                 </a>
 
@@ -1933,22 +2937,42 @@ footer{
 
             <div class="footer-col">
 
-                <h4>Contato</h4>
+                <h4>
+                    Contato
+                </h4>
 
-                <p>Rua da Barbearia, 120</p>
-                <p>Centro · Rio Bonito/RJ</p>
-                <p>(22) 99999-9999</p>
+                <p>
+                    Rua da Barbearia, 120
+                </p>
+
+                <p>
+                    Centro · Rio Bonito/RJ
+                </p>
+
+                <p>
+                    (22) 99999-9999
+                </p>
 
             </div>
 
 
             <div class="footer-col">
 
-                <h4>Horários</h4>
+                <h4>
+                    Horários
+                </h4>
 
-                <p>Seg — Sex: 09h — 20h</p>
-                <p>Sábado: 09h — 18h</p>
-                <p>Domingo: Fechado</p>
+                <p>
+                    Seg — Sex: 09h — 20h
+                </p>
+
+                <p>
+                    Sábado: 09h — 18h
+                </p>
+
+                <p>
+                    Domingo: Fechado
+                </p>
 
             </div>
 
@@ -1974,18 +2998,26 @@ footer{
 
 <!-- BOOKING MODAL -->
 
-<div class="modal" id="bookingModal">
+<div
+    class="modal"
+    id="bookingModal"
+>
 
     <div class="booking">
 
-        <button class="modal-close" onclick="closeBooking()">
+        <button
+            class="modal-close"
+            onclick="closeBooking()"
+        >
             ×
         </button>
 
 
         <div class="booking-header">
 
-            <small>NERO BARBER · AGENDAMENTO</small>
+            <small>
+                NERO BARBER · AGENDAMENTO
+            </small>
 
             <h2 id="bookingTitle">
                 Reserve seu horário
@@ -2010,7 +3042,10 @@ footer{
 
             <!-- STEP 1 -->
 
-            <div class="step-content active" id="step1">
+            <div
+                class="step-content active"
+                id="step1"
+            >
 
                 <div class="booking-title">
                     Escolha seu serviço
@@ -2018,10 +3053,13 @@ footer{
 
                 <div class="options">
 
-                    <button class="option"
+
+                    <button
+                        class="option"
                         data-service="Corte + Barba Completo"
                         data-price="105"
-                        onclick="selectService(this)">
+                        onclick="selectService(this)"
+                    >
 
                         <div class="option-main">
 
@@ -2030,8 +3068,15 @@ footer{
                             </div>
 
                             <div>
-                                <strong>Corte + Barba Completo</strong>
-                                <small>70 — 90 minutos</small>
+
+                                <strong>
+                                    Corte + Barba Completo
+                                </strong>
+
+                                <small>
+                                    Atendimento premium
+                                </small>
+
                             </div>
 
                         </div>
@@ -2043,10 +3088,12 @@ footer{
                     </button>
 
 
-                    <button class="option"
+                    <button
+                        class="option"
                         data-service="Corte Máquina"
                         data-price="30"
-                        onclick="selectService(this)">
+                        onclick="selectService(this)"
+                    >
 
                         <div class="option-main">
 
@@ -2055,8 +3102,15 @@ footer{
                             </div>
 
                             <div>
-                                <strong>Corte Máquina</strong>
-                                <small>30 — 40 minutos</small>
+
+                                <strong>
+                                    Corte Máquina
+                                </strong>
+
+                                <small>
+                                    Corte preciso
+                                </small>
+
                             </div>
 
                         </div>
@@ -2068,10 +3122,12 @@ footer{
                     </button>
 
 
-                    <button class="option"
+                    <button
+                        class="option"
                         data-service="Tesoura + Máquina"
                         data-price="40"
-                        onclick="selectService(this)">
+                        onclick="selectService(this)"
+                    >
 
                         <div class="option-main">
 
@@ -2080,8 +3136,15 @@ footer{
                             </div>
 
                             <div>
-                                <strong>Tesoura + Máquina</strong>
-                                <small>40 — 50 minutos</small>
+
+                                <strong>
+                                    Tesoura + Máquina
+                                </strong>
+
+                                <small>
+                                    Precisão e acabamento
+                                </small>
+
                             </div>
 
                         </div>
@@ -2093,10 +3156,12 @@ footer{
                     </button>
 
 
-                    <button class="option"
+                    <button
+                        class="option"
                         data-service="Visagismo"
                         data-price="150"
-                        onclick="selectService(this)">
+                        onclick="selectService(this)"
+                    >
 
                         <div class="option-main">
 
@@ -2105,8 +3170,15 @@ footer{
                             </div>
 
                             <div>
-                                <strong>Visagismo</strong>
-                                <small>60 — 90 minutos</small>
+
+                                <strong>
+                                    Visagismo
+                                </strong>
+
+                                <small>
+                                    Visual personalizado
+                                </small>
+
                             </div>
 
                         </div>
@@ -2124,7 +3196,10 @@ footer{
 
             <!-- STEP 2 -->
 
-            <div class="step-content" id="step2">
+            <div
+                class="step-content"
+                id="step2"
+            >
 
                 <div class="booking-title">
                     Escolha o barbeiro
@@ -2132,9 +3207,12 @@ footer{
 
                 <div class="options">
 
-                    <button class="option"
+
+                    <button
+                        class="option"
                         data-barber="Rafael"
-                        onclick="selectBarber(this)">
+                        onclick="selectBarber(this)"
+                    >
 
                         <div class="option-main">
 
@@ -2143,8 +3221,15 @@ footer{
                             </div>
 
                             <div>
-                                <strong>Rafael</strong>
-                                <small>Cortes modernos</small>
+
+                                <strong>
+                                    Rafael
+                                </strong>
+
+                                <small>
+                                    Cortes modernos
+                                </small>
+
                             </div>
 
                         </div>
@@ -2156,9 +3241,11 @@ footer{
                     </button>
 
 
-                    <button class="option"
+                    <button
+                        class="option"
                         data-barber="Matheus"
-                        onclick="selectBarber(this)">
+                        onclick="selectBarber(this)"
+                    >
 
                         <div class="option-main">
 
@@ -2167,8 +3254,15 @@ footer{
                             </div>
 
                             <div>
-                                <strong>Matheus</strong>
-                                <small>Fade e barba</small>
+
+                                <strong>
+                                    Matheus
+                                </strong>
+
+                                <small>
+                                    Fade e barba
+                                </small>
+
                             </div>
 
                         </div>
@@ -2180,9 +3274,11 @@ footer{
                     </button>
 
 
-                    <button class="option"
+                    <button
+                        class="option"
                         data-barber="Lucas"
-                        onclick="selectBarber(this)">
+                        onclick="selectBarber(this)"
+                    >
 
                         <div class="option-main">
 
@@ -2191,8 +3287,15 @@ footer{
                             </div>
 
                             <div>
-                                <strong>Lucas</strong>
-                                <small>Visagismo</small>
+
+                                <strong>
+                                    Lucas
+                                </strong>
+
+                                <small>
+                                    Visagismo
+                                </small>
+
                             </div>
 
                         </div>
@@ -2204,9 +3307,11 @@ footer{
                     </button>
 
 
-                    <button class="option"
+                    <button
+                        class="option"
                         data-barber="Qualquer profissional"
-                        onclick="selectBarber(this)">
+                        onclick="selectBarber(this)"
+                    >
 
                         <div class="option-main">
 
@@ -2215,8 +3320,15 @@ footer{
                             </div>
 
                             <div>
-                                <strong>Qualquer profissional</strong>
-                                <small>Primeiro horário disponível</small>
+
+                                <strong>
+                                    Qualquer profissional
+                                </strong>
+
+                                <small>
+                                    Primeiro horário disponível
+                                </small>
+
                             </div>
 
                         </div>
@@ -2234,7 +3346,10 @@ footer{
 
             <!-- STEP 3 -->
 
-            <div class="step-content" id="step3">
+            <div
+                class="step-content"
+                id="step3"
+            >
 
                 <div class="booking-title">
                     Escolha o dia
@@ -2246,7 +3361,10 @@ footer{
                         ‹
                     </button>
 
-                    <span class="calendar-month" id="calendarMonth">
+                    <span
+                        class="calendar-month"
+                        id="calendarMonth"
+                    >
                         —
                     </span>
 
@@ -2270,37 +3388,55 @@ footer{
                 </div>
 
 
-                <div class="calendar" id="calendar"></div>
+                <div
+                    class="calendar"
+                    id="calendar"
+                ></div>
 
             </div>
 
 
             <!-- STEP 4 -->
 
-            <div class="step-content" id="step4">
+            <div
+                class="step-content"
+                id="step4"
+            >
 
                 <div class="booking-title">
                     Escolha o horário
                 </div>
 
-                <p id="selectedDateText"
-                    style="color:#666;font-size:11px;margin-bottom:18px;">
-                </p>
+                <p
+                    id="selectedDateText"
+                    style="
+                        color:#666;
+                        font-size:11px;
+                        margin-bottom:18px;
+                    "
+                ></p>
 
-                <div class="time-grid" id="timeGrid"></div>
+                <div
+                    class="time-grid"
+                    id="timeGrid"
+                ></div>
 
             </div>
 
 
             <!-- STEP 5 -->
 
-            <div class="step-content" id="step5">
+            <div
+                class="step-content"
+                id="step5"
+            >
 
                 <div class="booking-title">
                     Seus dados
                 </div>
 
                 <div class="form-grid">
+
 
                     <div class="field">
 
@@ -2338,6 +3474,7 @@ footer{
 
                 </div>
 
+
                 <div style="
                     margin-top:18px;
                     border:1px solid var(--line);
@@ -2347,8 +3484,10 @@ footer{
                     font-size:10px;
                     line-height:1.7;
                 ">
+
                     Seus dados serão usados somente para confirmar
                     seu agendamento e entrar em contato com você.
+
                 </div>
 
             </div>
@@ -2356,7 +3495,10 @@ footer{
 
             <!-- SUCCESS -->
 
-            <div class="step-content" id="successStep">
+            <div
+                class="step-content"
+                id="successStep"
+            >
 
                 <div class="success">
 
@@ -2379,32 +3521,44 @@ footer{
 
                         <div>
                             <span>Serviço</span>
-                            <strong id="summaryService">—</strong>
+                            <strong id="summaryService">
+                                —
+                            </strong>
                         </div>
 
                         <div>
                             <span>Valor</span>
-                            <strong id="summaryPrice">—</strong>
+                            <strong id="summaryPrice">
+                                —
+                            </strong>
                         </div>
 
                         <div>
                             <span>Barbeiro</span>
-                            <strong id="summaryBarber">—</strong>
+                            <strong id="summaryBarber">
+                                —
+                            </strong>
                         </div>
 
                         <div>
                             <span>Data</span>
-                            <strong id="summaryDate">—</strong>
+                            <strong id="summaryDate">
+                                —
+                            </strong>
                         </div>
 
                         <div>
                             <span>Horário</span>
-                            <strong id="summaryTime">—</strong>
+                            <strong id="summaryTime">
+                                —
+                            </strong>
                         </div>
 
                         <div>
                             <span>Cliente</span>
-                            <strong id="summaryClient">—</strong>
+                            <strong id="summaryClient">
+                                —
+                            </strong>
                         </div>
 
                     </div>
@@ -2412,7 +3566,8 @@ footer{
                     <button
                         class="primary-btn"
                         style="margin-top:22px;"
-                        onclick="closeBooking()">
+                        onclick="closeBooking()"
+                    >
                         CONCLUIR
                     </button>
 
@@ -2423,13 +3578,17 @@ footer{
         </div>
 
 
-        <div class="booking-footer" id="bookingFooter">
+        <div
+            class="booking-footer"
+            id="bookingFooter"
+        >
 
             <button
                 class="back-btn"
                 id="backBtn"
                 onclick="previousStep()"
-                style="visibility:hidden;">
+                style="visibility:hidden;"
+            >
                 ← Voltar
             </button>
 
@@ -2437,7 +3596,8 @@ footer{
                 class="next-btn"
                 id="nextBtn"
                 onclick="nextStep()"
-                disabled>
+                disabled
+            >
                 CONTINUAR →
             </button>
 
@@ -2452,8 +3612,8 @@ footer{
 
 /* =========================================================
    NERO BARBER
-   SISTEMA DE AGENDAMENTO FRONT-END
-   ========================================================= */
+   SISTEMA DE AGENDAMENTO + MASCOTE
+========================================================= */
 
 
 /* -------------------------
@@ -2481,6 +3641,10 @@ const services = {
 };
 
 
+/* -------------------------
+   BARBEIROS
+------------------------- */
+
 const barbers = [
     "Rafael",
     "Matheus",
@@ -2489,7 +3653,12 @@ const barbers = [
 ];
 
 
+/* -------------------------
+   HORÁRIOS
+------------------------- */
+
 const timeSlots = [
+
     "09:00",
     "09:45",
     "10:30",
@@ -2503,6 +3672,7 @@ const timeSlots = [
     "17:30",
     "18:15",
     "19:00"
+
 ];
 
 
@@ -2542,19 +3712,26 @@ const header =
     document.getElementById("header");
 
 
-window.addEventListener("scroll",()=>{
+window.addEventListener(
+    "scroll",
+    ()=>{
 
-    if(window.scrollY > 30){
+        if(window.scrollY > 30){
 
-        header.classList.add("scrolled");
+            header.classList.add(
+                "scrolled"
+            );
 
-    }else{
+        }else{
 
-        header.classList.remove("scrolled");
+            header.classList.remove(
+                "scrolled"
+            );
+
+        }
 
     }
-
-});
+);
 
 
 /* -------------------------
@@ -2562,38 +3739,49 @@ window.addEventListener("scroll",()=>{
 ------------------------- */
 
 const cursorGlow =
-    document.getElementById("cursorGlow");
+    document.getElementById(
+        "cursorGlow"
+    );
 
 
-document.addEventListener("mousemove",(e)=>{
+document.addEventListener(
+    "mousemove",
+    (e)=>{
 
-    cursorGlow.style.left =
-        e.clientX + "px";
+        cursorGlow.style.left =
+            e.clientX + "px";
 
-    cursorGlow.style.top =
-        e.clientY + "px";
+        cursorGlow.style.top =
+            e.clientY + "px";
 
-});
+    }
+);
 
 
 /* -------------------------
-   REVEAL ANIMATION
+   REVEAL
 ------------------------- */
 
 const observer =
     new IntersectionObserver(
 
-        entries => {
+        entries=>{
 
-            entries.forEach(entry => {
+            entries.forEach(
+                entry=>{
 
-                if(entry.isIntersecting){
+                    if(
+                        entry.isIntersecting
+                    ){
 
-                    entry.target.classList.add("visible");
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                    }
 
                 }
-
-            });
+            );
 
         },
 
@@ -2606,11 +3794,72 @@ const observer =
 
 document
     .querySelectorAll(".reveal")
-    .forEach(el=>{
+    .forEach(
+        el=>{
 
-        observer.observe(el);
+            observer.observe(el);
 
-    });
+        }
+    );
+
+
+/* =========================================================
+   MASCOTE
+========================================================= */
+
+const miniBarber =
+    document.getElementById(
+        "miniBarber"
+    );
+
+
+function barberReaction(){
+
+    miniBarber.classList.remove(
+        "touched"
+    );
+
+    void miniBarber.offsetWidth;
+
+    miniBarber.classList.add(
+        "touched"
+    );
+
+    setTimeout(
+        ()=>{
+            miniBarber.classList.remove(
+                "touched"
+            );
+        },
+        550
+    );
+
+}
+
+
+miniBarber.addEventListener(
+    "click",
+    barberReaction
+);
+
+
+miniBarber.addEventListener(
+    "keydown",
+    event=>{
+
+        if(
+            event.key === "Enter" ||
+            event.key === " "
+        ){
+
+            event.preventDefault();
+
+            barberReaction();
+
+        }
+
+    }
+);
 
 
 /* -------------------------
@@ -2625,9 +3874,13 @@ function openBooking(
     resetBooking();
 
 
-    if(service && services[service]){
+    if(
+        service &&
+        services[service]
+    ){
 
-        state.service = service;
+        state.service =
+            service;
 
         state.price =
             services[service].price;
@@ -2637,18 +3890,24 @@ function openBooking(
 
     if(barber){
 
-        state.barber = barber;
+        state.barber =
+            barber;
 
     }
 
 
     document
-        .getElementById("bookingModal")
-        .classList.add("active");
+        .getElementById(
+            "bookingModal"
+        )
+        .classList.add(
+            "active"
+        );
 
 
-    document.body
-        .classList.add("modal-open");
+    document.body.classList.add(
+        "modal-open"
+    );
 
 
     renderStep();
@@ -2657,15 +3916,23 @@ function openBooking(
     if(service){
 
         document
-            .querySelectorAll("[data-service]")
-            .forEach(btn=>{
+            .querySelectorAll(
+                "[data-service]"
+            )
+            .forEach(
+                btn=>{
 
-                btn.classList.toggle(
-                    "selected",
-                    btn.dataset.service === service
-                );
+                    btn.classList.toggle(
 
-            });
+                        "selected",
+
+                        btn.dataset.service ===
+                        service
+
+                    );
+
+                }
+            );
 
     }
 
@@ -2673,15 +3940,23 @@ function openBooking(
     if(barber){
 
         document
-            .querySelectorAll("[data-barber]")
-            .forEach(btn=>{
+            .querySelectorAll(
+                "[data-barber]"
+            )
+            .forEach(
+                btn=>{
 
-                btn.classList.toggle(
-                    "selected",
-                    btn.dataset.barber === barber
-                );
+                    btn.classList.toggle(
 
-            });
+                        "selected",
+
+                        btn.dataset.barber ===
+                        barber
+
+                    );
+
+                }
+            );
 
     }
 
@@ -2691,11 +3966,17 @@ function openBooking(
 function closeBooking(){
 
     document
-        .getElementById("bookingModal")
-        .classList.remove("active");
+        .getElementById(
+            "bookingModal"
+        )
+        .classList.remove(
+            "active"
+        );
 
-    document.body
-        .classList.remove("modal-open");
+
+    document.body.classList.remove(
+        "modal-open"
+    );
 
 }
 
@@ -2724,27 +4005,40 @@ function resetBooking(){
 
 
     document
-        .querySelectorAll(".option")
-        .forEach(el=>{
+        .querySelectorAll(
+            ".option"
+        )
+        .forEach(
+            el=>{
 
-            el.classList.remove("selected");
+                el.classList.remove(
+                    "selected"
+                );
 
-        });
+            }
+        );
 
 
     document
-        .getElementById("clientName")
+        .getElementById(
+            "clientName"
+        )
         .value = "";
 
 
     document
-        .getElementById("clientPhone")
+        .getElementById(
+            "clientPhone"
+        )
         .value = "";
 
 
     document
-        .getElementById("bookingFooter")
-        .style.display = "flex";
+        .getElementById(
+            "bookingFooter"
+        )
+        .style.display =
+        "flex";
 
 }
 
@@ -2753,18 +4047,28 @@ function resetBooking(){
    SERVICE
 ------------------------- */
 
-function selectService(button){
+function selectService(
+    button
+){
 
     document
-        .querySelectorAll("[data-service]")
-        .forEach(btn=>{
+        .querySelectorAll(
+            "[data-service]"
+        )
+        .forEach(
+            btn=>{
 
-            btn.classList.remove("selected");
+                btn.classList.remove(
+                    "selected"
+                );
 
-        });
+            }
+        );
 
 
-    button.classList.add("selected");
+    button.classList.add(
+        "selected"
+    );
 
 
     state.service =
@@ -2772,7 +4076,9 @@ function selectService(button){
 
 
     state.price =
-        Number(button.dataset.price);
+        Number(
+            button.dataset.price
+        );
 
 
     updateButton();
@@ -2784,18 +4090,28 @@ function selectService(button){
    BARBER
 ------------------------- */
 
-function selectBarber(button){
+function selectBarber(
+    button
+){
 
     document
-        .querySelectorAll("[data-barber]")
-        .forEach(btn=>{
+        .querySelectorAll(
+            "[data-barber]"
+        )
+        .forEach(
+            btn=>{
 
-            btn.classList.remove("selected");
+                btn.classList.remove(
+                    "selected"
+                );
 
-        });
+            }
+        );
 
 
-    button.classList.add("selected");
+    button.classList.add(
+        "selected"
+    );
 
 
     state.barber =
@@ -2814,12 +4130,18 @@ function selectBarber(button){
 function renderStep(){
 
     document
-        .querySelectorAll(".step-content")
-        .forEach(el=>{
+        .querySelectorAll(
+            ".step-content"
+        )
+        .forEach(
+            el=>{
 
-            el.classList.remove("active");
+                el.classList.remove(
+                    "active"
+                );
 
-        });
+            }
+        );
 
 
     const step =
@@ -2830,32 +4152,47 @@ function renderStep(){
 
     if(step){
 
-        step.classList.add("active");
+        step.classList.add(
+            "active"
+        );
 
     }
 
 
     document
-        .querySelectorAll(".step-dot")
-        .forEach((dot,index)=>{
+        .querySelectorAll(
+            ".step-dot"
+        )
+        .forEach(
+            (dot,index)=>{
 
-            dot.classList.toggle(
-                "active",
-                index < state.step
-            );
+                dot.classList.toggle(
 
-        });
+                    "active",
+
+                    index < state.step
+
+                );
+
+            }
+        );
 
 
     const backBtn =
-        document.getElementById("backBtn");
+        document.getElementById(
+            "backBtn"
+        );
 
 
     const nextBtn =
-        document.getElementById("nextBtn");
+        document.getElementById(
+            "nextBtn"
+        );
 
 
-    if(state.step === 1){
+    if(
+        state.step === 1
+    ){
 
         backBtn.style.visibility =
             "hidden";
@@ -2868,7 +4205,9 @@ function renderStep(){
     }
 
 
-    if(state.step === 5){
+    if(
+        state.step === 5
+    ){
 
         nextBtn.textContent =
             "CONFIRMAR AGENDAMENTO";
@@ -2884,14 +4223,18 @@ function renderStep(){
     updateButton();
 
 
-    if(state.step === 3){
+    if(
+        state.step === 3
+    ){
 
         renderCalendar();
 
     }
 
 
-    if(state.step === 4){
+    if(
+        state.step === 4
+    ){
 
         renderTimes();
 
@@ -2906,42 +4249,57 @@ function renderStep(){
 
 function canContinue(){
 
-    if(state.step === 1){
+    if(
+        state.step === 1
+    ){
 
         return !!state.service;
 
     }
 
 
-    if(state.step === 2){
+    if(
+        state.step === 2
+    ){
 
         return !!state.barber;
 
     }
 
 
-    if(state.step === 3){
+    if(
+        state.step === 3
+    ){
 
         return !!state.date;
 
     }
 
 
-    if(state.step === 4){
+    if(
+        state.step === 4
+    ){
 
         return !!state.time;
 
     }
 
 
-    if(state.step === 5){
+    if(
+        state.step === 5
+    ){
 
         return (
 
-            state.name.trim().length >= 2 &&
+            state.name
+                .trim()
+                .length >= 2 &&
 
             state.phone
-                .replace(/\D/g,"")
+                .replace(
+                    /\D/g,
+                    ""
+                )
                 .length >= 10
 
         );
@@ -2957,7 +4315,9 @@ function canContinue(){
 function updateButton(){
 
     document
-        .getElementById("nextBtn")
+        .getElementById(
+            "nextBtn"
+        )
         .disabled =
         !canContinue();
 
@@ -2970,14 +4330,18 @@ function updateButton(){
 
 function nextStep(){
 
-    if(!canContinue()){
+    if(
+        !canContinue()
+    ){
 
         return;
 
     }
 
 
-    if(state.step < 5){
+    if(
+        state.step < 5
+    ){
 
         state.step++;
 
@@ -2999,7 +4363,9 @@ function nextStep(){
 
 function previousStep(){
 
-    if(state.step > 1){
+    if(
+        state.step > 1
+    ){
 
         state.step--;
 
@@ -3017,11 +4383,15 @@ function previousStep(){
 function renderCalendar(){
 
     const calendar =
-        document.getElementById("calendar");
+        document.getElementById(
+            "calendar"
+        );
 
 
     const monthLabel =
-        document.getElementById("calendarMonth");
+        document.getElementById(
+            "calendarMonth"
+        );
 
 
     calendar.innerHTML = "";
@@ -3082,14 +4452,18 @@ function renderCalendar(){
     ){
 
         const empty =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         empty.className =
             "day empty";
 
 
-        calendar.appendChild(empty);
+        calendar.appendChild(
+            empty
+        );
 
     }
 
@@ -3121,7 +4495,9 @@ function renderCalendar(){
 
 
         const button =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
 
 
         button.className =
@@ -3140,46 +4516,55 @@ function renderCalendar(){
             date.getDay() === 0;
 
 
-        if(isPast || isSunday){
+        if(
+            isPast ||
+            isSunday
+        ){
 
             button.classList.add(
                 "disabled"
             );
 
 
-            button.disabled = true;
+            button.disabled =
+                true;
 
         }else{
 
-            button.onclick = ()=>{
+            button.onclick =
+                ()=>{
 
-                state.date =
-                    date;
-
-
-                state.time =
-                    null;
+                    state.date =
+                        date;
 
 
-                document
-                    .querySelectorAll(".day")
-                    .forEach(d=>{
+                    state.time =
+                        null;
 
-                        d.classList.remove(
-                            "selected"
+
+                    document
+                        .querySelectorAll(
+                            ".day"
+                        )
+                        .forEach(
+                            d=>{
+
+                                d.classList.remove(
+                                    "selected"
+                                );
+
+                            }
                         );
 
-                    });
+
+                    button.classList.add(
+                        "selected"
+                    );
 
 
-                button.classList.add(
-                    "selected"
-                );
+                    updateButton();
 
-
-                updateButton();
-
-            };
+                };
 
         }
 
@@ -3200,7 +4585,9 @@ function renderCalendar(){
         }
 
 
-        calendar.appendChild(button);
+        calendar.appendChild(
+            button
+        );
 
     }
 
@@ -3211,7 +4598,9 @@ function renderCalendar(){
    MONTH
 ------------------------- */
 
-function changeMonth(amount){
+function changeMonth(
+    amount
+){
 
     calendarDate.setMonth(
 
@@ -3241,7 +4630,9 @@ function renderTimes(){
     grid.innerHTML = "";
 
 
-    if(!state.date){
+    if(
+        !state.date
+    ){
 
         return;
 
@@ -3299,7 +4690,10 @@ function renderTimes(){
 
             const occupied =
 
-                (dateNumber + index) % 7 === 0 ||
+                (
+                    dateNumber +
+                    index
+                ) % 7 === 0 ||
 
                 (
                     index === 4 &&
@@ -3307,7 +4701,9 @@ function renderTimes(){
                 );
 
 
-            if(occupied){
+            if(
+                occupied
+            ){
 
                 button.classList.add(
                     "taken"
@@ -3319,36 +4715,43 @@ function renderTimes(){
 
             }else{
 
-                button.onclick = ()=>{
+                button.onclick =
+                    ()=>{
 
-                    document
-                        .querySelectorAll(".time")
-                        .forEach(t=>{
+                        document
+                            .querySelectorAll(
+                                ".time"
+                            )
+                            .forEach(
+                                t=>{
 
-                            t.classList.remove(
-                                "selected"
+                                    t.classList.remove(
+                                        "selected"
+                                    );
+
+                                }
                             );
 
-                        });
+
+                        button.classList.add(
+                            "selected"
+                        );
 
 
-                    button.classList.add(
-                        "selected"
-                    );
+                        state.time =
+                            time;
 
 
-                    state.time =
-                        time;
+                        updateButton();
 
-
-                    updateButton();
-
-                };
+                    };
 
             }
 
 
-            if(state.time === time){
+            if(
+                state.time === time
+            ){
 
                 button.classList.add(
                     "selected"
@@ -3357,7 +4760,9 @@ function renderTimes(){
             }
 
 
-            grid.appendChild(button);
+            grid.appendChild(
+                button
+            );
 
         }
     );
@@ -3396,11 +4801,16 @@ function updateForm(){
    PHONE MASK
 ------------------------- */
 
-function maskPhone(input){
+function maskPhone(
+    input
+){
 
     let value =
         input.value
-            .replace(/\D/g,"");
+            .replace(
+                /\D/g,
+                ""
+            );
 
 
     value =
@@ -3410,7 +4820,9 @@ function maskPhone(input){
         );
 
 
-    if(value.length <= 10){
+    if(
+        value.length <= 10
+    ){
 
         value =
             value.replace(
@@ -3484,13 +4896,26 @@ function confirmBooking(){
     };
 
 
-    localStorage.setItem(
+    try{
 
-        "nero_last_booking",
+        localStorage.setItem(
 
-        JSON.stringify(booking)
+            "nero_last_booking",
 
-    );
+            JSON.stringify(
+                booking
+            )
+
+        );
+
+    }catch(error){
+
+        console.warn(
+            "Não foi possível salvar localmente.",
+            error
+        );
+
+    }
 
 
     showSuccess(
@@ -3504,17 +4929,23 @@ function confirmBooking(){
    SUCCESS
 ------------------------- */
 
-function showSuccess(booking){
+function showSuccess(
+    booking
+){
 
     document
-        .querySelectorAll(".step-content")
-        .forEach(el=>{
+        .querySelectorAll(
+            ".step-content"
+        )
+        .forEach(
+            el=>{
 
-            el.classList.remove(
-                "active"
-            );
+                el.classList.remove(
+                    "active"
+                );
 
-        });
+            }
+        );
 
 
     document
@@ -3604,7 +5035,7 @@ document
     )
     .addEventListener(
         "click",
-        (event)=>{
+        event=>{
 
             if(
                 event.target.id ===
@@ -3625,9 +5056,12 @@ document
 
 document.addEventListener(
     "keydown",
-    (event)=>{
+    event=>{
 
-        if(event.key === "Escape"){
+        if(
+            event.key ===
+            "Escape"
+        ){
 
             closeBooking();
 
@@ -3648,31 +5082,35 @@ const bookingModal =
 
 
 const modalObserver =
-    new MutationObserver(()=>{
+    new MutationObserver(
+        ()=>{
 
-        if(
-            bookingModal.classList.contains(
-                "active"
-            )
-        ){
-
-            document
-                .getElementById(
-                    "bookingFooter"
+            if(
+                bookingModal.classList.contains(
+                    "active"
                 )
-                .style.display =
-                "flex";
+            ){
+
+                document
+                    .getElementById(
+                        "bookingFooter"
+                    )
+                    .style.display =
+                    "flex";
+
+            }
 
         }
-
-    });
+    );
 
 
 modalObserver.observe(
     bookingModal,
     {
         attributes:true,
-        attributeFilter:["class"]
+        attributeFilter:[
+            "class"
+        ]
     }
 );
 
@@ -3683,7 +5121,7 @@ modalObserver.observe(
 
 window.addEventListener(
     "mousemove",
-    (e)=>{
+    e=>{
 
         const x =
             (

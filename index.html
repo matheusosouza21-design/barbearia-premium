@@ -385,7 +385,8 @@ nav a:hover{
     width:125px;
     height:170px;
     z-index:9999;
-    pointer-events:none;
+    pointer-events:auto;
+    cursor:pointer;
     transform:translate3d(0,0,0);
     will-change:transform;
 }
@@ -401,6 +402,7 @@ nav a:hover{
     background:rgba(0,0,0,.65);
     filter:blur(6px);
     transition:.25s;
+    pointer-events:none;
 }
 
 .mini-barber{
@@ -414,6 +416,7 @@ nav a:hover{
     filter:
         drop-shadow(0 8px 12px rgba(0,0,0,.5))
         drop-shadow(0 0 14px rgba(215,173,85,.15));
+    pointer-events:none;
 }
 
 .barber-body{
@@ -516,53 +519,49 @@ nav a:hover{
 }
 
 /*
-   ACENO AJUSTADO:
-   o braço agora sobe somente até a
-   altura do ombro, ligeiramente acima.
-   Depois acena lateralmente e retorna.
+   ACENO:
+   o braço sobe bem acima da
+   linha do ombro, acena e retorna.
 */
 
 .barber-waving .barber-arm-right{
-    animation:barberWaveShoulder 1.65s ease-in-out forwards;
+    animation:barberWave 1.65s ease-in-out forwards;
 }
 
-@keyframes barberWaveShoulder{
+@keyframes barberWave{
 
     0%{
         transform:translate(0,0) rotate(0deg);
     }
 
-    /* sobe apenas até a altura do ombro */
     14%{
-        transform:translate(-12px,-17px) rotate(-55deg);
+        transform:translate(-12px,-27px) rotate(-62deg);
     }
 
-    /* começa o aceno */
     25%{
-        transform:translate(-12px,-17px) rotate(-40deg);
+        transform:translate(-12px,-27px) rotate(-45deg);
     }
 
     37%{
-        transform:translate(-12px,-17px) rotate(-68deg);
+        transform:translate(-12px,-27px) rotate(-72deg);
     }
 
     49%{
-        transform:translate(-12px,-17px) rotate(-40deg);
+        transform:translate(-12px,-27px) rotate(-45deg);
     }
 
     61%{
-        transform:translate(-12px,-17px) rotate(-68deg);
+        transform:translate(-12px,-27px) rotate(-72deg);
     }
 
     73%{
-        transform:translate(-12px,-17px) rotate(-40deg);
+        transform:translate(-12px,-27px) rotate(-45deg);
     }
 
     85%{
-        transform:translate(-12px,-17px) rotate(-58deg);
+        transform:translate(-12px,-27px) rotate(-62deg);
     }
 
-    /* volta para a posição normal */
     100%{
         transform:translate(0,0) rotate(0deg);
     }
@@ -570,7 +569,7 @@ nav a:hover{
 }
 
 /* =========================
-   MÁQUINA — MÃO / CINTURA
+   MÁQUINA
 ========================= */
 
 .clipper-tool{
@@ -640,17 +639,7 @@ nav a:hover{
 }
 
 /* =========================
-   BOLSO / CINTURA VISUAL
-========================= */
-
-.barber-pocket{
-    position:absolute;
-    left:0;
-    top:0;
-}
-
-/* =========================
-   TESOURA PEQUENA
+   TESOURA
 ========================= */
 
 .scissors-tool{
@@ -708,6 +697,7 @@ nav a:hover{
 }
 
 @keyframes sweatDrop{
+
     0%{
         opacity:0;
         transform:translateY(-4px) scale(.6) rotate(15deg);
@@ -721,10 +711,11 @@ nav a:hover{
         opacity:0;
         transform:translateY(24px) scale(.9) rotate(15deg);
     }
+
 }
 
 /* =========================
-   RESPIRAÇÃO CANSADA
+   RESPIRAÇÃO
 ========================= */
 
 .tired-breath{
@@ -744,6 +735,7 @@ nav a:hover{
 }
 
 @keyframes breath{
+
     0%{
         opacity:0;
         transform:translateX(-50%) scale(.45);
@@ -757,7 +749,12 @@ nav a:hover{
         opacity:0;
         transform:translateX(-50%) translateY(-15px) scale(1.5);
     }
+
 }
+
+/* =========================
+   ROSTO CANSADO
+========================= */
 
 .tired-face{
     opacity:0;
@@ -776,8 +773,71 @@ nav a:hover{
 }
 
 @keyframes tiredBody{
-    from{transform:translateY(1px) rotate(-3deg)}
-    to{transform:translateY(5px) rotate(3deg)}
+
+    from{
+        transform:translateY(1px) rotate(-3deg);
+    }
+
+    to{
+        transform:translateY(5px) rotate(3deg);
+    }
+
+}
+
+/* =========================
+   ROSTO VERMELHO
+========================= */
+
+.tired-blush{
+    opacity:0;
+}
+
+.barber-tired .tired-blush{
+    opacity:1;
+    animation:blushPulse .8s ease-in-out infinite alternate;
+}
+
+@keyframes blushPulse{
+
+    from{
+        opacity:.42;
+    }
+
+    to{
+        opacity:.75;
+    }
+
+}
+
+/* =========================
+   BARRIGA ESTUFANDO
+========================= */
+
+.tired-belly{
+    opacity:0;
+    transform-box:view-box;
+    transform-origin:50px 101px;
+}
+
+.barber-tired .tired-belly{
+    opacity:.9;
+    animation:bellyBreathing .8s ease-in-out infinite;
+}
+
+@keyframes bellyBreathing{
+
+    0%{
+        transform:translate(0,0) scale(1,1);
+    }
+
+    45%{
+        transform:translate(0,1px) scale(1.13,1.08);
+    }
+
+    100%{
+        transform:translate(0,0) scale(1,1);
+    }
+
 }
 
 /* =========================
@@ -925,8 +985,15 @@ section{
 }
 
 @keyframes priceShine{
-    0%,65%{left:-100%}
-    100%{left:150%}
+
+    0%,65%{
+        left:-100%;
+    }
+
+    100%{
+        left:150%;
+    }
+
 }
 
 .service-card p{
@@ -1668,7 +1735,7 @@ footer{
 
                 </g>
 
-                <!-- UNIFORME DE LUXO -->
+                <!-- UNIFORME -->
 
                 <path
                     d="M31 67
@@ -1736,7 +1803,7 @@ footer{
                     fill="#111"
                 >N</text>
 
-                <!-- BOLSO DA CINTURA -->
+                <!-- BOLSO -->
 
                 <path
                     d="M58 91 L70 91 L69 105 L57 105 Z"
@@ -1756,6 +1823,19 @@ footer{
                     cy="96"
                     r="1.1"
                     fill="#d7ad55"
+                />
+
+                <!-- BARRIGA CANSADA -->
+
+                <ellipse
+                    class="tired-belly"
+                    cx="50"
+                    cy="101"
+                    rx="15"
+                    ry="10"
+                    fill="#181818"
+                    stroke="#d7ad55"
+                    stroke-width="1"
                 />
 
             </g>
@@ -1994,6 +2074,24 @@ footer{
                     fill="#ffd36b"
                     stroke="#d7ad55"
                     stroke-width="1"
+                />
+
+                <!-- VERMELHIDÃO DAS BOCHECHAS -->
+
+                <circle
+                    class="tired-blush"
+                    cx="36"
+                    cy="51"
+                    r="7"
+                    fill="#e85b4a"
+                />
+
+                <circle
+                    class="tired-blush"
+                    cx="64"
+                    cy="51"
+                    r="7"
+                    fill="#e85b4a"
                 />
 
                 <path
@@ -3089,14 +3187,17 @@ let lastScrollY =
 
 let scrollTargetTimeout = null;
 
-
-/*
-   NOVO CONTROLE:
-   somente o movimento provocado
-   pelo scroll pode terminar em cansaço.
-*/
-
 let tiredOnArrival = false;
+
+
+/* =========================================================
+   NOVO:
+   CONTROLE DE PARADO
+========================================================= */
+
+let idleWaveTimer = null;
+
+const IDLE_WAVE_DELAY = 12000;
 
 
 /* =========================================================
@@ -3173,6 +3274,37 @@ function distanceToTarget(){
         targetX - barberX,
         targetY - barberY
     );
+
+}
+
+
+/* =========================================================
+   TIMER DE ACENO POR INATIVIDADE
+========================================================= */
+
+function resetIdleWaveTimer(){
+
+    clearTimeout(
+        idleWaveTimer
+    );
+
+    idleWaveTimer =
+        setTimeout(()=>{
+
+            if(
+                !running &&
+                !isWaving &&
+                !document.hidden &&
+                !miniBarber.classList.contains(
+                    "barber-tired"
+                )
+            ){
+
+                startWave();
+
+            }
+
+        },IDLE_WAVE_DELAY);
 
 }
 
@@ -3255,12 +3387,18 @@ function makeBarberTired(){
         "barber-tired"
     );
 
+    clearTimeout(
+        idleWaveTimer
+    );
+
     tiredTimer =
         setTimeout(()=>{
 
             miniBarber.classList.remove(
                 "barber-tired"
             );
+
+            resetIdleWaveTimer();
 
         },2300);
 
@@ -3286,6 +3424,11 @@ function startBarberRun(){
         cancelWave();
 
     }
+
+
+    clearTimeout(
+        idleWaveTimer
+    );
 
 
     if(!running){
@@ -3440,6 +3583,10 @@ function animateBarber(){
 
                     makeBarberTired();
 
+                }else{
+
+                    resetIdleWaveTimer();
+
                 }
 
             }
@@ -3473,6 +3620,17 @@ document.addEventListener(
     "mousemove",
     function(e){
 
+        if(
+            e.target.closest(
+                "#miniBarberWrap"
+            )
+        ){
+
+            return;
+
+        }
+
+
         clearTimeout(
             cursorFollowTimer
         );
@@ -3494,13 +3652,93 @@ document.addEventListener(
 
 
 /* =========================================================
-   CLIQUE
+   CLIQUE DIRETO NO PERSONAGEM
+   GUARDA → ACENA → PEGA A MÁQUINA
+========================================================= */
+
+miniBarberWrap.addEventListener(
+    "click",
+    function(e){
+
+        e.preventDefault();
+
+        e.stopPropagation();
+
+
+        if(
+            document.hidden
+        ){
+
+            return;
+
+        }
+
+
+        clearTimeout(
+            idleWaveTimer
+        );
+
+
+        if(
+            isWaving
+        ){
+
+            return;
+
+        }
+
+
+        /*
+           Para o movimento atual.
+           Isso permite que mesmo se ele estiver
+           correndo, o clique tenha prioridade.
+        */
+
+        running = false;
+
+        velocityX = 0;
+        velocityY = 0;
+
+        targetX = barberX;
+        targetY = barberY;
+
+        tiredOnArrival = false;
+
+
+        miniBarber.classList.remove(
+            "barber-running"
+        );
+
+        miniBarber.classList.remove(
+            "barber-tired"
+        );
+
+
+        startWave();
+
+    }
+);
+
+
+/* =========================================================
+   CLIQUE FORA DO PERSONAGEM
    NÃO GERA SUOR
 ========================================================= */
 
 document.addEventListener(
     "pointerdown",
     function(e){
+
+        if(
+            e.target.closest(
+                "#miniBarberWrap"
+            )
+        ){
+
+            return;
+
+        }
+
 
         if(
             e.target.closest(
@@ -3535,6 +3773,18 @@ document.addEventListener(
         if(
             !e.touches ||
             !e.touches[0]
+        ){
+
+            return;
+
+        }
+
+
+        if(
+            e.target.closest &&
+            e.target.closest(
+                "#miniBarberWrap"
+            )
         ){
 
             return;
@@ -3588,6 +3838,11 @@ window.addEventListener(
         if(
             Math.abs(difference) > 1
         ){
+
+            clearTimeout(
+                idleWaveTimer
+            );
+
 
             const destinationY =
                 difference > 0
@@ -3701,7 +3956,6 @@ window.addEventListener(
 function startWave(){
 
     if(
-        running ||
         document.hidden ||
         isWaving ||
         miniBarber.classList.contains(
@@ -3716,6 +3970,9 @@ function startWave(){
 
     isWaving = true;
 
+    clearTimeout(
+        idleWaveTimer
+    );
 
     clearTimeout(
         waveTimer
@@ -3731,9 +3988,27 @@ function startWave(){
 
 
     /*
+       Garante que ele esteja parado
+       durante o aceno.
+    */
+
+    running = false;
+
+    velocityX = 0;
+    velocityY = 0;
+
+    targetX = barberX;
+    targetY = barberY;
+
+
+    miniBarber.classList.remove(
+        "barber-running"
+    );
+
+
+    /*
        ETAPA 1:
-       tira a máquina da mão
-       e coloca na cintura.
+       guarda a máquina.
     */
 
     clipperTool.classList.remove(
@@ -3758,8 +4033,7 @@ function startWave(){
         setTimeout(()=>{
 
             /*
-               ETAPA 2:
-               máquina chegou à cintura.
+               Máquina chegou à cintura.
             */
 
             miniBarber.classList.remove(
@@ -3777,9 +4051,8 @@ function startWave(){
 
 
             /*
-               ETAPA 3:
-               braço sobe somente até
-               a altura do ombro e acena.
+               ETAPA 2:
+               levanta o braço e acena.
             */
 
             miniBarber.classList.add(
@@ -3791,8 +4064,8 @@ function startWave(){
                 setTimeout(()=>{
 
                     /*
-                       ETAPA 4:
-                       aceno terminou.
+                       ETAPA 3:
+                       terminou de acenar.
                     */
 
                     miniBarber.classList.remove(
@@ -3801,17 +4074,16 @@ function startWave(){
 
 
                     /*
-                       Aguarda o braço
-                       voltar para baixo.
+                       Espera o braço voltar
+                       completamente para baixo.
                     */
 
                     waveReturnTimer =
                         setTimeout(()=>{
 
                             /*
-                               ETAPA 5:
-                               pega novamente
-                               a máquina.
+                               ETAPA 4:
+                               pega a máquina novamente.
                             */
 
                             clipperTool.classList.remove(
@@ -3839,6 +4111,8 @@ function startWave(){
 
                                 isWaving = false;
 
+                                resetIdleWaveTimer();
+
                             },420);
 
                         },180);
@@ -3853,25 +4127,12 @@ function startWave(){
 
 
 /* =========================================================
-   ACENO AUTOMÁTICO
+   NÃO EXISTE MAIS ACENO A CADA 5 SEGUNDOS.
+   O ACENO AUTOMÁTICO ACONTECE APENAS QUANDO
+   ELE FICA REALMENTE PARADO POR MUITO TEMPO.
 ========================================================= */
 
-setInterval(()=>{
-
-    if(
-        !running &&
-        !document.hidden &&
-        !isWaving &&
-        !miniBarber.classList.contains(
-            "barber-tired"
-        )
-    ){
-
-        startWave();
-
-    }
-
-},5000);
+resetIdleWaveTimer();
 
 
 /* =========================================================
@@ -4845,6 +5106,8 @@ setTimeout(()=>{
 
     setBarberPosition();
 
+    resetIdleWaveTimer();
+
 },100);
 
 
@@ -4858,7 +5121,10 @@ setInterval(()=>{
     if(
         !running &&
         !document.hidden &&
-        !isWaving
+        !isWaving &&
+        !miniBarber.classList.contains(
+            "barber-tired"
+        )
     ){
 
         const bounds =

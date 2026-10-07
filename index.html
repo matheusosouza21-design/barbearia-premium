@@ -516,49 +516,53 @@ nav a:hover{
 }
 
 /*
-   Agora o braço sobe de verdade.
-   Primeiro ele sobe acima da cabeça,
-   depois faz o movimento lateral com a mão.
+   ACENO AJUSTADO:
+   o braço agora sobe somente até a
+   altura do ombro, ligeiramente acima.
+   Depois acena lateralmente e retorna.
 */
 
 .barber-waving .barber-arm-right{
-    animation:barberWaveHigh 1.65s ease-in-out forwards;
+    animation:barberWaveShoulder 1.65s ease-in-out forwards;
 }
 
-@keyframes barberWaveHigh{
+@keyframes barberWaveShoulder{
 
     0%{
         transform:translate(0,0) rotate(0deg);
     }
 
+    /* sobe apenas até a altura do ombro */
     14%{
-        transform:translate(-20px,-40px) rotate(-90deg);
+        transform:translate(-12px,-17px) rotate(-55deg);
     }
 
+    /* começa o aceno */
     25%{
-        transform:translate(-20px,-40px) rotate(-75deg);
+        transform:translate(-12px,-17px) rotate(-40deg);
     }
 
     37%{
-        transform:translate(-20px,-40px) rotate(-105deg);
+        transform:translate(-12px,-17px) rotate(-68deg);
     }
 
     49%{
-        transform:translate(-20px,-40px) rotate(-75deg);
+        transform:translate(-12px,-17px) rotate(-40deg);
     }
 
     61%{
-        transform:translate(-20px,-40px) rotate(-105deg);
+        transform:translate(-12px,-17px) rotate(-68deg);
     }
 
     73%{
-        transform:translate(-20px,-40px) rotate(-75deg);
+        transform:translate(-12px,-17px) rotate(-40deg);
     }
 
     85%{
-        transform:translate(-20px,-40px) rotate(-95deg);
+        transform:translate(-12px,-17px) rotate(-58deg);
     }
 
+    /* volta para a posição normal */
     100%{
         transform:translate(0,0) rotate(0deg);
     }
@@ -3335,11 +3339,6 @@ function setBarberTarget(
         );
 
 
-    /*
-       Aqui fica definido se essa corrida
-       pode gerar suor quando terminar.
-    */
-
     tiredOnArrival =
         showTired;
 
@@ -3434,11 +3433,6 @@ function animateBarber(){
                     "barber-running"
                 );
 
-
-                /*
-                   SOMENTE corrida de scroll
-                   pode deixar o barbeiro cansado.
-                */
 
                 if(tiredOnArrival){
 
@@ -3614,12 +3608,6 @@ window.addEventListener(
                 );
 
 
-            /*
-               TRUE:
-               essa corrida veio do scroll
-               e pode gerar suor.
-            */
-
             setBarberTarget(
                 destinationX,
                 destinationY,
@@ -3644,12 +3632,6 @@ window.addEventListener(
                         window.innerHeight *
                         .72;
 
-
-                    /*
-                       Continua sendo movimento
-                       de scroll, portanto pode
-                       gerar cansaço.
-                    */
 
                     setBarberTarget(
                         finalX,
@@ -3796,8 +3778,8 @@ function startWave(){
 
             /*
                ETAPA 3:
-               braço sobe acima da cabeça
-               e faz o aceno lateral.
+               braço sobe somente até
+               a altura do ombro e acena.
             */
 
             miniBarber.classList.add(

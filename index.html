@@ -511,24 +511,12 @@ nav a:hover{
    ACENO
 ========================= */
 
-/*
-   AGORA O ACENO É FEITO COM A MÃO DIREITA LIVRE.
-
-   Sequência:
-   1. Máquina sai da mão.
-   2. Máquina vai para o bolso.
-   3. Braço sobe.
-   4. Ele acena.
-   5. Braço desce.
-   6. Máquina volta para a mão.
-*/
-
 .barber-arm-right{
     transform-box:view-box;
 }
 
 .barber-waving .barber-arm-right{
-    animation:barberWaveHigh 1.65s ease-in-out;
+    animation:barberWaveHigh 1.65s ease-in-out forwards;
 }
 
 @keyframes barberWaveHigh{
@@ -572,21 +560,13 @@ nav a:hover{
 }
 
 /* =========================
-   BOLSO DA MÁQUINA
+   MÁQUINA — MÃO / CINTURA
 ========================= */
 
-.clipper-pocket{
-    opacity:1;
-    transform-box:fill-box;
-    transform-origin:center;
-    transition:
-        opacity .2s ease,
-        transform .35s cubic-bezier(.2,.8,.2,1);
-}
-
 /*
-   Quando a máquina está guardada,
-   ela fica posicionada dentro do bolso.
+   A máquina fica FORA do braço.
+   Assim ela nunca acompanha a rotação
+   do braço durante o aceno.
 */
 
 .clipper-tool{
@@ -598,54 +578,106 @@ nav a:hover{
 }
 
 /*
-   O clipper fica inicialmente na mão.
+   Posição normal:
+   máquina encaixada na mão direita.
 */
 
-.clip­per-in-hand{
+.clipper-in-hand{
+    transform:translate(0,0) rotate(7deg);
     opacity:1;
 }
 
 /*
-   Durante o aceno ele vai para o bolso.
-   A posição foi calculada para o corpo do personagem.
+   Posição guardada:
+   máquina vai para a cintura,
+   exatamente sobre a região do bolso.
 */
 
 .clipper-tool.clipper-stowed{
-    transform:translate(-18px,11px) rotate(-12deg);
+    transform:translate(-18px,10px) rotate(-12deg);
+    opacity:1;
 }
 
-/* =========================
-   PREPARAÇÃO DO ACENO
-========================= */
+/*
+   Preparação:
+   máquina sai da mão e desce
+   até a cintura.
+*/
 
 .barber-wave-prep .clipper-tool{
-    animation:clipperToPocket .35s cubic-bezier(.2,.8,.2,1) forwards;
+    animation:clipperToWaist .42s cubic-bezier(.2,.8,.2,1) forwards;
 }
 
-@keyframes clipperToPocket{
+@keyframes clipperToWaist{
 
     0%{
         transform:translate(0,0) rotate(7deg);
     }
 
-    45%{
-        transform:translate(-7px,5px) rotate(-4deg);
+    25%{
+        transform:translate(-5px,3px) rotate(2deg);
+    }
+
+    55%{
+        transform:translate(-12px,7px) rotate(-6deg);
     }
 
     100%{
-        transform:translate(-18px,11px) rotate(-12deg);
+        transform:translate(-18px,10px) rotate(-12deg);
+    }
+
+}
+
+/*
+   Quando o aceno termina,
+   a máquina sai da cintura e volta
+   suavemente para a mão.
+*/
+
+.clipper-tool.clipper-returning{
+    animation:clipperBackToHand .42s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+@keyframes clipperBackToHand{
+
+    0%{
+        transform:translate(-18px,10px) rotate(-12deg);
+    }
+
+    30%{
+        transform:translate(-13px,7px) rotate(-6deg);
+    }
+
+    65%{
+        transform:translate(-6px,3px) rotate(2deg);
+    }
+
+    100%{
+        transform:translate(0,0) rotate(7deg);
     }
 
 }
 
 /* =========================
-   BOLSO VISUAL
+   BOLSO / CINTURA VISUAL
 ========================= */
 
 .barber-pocket{
     position:absolute;
     left:0;
     top:0;
+}
+
+/* =========================
+   TESOURA PEQUENA
+========================= */
+
+.scissors-tool{
+    transform:
+        translate(15px,91px)
+        scale(.55)
+        rotate(-12deg);
+    transform-origin:0 0;
 }
 
 /* =========================
@@ -1734,7 +1766,7 @@ footer{
 
 
                 <!-- =================================================
-                     BOLSO DA MÁQUINA
+                     BOLSO DA CINTURA
                 ================================================= -->
 
                 <path
@@ -1761,7 +1793,7 @@ footer{
 
 
             <!-- =================================================
-                 BRAÇO ESQUERDO — TESOURA
+                 BRAÇO ESQUERDO — TESOURA PEQUENA
             ================================================= -->
 
             <g class="barber-arm-left">
@@ -1787,13 +1819,10 @@ footer{
                 />
 
 
-                <!-- =================================================
-                     TESOURA PROFISSIONAL REALISTA
-                ================================================= -->
+                <!-- TESOURA PEQUENA E PROPORCIONAL -->
 
                 <g
                     class="scissors-tool"
-                    transform="translate(13 90) rotate(-12)"
                 >
 
                     <!-- ARGOLA 1 -->
@@ -1947,21 +1976,19 @@ footer{
 
             <!-- =================================================
                  MÁQUINA
-                 FICA FORA DO BRAÇO PARA NÃO SOFRER
-                 O BUG DE ROTAÇÃO DURANTE O ACENO.
+                 INDEPENDENTE DO BRAÇO
             ================================================= -->
 
             <g
-                class="clipper-tool"
+                class="clipper-tool clipper-in-hand"
                 id="clipperTool"
-                transform="translate(76 82) rotate(7)"
             >
 
                 <!-- CORPO -->
 
                 <rect
-                    x="0"
-                    y="0"
+                    x="76"
+                    y="82"
                     width="14"
                     height="25"
                     rx="4"
@@ -1974,7 +2001,12 @@ footer{
                 <!-- LÂMINA -->
 
                 <path
-                    d="M3 -4 L11 -4 L10 2 L4 2 Z"
+                    d="M79 -? "
+                    fill="none"
+                />
+
+                <path
+                    d="M79 78 L87 78 L86 84 L80 84 Z"
                     fill="#cfcfcf"
                     stroke="#777"
                     stroke-width=".7"
@@ -1984,11 +2016,11 @@ footer{
                 <!-- DENTES DA LÂMINA -->
 
                 <path
-                    d="M3 -4 L3 -7
-                       M5 -4 L5 -7
-                       M7 -4 L7 -7
-                       M9 -4 L9 -7
-                       M11 -4 L11 -7"
+                    d="M79 78 L79 75
+                       M81 78 L81 75
+                       M83 78 L83 75
+                       M85 78 L85 75
+                       M87 78 L87 75"
                     stroke="#eeeeee"
                     stroke-width="1"
                     stroke-linecap="round"
@@ -1998,8 +2030,8 @@ footer{
                 <!-- DETALHE DOURADO -->
 
                 <rect
-                    x="3"
-                    y="6"
+                    x="79"
+                    y="88"
                     width="8"
                     height="2"
                     rx="1"
@@ -2010,8 +2042,8 @@ footer{
                 <!-- BOTÃO -->
 
                 <circle
-                    cx="7"
-                    cy="15"
+                    cx="83"
+                    cy="97"
                     r="2.2"
                     fill="#d7ad55"
                 />
@@ -2020,8 +2052,8 @@ footer{
                 <!-- DETALHE INFERIOR -->
 
                 <rect
-                    x="4"
-                    y="20"
+                    x="80"
+                    y="102"
                     width="6"
                     height="2"
                     rx="1"
@@ -2361,7 +2393,6 @@ footer{
 
     <div class="services-grid">
 
-
         <div
             class="service-card reveal"
             onclick="openBooking('Corte + Barba Completo')"
@@ -2529,7 +2560,6 @@ footer{
 
 
     <div class="barbers-grid">
-
 
         <div class="barber-card reveal">
 
@@ -3311,15 +3341,19 @@ function distanceToTarget(){
 function restoreClipper(){
 
     clearTimeout(
-        wavePrepTimer
-    );
-
-    clearTimeout(
         waveReturnTimer
     );
 
     clipperTool.classList.remove(
         "clipper-stowed"
+    );
+
+    clipperTool.classList.remove(
+        "clipper-returning"
+    );
+
+    clipperTool.classList.add(
+        "clipper-in-hand"
     );
 
 }
@@ -3854,8 +3888,22 @@ function startWave(){
 
     /*
        ETAPA 1:
-       ele começa a tirar a máquina da mão.
+       tira a máquina da mão
+       e coloca na cintura.
     */
+
+    clipperTool.classList.remove(
+        "clipper-returning"
+    );
+
+    clipperTool.classList.remove(
+        "clipper-stowed"
+    );
+
+    clipperTool.classList.remove(
+        "clipper-in-hand"
+    );
+
 
     miniBarber.classList.add(
         "barber-wave-prep"
@@ -3867,13 +3915,17 @@ function startWave(){
 
             /*
                ETAPA 2:
-               máquina já está no bolso.
+               máquina já chegou à cintura.
             */
 
             miniBarber.classList.remove(
                 "barber-wave-prep"
             );
 
+
+            clipperTool.classList.remove(
+                "clipper-in-hand"
+            );
 
             clipperTool.classList.add(
                 "clipper-stowed"
@@ -3882,8 +3934,8 @@ function startWave(){
 
             /*
                ETAPA 3:
-               agora ele levanta o braço
-               e começa a acenar.
+               agora ele acena com a mão
+               completamente livre.
             */
 
             miniBarber.classList.add(
@@ -3896,7 +3948,7 @@ function startWave(){
 
                     /*
                        ETAPA 4:
-                       aceno terminou.
+                       o aceno terminou.
                     */
 
                     miniBarber.classList.remove(
@@ -3905,8 +3957,8 @@ function startWave(){
 
 
                     /*
-                       Dá um pequeno intervalo
-                       para a mão descer.
+                       Dá tempo para o braço
+                       voltar para a posição normal.
                     */
 
                     waveReturnTimer =
@@ -3914,23 +3966,43 @@ function startWave(){
 
                             /*
                                ETAPA 5:
-                               pega novamente a máquina.
+                               pega a máquina da cintura.
                             */
 
                             clipperTool.classList.remove(
                                 "clipper-stowed"
                             );
 
+                            clipperTool.classList.remove(
+                                "clipper-in-hand"
+                            );
 
-                            isWaving = false;
+                            clipperTool.classList.add(
+                                "clipper-returning"
+                            );
 
-                        },350);
+
+                            setTimeout(()=>{
+
+                                clipperTool.classList.remove(
+                                    "clipper-returning"
+                                );
+
+                                clipperTool.classList.add(
+                                    "clipper-in-hand"
+                                );
+
+                                isWaving = false;
+
+                            },420);
+
+                        },180);
 
 
                 },1650);
 
 
-        },350);
+        },420);
 
 }
 

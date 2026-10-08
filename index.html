@@ -1003,6 +1003,9 @@ section{
 .barbers{
     background:
         radial-gradient(circle at 50% 50%,rgba(215,173,85,.035),transparent 50%);
+    
+    /* REMOVIDO O ESPAÇO/MOLDURA INFERIOR */
+    padding-bottom:35px;
 }
 
 .barbers-grid{
@@ -1017,6 +1020,12 @@ section{
     overflow:hidden;
     border:1px solid rgba(215,173,85,.1);
     background:#090909;
+}
+
+/* Remove o fechamento visual inferior do último card,
+   onde fica o Lucas */
+.barber-card:last-child{
+    border-bottom-color:transparent;
 }
 
 .barber-photo{
@@ -3519,7 +3528,6 @@ animateBarber();
 
 /* =========================================================
    SEGUIR CURSOR
-   NÃO GERA SUOR
 ========================================================= */
 
 let cursorFollowTimer = null;
@@ -3718,7 +3726,6 @@ document.addEventListener(
 
 /* =========================================================
    SCROLL
-   ÚNICO MOVIMENTO QUE GERA SUOR
 ========================================================= */
 
 window.addEventListener(
@@ -4007,7 +4014,6 @@ resetIdleWaveTimer();
 
 
 /* =========================================================
-   NOVO:
    MOVIMENTO AUTOMÁTICO CONTÍNUO
 ========================================================= */
 
@@ -4049,12 +4055,6 @@ function automaticBarberMovement(){
         getBarberBounds();
 
 
-    /*
-       Escolhe uma nova posição aleatória.
-       Mantemos uma distância mínima para que
-       o movimento seja perceptível.
-    */
-
     let randomX;
     let randomY;
 
@@ -4092,10 +4092,6 @@ function automaticBarberMovement(){
     );
 
 
-    /*
-       Movimento automático NÃO gera suor.
-    */
-
     setBarberTarget(
         randomX,
         randomY,
@@ -4103,19 +4099,13 @@ function automaticBarberMovement(){
     );
 
 
-    /*
-       O próximo movimento é agendado
-       independentemente de o anterior
-       ter terminado.
-    */
-
     scheduleAutomaticMovement();
 
 }
 
 
 /* =========================================================
-   PAUSAR/RETOMAR MOVIMENTO QUANDO A ABA MUDA
+   PAUSAR/RETOMAR
 ========================================================= */
 
 document.addEventListener(
@@ -5115,22 +5105,13 @@ setTimeout(()=>{
     resetIdleWaveTimer();
 
 
-    /*
-       INICIA O NOVO CICLO AUTOMÁTICO.
-       Agora ele não depende de um setInterval
-       que pode ficar desalinhado com os outros
-       estados do personagem.
-    */
-
     scheduleAutomaticMovement();
 
 },100);
 
 
 /* =========================================================
-   GARANTIA EXTRA:
-   SE O CICLO AUTOMÁTICO FOR INTERROMPIDO,
-   ELE É REINICIADO.
+   GARANTIA EXTRA
 ========================================================= */
 
 window.addEventListener(

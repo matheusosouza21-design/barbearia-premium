@@ -441,10 +441,6 @@ nav a:hover{
     transform-origin:69px 78px;
 }
 
-/* =========================
-   ACENO
-========================= */
-
 .barber-arm-right{
     transform-box:view-box;
 }
@@ -492,10 +488,6 @@ nav a:hover{
     }
 
 }
-
-/* =========================
-   MÁQUINA
-========================= */
 
 .clipper-tool{
     transform-box:fill-box;
@@ -563,10 +555,6 @@ nav a:hover{
 
 }
 
-/* =========================
-   TESOURA
-========================= */
-
 .scissors-tool{
     transform:
         translate(15px,91px)
@@ -574,10 +562,6 @@ nav a:hover{
         rotate(-12deg);
     transform-origin:0 0;
 }
-
-/* =========================
-   BALÃO DE FALA
-========================= */
 
 .barber-speech{
     position:absolute;
@@ -872,7 +856,7 @@ section{
 .barbers{
     background:
         radial-gradient(circle at 50% 50%,rgba(215,173,85,.035),transparent 50%);
-    padding-bottom:35px;
+    padding-bottom:0;
 }
 
 .barbers-grid{
@@ -946,6 +930,7 @@ section{
     grid-template-columns:1fr 1fr;
     gap:80px;
     align-items:center;
+    padding-top:35px;
 }
 
 .story-visual{
@@ -1067,10 +1052,6 @@ section{
     margin-bottom:30px;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
 footer{
     padding:40px 8%;
     border-top:1px solid rgba(215,173,85,.08);
@@ -1082,10 +1063,6 @@ footer{
     letter-spacing:2px;
     text-transform:uppercase;
 }
-
-/* =========================
-   MODAL
-========================= */
 
 .modal{
     position:fixed;
@@ -1366,10 +1343,6 @@ footer{
     color:#eee;
 }
 
-/* =========================
-   REVEAL
-========================= */
-
 .reveal{
     opacity:0;
     transform:translateY(35px);
@@ -1472,6 +1445,7 @@ footer{
     .story{
         grid-template-columns:1fr;
         gap:40px;
+        padding-top:35px;
     }
 
     .story-visual{
@@ -1551,6 +1525,10 @@ footer{
         min-width:190px;
         max-width:205px;
     }
+
+    .story{
+        padding-top:35px;
+    }
 }
 </style>
 </head>
@@ -1558,10 +1536,6 @@ footer{
 <body>
 
 <div class="cursor-glow" id="cursorGlow"></div>
-
-<!-- =========================================================
-     MINI BARBEIRO
-========================================================= -->
 
 <div class="mini-barber-wrap" id="miniBarberWrap">
 
@@ -1988,7 +1962,6 @@ footer{
 
 </div>
 
-
 <header>
 
     <a href="#inicio" class="logo">
@@ -2005,21 +1978,10 @@ footer{
 
     <nav>
 
-        <a href="#inicio">
-            Início
-        </a>
-
-        <a href="#servicos">
-            Serviços
-        </a>
-
-        <a href="#barbeiros">
-            Barbeiros
-        </a>
-
-        <a href="#historia">
-            Nossa história
-        </a>
+        <a href="#inicio">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#barbeiros">Barbeiros</a>
+        <a href="#historia">Nossa história</a>
 
     </nav>
 
@@ -2039,15 +2001,12 @@ footer{
 
 </header>
 
-
 <main>
 
 <section class="hero" id="inicio">
 
     <div class="hero-grid"></div>
-
     <div class="hero-orb"></div>
-
     <div class="hero-ring"></div>
 
     <div class="hero-content">
@@ -2058,9 +2017,7 @@ footer{
 
         <h1>
             Seu estilo.
-            <span>
-                Sua assinatura.
-            </span>
+            <span>Sua assinatura.</span>
         </h1>
 
         <p>
@@ -2094,9 +2051,7 @@ footer{
 
         <div class="hero-card-top">
 
-            <small>
-                Experiência NERO
-            </small>
+            <small>Experiência NERO</small>
 
             <div class="rating">
                 ★ 4.9
@@ -2116,7 +2071,6 @@ footer{
     </div>
 
 </section>
-
 
 <section class="section" id="servicos">
 
@@ -2176,7 +2130,6 @@ footer{
 
         </div>
 
-
         <div
             class="service-card reveal"
             onclick="openBooking('Corte Máquina')"
@@ -2209,7 +2162,6 @@ footer{
 
         </div>
 
-
         <div
             class="service-card reveal"
             onclick="openBooking('Tesoura + Máquina')"
@@ -2241,7 +2193,6 @@ footer{
             </p>
 
         </div>
-
 
         <div
             class="service-card reveal"
@@ -2278,7 +2229,6 @@ footer{
     </div>
 
 </section>
-
 
 <section class="section barbers" id="barbeiros">
 
@@ -2318,9 +2268,7 @@ footer{
 
             <div class="barber-info">
 
-                <h3>
-                    Rafael
-                </h3>
+                <h3>Rafael</h3>
 
                 <p>
                     Especialista em visagismo
@@ -2329,7 +2277,6 @@ footer{
             </div>
 
         </div>
-
 
         <div class="barber-card reveal">
 
@@ -2343,9 +2290,7 @@ footer{
 
             <div class="barber-info">
 
-                <h3>
-                    Matheus
-                </h3>
+                <h3>Matheus</h3>
 
                 <p>
                     Especialista em cortes
@@ -2354,7 +2299,6 @@ footer{
             </div>
 
         </div>
-
 
         <div class="barber-card reveal">
 
@@ -2368,9 +2312,7 @@ footer{
 
             <div class="barber-info">
 
-                <h3>
-                    Lucas
-                </h3>
+                <h3>Lucas</h3>
 
                 <p>
                     Especialista em barba
@@ -2383,7 +2325,6 @@ footer{
     </div>
 
 </section>
-
 
 <section class="section story" id="historia">
 
@@ -2437,7 +2378,6 @@ footer{
 
 </section>
 
-
 <section class="cta reveal">
 
     <h2>
@@ -2460,7 +2400,6 @@ footer{
 
 </main>
 
-
 <footer>
 
     <span>
@@ -2472,7 +2411,6 @@ footer{
     </span>
 
 </footer>
-
 
 <div class="modal" id="bookingModal">
 
@@ -2593,7 +2531,6 @@ footer{
 
             </div>
 
-
             <div
                 class="booking-step"
                 data-step="2"
@@ -2609,42 +2546,24 @@ footer{
                         class="option"
                         onclick="selectBarber(this,'Rafael')"
                     >
-                        <strong>
-                            Rafael
-                        </strong>
-
-                        <span>
-                            Visagismo
-                        </span>
-
+                        <strong>Rafael</strong>
+                        <span>Visagismo</span>
                     </div>
 
                     <div
                         class="option"
                         onclick="selectBarber(this,'Matheus')"
                     >
-                        <strong>
-                            Matheus
-                        </strong>
-
-                        <span>
-                            Cortes
-                        </span>
-
+                        <strong>Matheus</strong>
+                        <span>Cortes</span>
                     </div>
 
                     <div
                         class="option"
                         onclick="selectBarber(this,'Lucas')"
                     >
-                        <strong>
-                            Lucas
-                        </strong>
-
-                        <span>
-                            Barba
-                        </span>
-
+                        <strong>Lucas</strong>
+                        <span>Barba</span>
                     </div>
 
                 </div>
@@ -2668,7 +2587,6 @@ footer{
                 </div>
 
             </div>
-
 
             <div
                 class="booking-step"
@@ -2704,7 +2622,6 @@ footer{
 
             </div>
 
-
             <div
                 class="booking-step"
                 data-step="4"
@@ -2738,7 +2655,6 @@ footer{
                 </div>
 
             </div>
-
 
             <div
                 class="booking-step"
@@ -2797,7 +2713,6 @@ footer{
 
             </div>
 
-
             <div
                 class="booking-step"
                 data-step="success"
@@ -2843,12 +2758,7 @@ footer{
 
 </div>
 
-
 <script>
-
-/* =========================================================
-   CURSOR GLOW
-========================================================= */
 
 const cursorGlow =
     document.getElementById("cursorGlow");
@@ -2875,16 +2785,6 @@ document.addEventListener(
     }
 );
 
-
-/* =========================================================
-   MINI BARBER
-   NOVO SISTEMA:
-   - PARADO
-   - ACOMPANHA O SCROLL
-   - CLIQUE = ACENO
-   - SEM MOVIMENTO LATERAL
-========================================================= */
-
 const miniBarberWrap =
     document.getElementById("miniBarberWrap");
 
@@ -2893,7 +2793,6 @@ const miniBarber =
 
 const clipperTool =
     document.getElementById("clipperTool");
-
 
 let barberX =
     window.innerWidth * .78;
@@ -2913,11 +2812,6 @@ let waveTimer =
 let waveReturnTimer =
     null;
 
-
-/* =========================================================
-   POSIÇÃO
-========================================================= */
-
 function setBarberPosition(){
 
     miniBarberWrap.style.transform =
@@ -2928,11 +2822,6 @@ function setBarberPosition(){
         )`;
 
 }
-
-
-/* =========================================================
-   LIMITES VERTICAIS
-========================================================= */
 
 function getBarberBounds(){
 
@@ -2946,11 +2835,6 @@ function getBarberBounds(){
     };
 
 }
-
-
-/* =========================================================
-   MANTER PERSONAGEM NA TELA
-========================================================= */
 
 function clampBarberY(){
 
@@ -2967,11 +2851,6 @@ function clampBarberY(){
         );
 
 }
-
-
-/* =========================================================
-   RESTAURAR MÁQUINA
-========================================================= */
 
 function restoreClipper(){
 
@@ -2992,11 +2871,6 @@ function restoreClipper(){
     );
 
 }
-
-
-/* =========================================================
-   CANCELAR ACENO
-========================================================= */
 
 function cancelWave(){
 
@@ -3026,11 +2900,6 @@ function cancelWave(){
 
 }
 
-
-/* =========================================================
-   CLIQUE NO PERSONAGEM
-========================================================= */
-
 miniBarberWrap.addEventListener(
     "click",
     function(e){
@@ -3052,11 +2921,6 @@ miniBarberWrap.addEventListener(
     }
 );
 
-
-/* =========================================================
-   ACENO COMPLETO
-========================================================= */
-
 function startWave(){
 
     if(
@@ -3068,10 +2932,8 @@ function startWave(){
 
     }
 
-
     isWaving =
         true;
-
 
     clearTimeout(
         wavePrepTimer
@@ -3085,16 +2947,13 @@ function startWave(){
         waveReturnTimer
     );
 
-
     miniBarber.classList.remove(
         "barber-waving"
     );
 
-
     miniBarber.classList.add(
         "barber-wave-prep"
     );
-
 
     clipperTool.classList.remove(
         "clipper-returning"
@@ -3108,14 +2967,12 @@ function startWave(){
         "clipper-in-hand"
     );
 
-
     wavePrepTimer =
         setTimeout(()=>{
 
             miniBarber.classList.remove(
                 "barber-wave-prep"
             );
-
 
             clipperTool.classList.remove(
                 "clipper-in-hand"
@@ -3125,11 +2982,9 @@ function startWave(){
                 "clipper-stowed"
             );
 
-
             miniBarber.classList.add(
                 "barber-waving"
             );
-
 
             waveTimer =
                 setTimeout(()=>{
@@ -3137,7 +2992,6 @@ function startWave(){
                     miniBarber.classList.remove(
                         "barber-waving"
                     );
-
 
                     waveReturnTimer =
                         setTimeout(()=>{
@@ -3153,7 +3007,6 @@ function startWave(){
                             clipperTool.classList.add(
                                 "clipper-returning"
                             );
-
 
                             setTimeout(()=>{
 
@@ -3178,13 +3031,6 @@ function startWave(){
 
 }
 
-
-/* =========================================================
-   SCROLL
-   O PERSONAGEM ACOMPANHA O SCROLL
-   SEM ANDAR
-========================================================= */
-
 let lastScrollY =
     window.scrollY;
 
@@ -3194,7 +3040,6 @@ let scrollAnimationFrame =
 let scrollDelta =
     0;
 
-
 window.addEventListener(
     "scroll",
     function(){
@@ -3202,40 +3047,19 @@ window.addEventListener(
         const currentScroll =
             window.scrollY;
 
-
         const difference =
             currentScroll -
             lastScrollY;
 
-
         lastScrollY =
             currentScroll;
-
-
-        /*
-           O personagem acompanha verticalmente
-           o gesto do scroll.
-
-           Não existe corrida.
-           Não existe destino.
-           Não existe movimento lateral.
-        */
 
         if(
             Math.abs(difference) > 0
         ){
 
-            /*
-               Scroll para baixo:
-               personagem acompanha para baixo.
-
-               Scroll para cima:
-               personagem acompanha para cima.
-            */
-
             scrollDelta +=
                 difference * .42;
-
 
             scrollDelta =
                 Math.max(
@@ -3254,34 +3078,17 @@ window.addEventListener(
     }
 );
 
-
-/* =========================================================
-   ANIMAÇÃO SUAVE DO SCROLL
-========================================================= */
-
 function animateScrollBarber(){
-
-    /*
-       Retorna suavemente para a posição central
-       depois do movimento do scroll.
-
-       Isso cria o efeito de personagem "colado",
-       sem parecer que está correndo.
-    */
 
     barberY +=
         scrollDelta * .075;
 
-
     scrollDelta *=
         .82;
 
-
     clampBarberY();
 
-
     setBarberPosition();
-
 
     scrollAnimationFrame =
         requestAnimationFrame(
@@ -3292,11 +3099,6 @@ function animateScrollBarber(){
 
 animateScrollBarber();
 
-
-/* =========================================================
-   REDIMENSIONAMENTO
-========================================================= */
-
 window.addEventListener(
     "resize",
     function(){
@@ -3306,19 +3108,12 @@ window.addEventListener(
                 ? window.innerWidth * .78
                 : window.innerWidth * .72;
 
-
         clampBarberY();
-
 
         setBarberPosition();
 
     }
 );
-
-
-/* =========================================================
-   BALÃO DE FALA
-========================================================= */
 
 const barberSpeech =
     document.getElementById(
@@ -3330,10 +3125,8 @@ const barberSpeechText =
         "barberSpeechText"
     );
 
-
 const speechMessage =
     "E aí, vamos ficar mais bonito?";
-
 
 let speechTimer =
     null;
@@ -3343,11 +3136,6 @@ let speechTypingTimer =
 
 let speechHideTimer =
     null;
-
-
-/* =========================================================
-   MOSTRAR BALÃO
-========================================================= */
 
 function showBarberSpeech(){
 
@@ -3359,7 +3147,6 @@ function showBarberSpeech(){
         speechHideTimer
     );
 
-
     barberSpeechText.textContent =
         "";
 
@@ -3367,15 +3154,12 @@ function showBarberSpeech(){
         "typing"
     );
 
-
     barberSpeech.classList.add(
         "show"
     );
 
-
     let index =
         0;
-
 
     speechTypingTimer =
         setInterval(()=>{
@@ -3386,9 +3170,7 @@ function showBarberSpeech(){
                     index + 1
                 );
 
-
             index++;
-
 
             if(
                 index >= speechMessage.length
@@ -3406,7 +3188,6 @@ function showBarberSpeech(){
 
         },42);
 
-
     speechHideTimer =
         setTimeout(()=>{
 
@@ -3418,17 +3199,11 @@ function showBarberSpeech(){
 
 }
 
-
-/* =========================================================
-   FALA A CADA 6 SEGUNDOS
-========================================================= */
-
 function startSpeechLoop(){
 
     clearInterval(
         speechTimer
     );
-
 
     speechTimer =
         setInterval(()=>{
@@ -3441,17 +3216,11 @@ function startSpeechLoop(){
 
             }
 
-
             showBarberSpeech();
 
         },6000);
 
 }
-
-
-/* =========================================================
-   PRIMEIRA FALA
-========================================================= */
 
 setTimeout(()=>{
 
@@ -3459,13 +3228,7 @@ setTimeout(()=>{
 
 },1800);
 
-
 startSpeechLoop();
-
-
-/* =========================================================
-   VISIBILIDADE
-========================================================= */
 
 document.addEventListener(
     "visibilitychange",
@@ -3485,11 +3248,6 @@ document.addEventListener(
 
     }
 );
-
-
-/* =========================================================
-   SERVIÇOS
-========================================================= */
 
 const services = {
 
@@ -3515,21 +3273,11 @@ const services = {
 
 };
 
-
-/* =========================================================
-   BARBEIROS
-========================================================= */
-
 const barbers = [
     "Rafael",
     "Matheus",
     "Lucas"
 ];
-
-
-/* =========================================================
-   HORÁRIOS
-========================================================= */
 
 const timeSlots = [
 
@@ -3550,11 +3298,6 @@ const timeSlots = [
 
 ];
 
-
-/* =========================================================
-   ESTADO
-========================================================= */
-
 let state = {
 
     step:1,
@@ -3569,16 +3312,10 @@ let state = {
 
 };
 
-
-/* =========================================================
-   MODAL
-========================================================= */
-
 const modal =
     document.getElementById(
         "bookingModal"
     );
-
 
 function openBooking(
     serviceName=null
@@ -3588,10 +3325,8 @@ function openBooking(
         "active"
     );
 
-
     document.body.style.overflow =
         "hidden";
-
 
     state = {
 
@@ -3607,7 +3342,6 @@ function openBooking(
 
     };
 
-
     document
         .querySelectorAll(
             ".option"
@@ -3620,18 +3354,15 @@ function openBooking(
 
         });
 
-
     if(serviceName){
 
         state.service =
             serviceName;
 
-
         const option =
             document.querySelector(
                 `.option[data-service="${serviceName}"]`
             );
-
 
         if(option){
 
@@ -3643,11 +3374,9 @@ function openBooking(
 
     }
 
-
     showStep(1);
 
 }
-
 
 function closeBooking(){
 
@@ -3655,22 +3384,15 @@ function closeBooking(){
         "active"
     );
 
-
     document.body.style.overflow =
         "";
 
 }
 
-
-/* =========================================================
-   STEPS
-========================================================= */
-
 function showStep(step){
 
     state.step =
         step;
-
 
     document
         .querySelectorAll(
@@ -3684,12 +3406,10 @@ function showStep(step){
 
         });
 
-
     const current =
         document.querySelector(
             `.booking-step[data-step="${step}"]`
         );
-
 
     if(current){
 
@@ -3698,7 +3418,6 @@ function showStep(step){
         );
 
     }
-
 
     document
         .querySelectorAll(
@@ -3717,7 +3436,6 @@ function showStep(step){
 
 }
 
-
 function nextStep(){
 
     if(
@@ -3733,7 +3451,6 @@ function nextStep(){
 
     }
 
-
     if(
         state.step===2 &&
         !state.barber
@@ -3746,7 +3463,6 @@ function nextStep(){
         return;
 
     }
-
 
     if(
         state.step===3 &&
@@ -3761,7 +3477,6 @@ function nextStep(){
 
     }
 
-
     if(
         state.step===4 &&
         !state.time
@@ -3775,7 +3490,6 @@ function nextStep(){
 
     }
 
-
     if(
         state.step < 5
     ){
@@ -3787,7 +3501,6 @@ function nextStep(){
     }
 
 }
-
 
 function prevStep(){
 
@@ -3802,11 +3515,6 @@ function prevStep(){
     }
 
 }
-
-
-/* =========================================================
-   SERVIÇO
-========================================================= */
 
 function selectService(
     element
@@ -3824,21 +3532,14 @@ function selectService(
 
         });
 
-
     element.classList.add(
         "selected"
     );
-
 
     state.service =
         element.dataset.service;
 
 }
-
-
-/* =========================================================
-   BARBEIRO
-========================================================= */
 
 function selectBarber(
     element,
@@ -3857,21 +3558,14 @@ function selectBarber(
 
         });
 
-
     element.classList.add(
         "selected"
     );
-
 
     state.barber =
         name;
 
 }
-
-
-/* =========================================================
-   CALENDÁRIO
-========================================================= */
 
 function renderCalendar(){
 
@@ -3880,10 +3574,8 @@ function renderCalendar(){
             "calendar"
         );
 
-
     calendar.innerHTML =
         "";
-
 
     const weekdays = [
 
@@ -3897,7 +3589,6 @@ function renderCalendar(){
 
     ];
 
-
     weekdays.forEach(day=>{
 
         const el =
@@ -3905,14 +3596,11 @@ function renderCalendar(){
                 "div"
             );
 
-
         el.className =
             "weekday";
 
-
         el.textContent =
             day;
-
 
         calendar.appendChild(
             el
@@ -3920,10 +3608,8 @@ function renderCalendar(){
 
     });
 
-
     const today =
         new Date();
-
 
     today.setHours(
         0,
@@ -3932,14 +3618,11 @@ function renderCalendar(){
         0
     );
 
-
     const year =
         today.getFullYear();
 
-
     const month =
         today.getMonth();
-
 
     const firstDay =
         new Date(
@@ -3948,14 +3631,12 @@ function renderCalendar(){
             1
         ).getDay();
 
-
     const daysInMonth =
         new Date(
             year,
             month + 1,
             0
         ).getDate();
-
 
     for(
         let i=0;
@@ -3968,13 +3649,11 @@ function renderCalendar(){
                 "div"
             );
 
-
         calendar.appendChild(
             empty
         );
 
     }
-
 
     for(
         let day=1;
@@ -3989,20 +3668,16 @@ function renderCalendar(){
                 day
             );
 
-
         const el =
             document.createElement(
                 "button"
             );
 
-
         el.className =
             "calendar-day";
 
-
         el.textContent =
             day;
-
 
         if(
             date < today
@@ -4028,11 +3703,9 @@ function renderCalendar(){
 
                     });
 
-
                 el.classList.add(
                     "selected"
                 );
-
 
                 state.date =
                     `${day}/${month+1}/${year}`;
@@ -4040,7 +3713,6 @@ function renderCalendar(){
             };
 
         }
-
 
         calendar.appendChild(
             el
@@ -4052,11 +3724,6 @@ function renderCalendar(){
 
 renderCalendar();
 
-
-/* =========================================================
-   HORÁRIOS
-========================================================= */
-
 function renderTimes(){
 
     const container =
@@ -4064,10 +3731,8 @@ function renderTimes(){
             "times"
         );
 
-
     container.innerHTML =
         "";
-
 
     timeSlots.forEach(time=>{
 
@@ -4076,14 +3741,11 @@ function renderTimes(){
                 "button"
             );
 
-
         el.className =
             "time";
 
-
         el.textContent =
             time;
-
 
         el.onclick = ()=>{
 
@@ -4099,17 +3761,14 @@ function renderTimes(){
 
                 });
 
-
             el.classList.add(
                 "selected"
             );
-
 
             state.time =
                 time;
 
         };
-
 
         container.appendChild(
             el
@@ -4121,16 +3780,10 @@ function renderTimes(){
 
 renderTimes();
 
-
-/* =========================================================
-   WHATSAPP
-========================================================= */
-
 const phone =
     document.getElementById(
         "clientPhone"
     );
-
 
 phone.addEventListener(
     "input",
@@ -4146,7 +3799,6 @@ phone.addEventListener(
                     0,
                     11
                 );
-
 
         if(
             value.length <= 10
@@ -4168,17 +3820,11 @@ phone.addEventListener(
 
         }
 
-
         e.target.value =
             value;
 
     }
 );
-
-
-/* =========================================================
-   CONFIRMAR
-========================================================= */
 
 function confirmBooking(){
 
@@ -4190,7 +3836,6 @@ function confirmBooking(){
             .value
             .trim();
 
-
     const clientPhone =
         document
             .getElementById(
@@ -4198,7 +3843,6 @@ function confirmBooking(){
             )
             .value
             .trim();
-
 
     if(!name){
 
@@ -4210,7 +3854,6 @@ function confirmBooking(){
 
     }
 
-
     if(!clientPhone){
 
         alert(
@@ -4221,12 +3864,10 @@ function confirmBooking(){
 
     }
 
-
     const price =
         services[
             state.service
         ].price;
-
 
     const booking = {
 
@@ -4249,14 +3890,12 @@ function confirmBooking(){
 
     };
 
-
     localStorage.setItem(
         "nero_last_booking",
         JSON.stringify(
             booking
         )
     );
-
 
     document.getElementById(
         "summary"
@@ -4294,17 +3933,11 @@ function confirmBooking(){
 
     `;
 
-
     showStep(
         "success"
     );
 
 }
-
-
-/* =========================================================
-   FECHAR FORA
-========================================================= */
 
 modal.addEventListener(
     "click",
@@ -4321,11 +3954,6 @@ modal.addEventListener(
     }
 );
 
-
-/* =========================================================
-   ESC
-========================================================= */
-
 document.addEventListener(
     "keydown",
     function(e){
@@ -4340,11 +3968,6 @@ document.addEventListener(
 
     }
 );
-
-
-/* =========================================================
-   REVEAL
-========================================================= */
 
 const revealObserver =
     new IntersectionObserver(
@@ -4372,7 +3995,6 @@ const revealObserver =
         }
     );
 
-
 document
     .querySelectorAll(
         ".reveal"
@@ -4385,16 +4007,10 @@ document
 
     });
 
-
-/* =========================================================
-   HERO PARALLAX
-========================================================= */
-
 const heroContent =
     document.querySelector(
         ".hero-content"
     );
-
 
 document.addEventListener(
     "mousemove",
@@ -4408,18 +4024,15 @@ document.addEventListener(
 
         }
 
-
         const x =
             e.clientX /
             window.innerWidth -
             .5;
 
-
         const y =
             e.clientY /
             window.innerHeight -
             .5;
-
 
         heroContent.style.transform =
             `translate3d(
@@ -4431,11 +4044,6 @@ document.addEventListener(
     }
 );
 
-
-/* =========================================================
-   INÍCIO DO BARBEIRO
-========================================================= */
-
 setTimeout(()=>{
 
     barberX =
@@ -4443,22 +4051,14 @@ setTimeout(()=>{
             ? window.innerWidth * .78
             : window.innerWidth * .72;
 
-
     barberY =
         window.innerHeight * .72;
 
-
     clampBarberY();
-
 
     setBarberPosition();
 
 },100);
-
-
-/* =========================================================
-   GARANTIA EXTRA
-========================================================= */
 
 window.addEventListener(
     "focus",

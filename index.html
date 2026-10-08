@@ -562,20 +562,134 @@ nav a:hover{
     transform-origin:0 0;
 }
 
-.barber-speech{
+..barber-speech{
     position:absolute;
-    left:88px;
+    right:88px;
+    left:auto;
     top:-18px;
-    min-width:225px;
-    max-width:260px;
+
+    width:260px;
+    min-width:0;
+    max-width:calc(100vw - 32px);
+
     padding:14px 17px;
+
+    box-sizing:border-box;
+
     border:1px solid rgba(215,173,85,.55);
-    border-radius:16px 16px 16px 4px;
+    border-radius:16px 16px 4px 16px;
+
     background:
         linear-gradient(
             145deg,
             rgba(25,25,25,.96),
             rgba(8,8,8,.96)
+        );
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.55),
+        0 0 25px rgba(215,173,85,.12),
+        inset 0 0 20px rgba(215,173,85,.025);
+
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(10px) scale(.82);
+    transform-origin:right bottom;
+
+    transition:
+        opacity .35s ease,
+        transform .45s cubic-bezier(.2,.9,.2,1),
+        visibility .35s ease;
+
+    pointer-events:none;
+    z-index:20;
+
+    overflow:hidden;
+}
+
+.barber-speech::before{
+    content:"";
+    position:absolute;
+
+    right:10px;
+    left:auto;
+
+    bottom:-9px;
+
+    width:18px;
+    height:18px;
+
+    background:#0b0b0b;
+
+    border-right:1px solid rgba(215,173,85,.55);
+    border-bottom:1px solid rgba(215,173,85,.55);
+
+    transform:rotate(45deg);
+}
+
+.barber-speech::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    border-radius:inherit;
+
+    background:
+        linear-gradient(
+            110deg,
+            transparent 0%,
+            rgba(244,210,122,.08) 45%,
+            transparent 60%
+        );
+
+    transform:translateX(-120%);
+    animation:none;
+
+    pointer-events:none;
+}
+
+.barber-speech.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0) scale(1);
+}
+
+.barber-speech.show::after{
+    animation:speechShine 1.4s ease forwards;
+}
+
+.barber-speech-label{
+    display:block;
+    margin-bottom:5px;
+
+    color:var(--gold2);
+
+    font-size:8px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-weight:bold;
+}
+
+.barber-speech-text{
+    display:block;
+
+    color:#f7f3e9;
+
+    font-family:Georgia,serif;
+    font-size:15px;
+    line-height:1.35;
+    letter-spacing:.1px;
+
+    min-height:40px;
+
+    overflow-wrap:anywhere;
+    word-break:normal;
+    white-space:normal;
+}
         );
     box-shadow:
         0 15px 40px rgba(0,0,0,.55),

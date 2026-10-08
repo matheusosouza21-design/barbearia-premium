@@ -391,6 +391,12 @@ nav a:hover{
     will-change:transform;
 }
 
+/*
+   O personagem agora fica parado.
+   O JavaScript apenas altera a posição vertical
+   quando o usuário movimenta o scroll.
+*/
+
 .mini-barber-shadow{
     position:absolute;
     left:50%;
@@ -433,81 +439,6 @@ nav a:hover{
 
 .barber-arm-right{
     transform-origin:69px 78px;
-}
-
-.barber-leg-left{
-    transform-origin:43px 111px;
-}
-
-.barber-leg-right{
-    transform-origin:57px 111px;
-}
-
-/* =========================
-   CORRIDA
-========================= */
-
-.barber-running .barber-body{
-    animation:bodyRun .28s infinite alternate ease-in-out;
-}
-
-.barber-running .barber-head{
-    animation:headRun .35s infinite alternate ease-in-out;
-}
-
-.barber-running .barber-arm-left{
-    animation:armLeftRun .22s infinite alternate ease-in-out;
-}
-
-.barber-running .barber-arm-right{
-    animation:armRightRun .22s infinite alternate ease-in-out;
-}
-
-.barber-running .barber-leg-left{
-    animation:legLeftRun .2s infinite alternate ease-in-out;
-}
-
-.barber-running .barber-leg-right{
-    animation:legRightRun .2s infinite alternate ease-in-out;
-}
-
-.barber-running + .mini-barber-shadow{
-    animation:shadowRun .22s infinite alternate ease-in-out;
-}
-
-@keyframes bodyRun{
-    from{transform:translateY(0) rotate(-2deg)}
-    to{transform:translateY(-4px) rotate(2deg)}
-}
-
-@keyframes headRun{
-    from{transform:rotate(-4deg)}
-    to{transform:rotate(4deg)}
-}
-
-@keyframes armLeftRun{
-    from{transform:rotate(17deg)}
-    to{transform:rotate(-18deg)}
-}
-
-@keyframes armRightRun{
-    from{transform:rotate(-17deg)}
-    to{transform:rotate(18deg)}
-}
-
-@keyframes legLeftRun{
-    from{transform:rotate(17deg)}
-    to{transform:rotate(-18deg)}
-}
-
-@keyframes legRightRun{
-    from{transform:rotate(-18deg)}
-    to{transform:rotate(17deg)}
-}
-
-@keyframes shadowRun{
-    from{transform:translateX(-50%) scaleX(.8)}
-    to{transform:translateX(-50%) scaleX(1.15)}
 }
 
 /* =========================
@@ -645,193 +576,131 @@ nav a:hover{
 }
 
 /* =========================
-   SUOR
+   BALÃO DE FALA
 ========================= */
 
-.barber-sweat{
+.barber-speech{
     position:absolute;
-    width:7px;
-    height:13px;
-    background:#73d8ff;
-    border-radius:70% 30% 70% 30%;
+    left:88px;
+    top:-18px;
+    min-width:225px;
+    max-width:260px;
+    padding:14px 17px;
+    border:1px solid rgba(215,173,85,.55);
+    border-radius:16px 16px 16px 4px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,25,25,.96),
+            rgba(8,8,8,.96)
+        );
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.55),
+        0 0 25px rgba(215,173,85,.12),
+        inset 0 0 20px rgba(215,173,85,.025);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
     opacity:0;
-    transform:translateY(0) rotate(15deg);
-    filter:drop-shadow(0 0 5px rgba(115,216,255,.7));
+    visibility:hidden;
+    transform:translateY(10px) scale(.82);
+    transform-origin:left bottom;
+    transition:
+        opacity .35s ease,
+        transform .45s cubic-bezier(.2,.9,.2,1),
+        visibility .35s ease;
+    pointer-events:none;
+    z-index:20;
 }
 
-.sweat-one{
-    left:27px;
-    top:45px;
+.barber-speech::before{
+    content:"";
+    position:absolute;
+    left:10px;
+    bottom:-9px;
+    width:18px;
+    height:18px;
+    background:#0b0b0b;
+    border-left:1px solid rgba(215,173,85,.55);
+    border-bottom:1px solid rgba(215,173,85,.55);
+    transform:rotate(-45deg);
 }
 
-.sweat-two{
-    left:76px;
-    top:51px;
-    width:6px;
-    height:11px;
+.barber-speech::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    background:
+        linear-gradient(
+            110deg,
+            transparent 0%,
+            rgba(244,210,122,.08) 45%,
+            transparent 60%
+        );
+    transform:translateX(-120%);
+    animation:none;
+    pointer-events:none;
 }
 
-.sweat-three{
-    left:20px;
-    top:64px;
-    width:5px;
-    height:9px;
+.barber-speech.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0) scale(1);
 }
 
-.barber-tired .barber-sweat{
-    animation:sweatDrop 1.2s ease-in infinite;
+.barber-speech.show::after{
+    animation:speechShine 1.4s ease forwards;
 }
 
-.barber-tired .sweat-two{
-    animation-delay:.35s;
-}
-
-.barber-tired .sweat-three{
-    animation-delay:.7s;
-}
-
-@keyframes sweatDrop{
-
-    0%{
-        opacity:0;
-        transform:translateY(-4px) scale(.6) rotate(15deg);
+@keyframes speechShine{
+    from{
+        transform:translateX(-120%);
     }
 
-    20%{
+    to{
+        transform:translateX(120%);
+    }
+}
+
+.barber-speech-label{
+    display:block;
+    margin-bottom:5px;
+    color:var(--gold2);
+    font-size:8px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-weight:bold;
+}
+
+.barber-speech-text{
+    display:block;
+    color:#f7f3e9;
+    font-family:Georgia,serif;
+    font-size:15px;
+    line-height:1.35;
+    letter-spacing:.1px;
+    min-height:40px;
+}
+
+.barber-speech-text.typing::after{
+    content:"";
+    display:inline-block;
+    width:2px;
+    height:15px;
+    margin-left:3px;
+    vertical-align:-2px;
+    background:var(--gold2);
+    animation:typingCursor .7s infinite;
+}
+
+@keyframes typingCursor{
+    0%,45%{
         opacity:1;
     }
 
-    100%{
+    46%,100%{
         opacity:0;
-        transform:translateY(24px) scale(.9) rotate(15deg);
     }
-
-}
-
-/* =========================
-   RESPIRAÇÃO
-========================= */
-
-.tired-breath{
-    position:absolute;
-    left:50%;
-    bottom:46px;
-    width:30px;
-    height:18px;
-    border-radius:50%;
-    border:1px solid rgba(255,255,255,.28);
-    opacity:0;
-    transform:translateX(-50%) scale(.5);
-}
-
-.barber-tired .tired-breath{
-    animation:breath .8s ease-out infinite;
-}
-
-@keyframes breath{
-
-    0%{
-        opacity:0;
-        transform:translateX(-50%) scale(.45);
-    }
-
-    35%{
-        opacity:.55;
-    }
-
-    100%{
-        opacity:0;
-        transform:translateX(-50%) translateY(-15px) scale(1.5);
-    }
-
-}
-
-/* =========================
-   ROSTO CANSADO
-========================= */
-
-.tired-face{
-    opacity:0;
-}
-
-.barber-tired .tired-face{
-    opacity:1;
-}
-
-.barber-tired .normal-face{
-    opacity:.25;
-}
-
-.barber-tired .barber-body{
-    animation:tiredBody .55s infinite alternate ease-in-out;
-}
-
-@keyframes tiredBody{
-
-    from{
-        transform:translateY(1px) rotate(-3deg);
-    }
-
-    to{
-        transform:translateY(5px) rotate(3deg);
-    }
-
-}
-
-/* =========================
-   ROSTO VERMELHO
-========================= */
-
-.tired-blush{
-    opacity:0;
-}
-
-.barber-tired .tired-blush{
-    opacity:1;
-    animation:blushPulse .8s ease-in-out infinite alternate;
-}
-
-@keyframes blushPulse{
-
-    from{
-        opacity:.42;
-    }
-
-    to{
-        opacity:.75;
-    }
-
-}
-
-/* =========================
-   BARRIGA ESTUFANDO
-========================= */
-
-.tired-belly{
-    opacity:0;
-    transform-box:view-box;
-    transform-origin:50px 101px;
-}
-
-.barber-tired .tired-belly{
-    opacity:.9;
-    animation:bellyBreathing .8s ease-in-out infinite;
-}
-
-@keyframes bellyBreathing{
-
-    0%{
-        transform:translate(0,0) scale(1,1);
-    }
-
-    45%{
-        transform:translate(0,1px) scale(1.13,1.08);
-    }
-
-    100%{
-        transform:translate(0,0) scale(1,1);
-    }
-
 }
 
 /* =========================
@@ -1003,8 +872,6 @@ section{
 .barbers{
     background:
         radial-gradient(circle at 50% 50%,rgba(215,173,85,.035),transparent 50%);
-    
-    /* REMOVIDO O ESPAÇO/MOLDURA INFERIOR */
     padding-bottom:35px;
 }
 
@@ -1022,8 +889,6 @@ section{
     background:#090909;
 }
 
-/* Remove o fechamento visual inferior do último card,
-   onde fica o Lucas */
 .barber-card:last-child{
     border-bottom-color:transparent;
 }
@@ -1645,6 +1510,18 @@ footer{
     .mini-barber-shadow{
         transform:translateX(-50%) scale(.8);
     }
+
+    .barber-speech{
+        left:74px;
+        top:-12px;
+        min-width:205px;
+        max-width:230px;
+        padding:12px 14px;
+    }
+
+    .barber-speech-text{
+        font-size:13px;
+    }
 }
 
 @media(max-width:450px){
@@ -1668,6 +1545,12 @@ footer{
     .times{
         grid-template-columns:repeat(2,1fr);
     }
+
+    .barber-speech{
+        left:65px;
+        min-width:190px;
+        max-width:205px;
+    }
 }
 </style>
 </head>
@@ -1681,6 +1564,11 @@ footer{
 ========================================================= -->
 
 <div class="mini-barber-wrap" id="miniBarberWrap">
+
+    <div class="barber-speech" id="barberSpeech">
+        <span class="barber-speech-label">NERO BARBER</span>
+        <span class="barber-speech-text" id="barberSpeechText"></span>
+    </div>
 
     <div class="mini-barber" id="miniBarber">
 
@@ -1809,7 +1697,6 @@ footer{
                 />
 
                 <ellipse
-                    class="tired-belly"
                     cx="50"
                     cy="101"
                     rx="15"
@@ -2047,22 +1934,6 @@ footer{
                     stroke-width="1"
                 />
 
-                <circle
-                    class="tired-blush"
-                    cx="36"
-                    cy="51"
-                    r="7"
-                    fill="#e85b4a"
-                />
-
-                <circle
-                    class="tired-blush"
-                    cx="64"
-                    cy="51"
-                    r="7"
-                    fill="#e85b4a"
-                />
-
                 <path
                     d="M29 43
                        Q27 17 50 14
@@ -2107,52 +1978,9 @@ footer{
 
                 </g>
 
-                <g class="tired-face">
-
-                    <path
-                        d="M38 45 Q42 42 46 45"
-                        stroke="#111"
-                        stroke-width="2"
-                        fill="none"
-                    />
-
-                    <path
-                        d="M54 45 Q58 42 62 45"
-                        stroke="#111"
-                        stroke-width="2"
-                        fill="none"
-                    />
-
-                    <path
-                        d="M44 57 Q50 54 56 57"
-                        stroke="#111"
-                        stroke-width="2"
-                        fill="none"
-                    />
-
-                    <path
-                        d="M37 49 L45 51"
-                        stroke="#8f672b"
-                        stroke-width="1"
-                    />
-
-                    <path
-                        d="M55 51 L63 49"
-                        stroke="#8f672b"
-                        stroke-width="1"
-                    />
-
-                </g>
-
             </g>
 
         </svg>
-
-        <span class="barber-sweat sweat-one"></span>
-        <span class="barber-sweat sweat-two"></span>
-        <span class="barber-sweat sweat-three"></span>
-
-        <span class="tired-breath"></span>
 
     </div>
 
@@ -3050,6 +2878,11 @@ document.addEventListener(
 
 /* =========================================================
    MINI BARBER
+   NOVO SISTEMA:
+   - PARADO
+   - ACOMPANHA O SCROLL
+   - CLIQUE = ACENO
+   - SEM MOVIMENTO LATERAL
 ========================================================= */
 
 const miniBarberWrap =
@@ -3068,101 +2901,17 @@ let barberX =
 let barberY =
     window.innerHeight * .72;
 
-let targetX =
-    barberX;
+let isWaving =
+    false;
 
-let targetY =
-    barberY;
+let wavePrepTimer =
+    null;
 
-let velocityX = 0;
-let velocityY = 0;
+let waveTimer =
+    null;
 
-let running = false;
-
-let tiredTimer = null;
-
-let moveTimer = null;
-
-let waveTimer = null;
-
-let wavePrepTimer = null;
-
-let waveReturnTimer = null;
-
-let isWaving = false;
-
-let lastScrollY =
-    window.scrollY;
-
-let scrollTargetTimeout = null;
-
-let tiredOnArrival = false;
-
-
-/* =========================================================
-   CONTROLE DE INATIVIDADE
-========================================================= */
-
-let idleWaveTimer = null;
-
-const IDLE_WAVE_DELAY = 12000;
-
-
-/* =========================================================
-   NOVO SISTEMA DE MOVIMENTO AUTOMÁTICO
-========================================================= */
-
-let automaticMoveTimer = null;
-
-const AUTOMATIC_MOVE_DELAY = 5200;
-
-
-/* =========================================================
-   CLAMP
-========================================================= */
-
-function clamp(
-    value,
-    min,
-    max
-){
-
-    return Math.max(
-        min,
-        Math.min(
-            max,
-            value
-        )
-    );
-
-}
-
-
-/* =========================================================
-   LIMITES
-========================================================= */
-
-function getBarberBounds(){
-
-    const width =
-        window.innerWidth;
-
-    const height =
-        window.innerHeight;
-
-    return {
-
-        minX:70,
-
-        maxX:width - 70,
-
-        minY:85,
-
-        maxY:height - 75
-
-    };
-
-}
+let waveReturnTimer =
+    null;
 
 
 /* =========================================================
@@ -3182,50 +2931,40 @@ function setBarberPosition(){
 
 
 /* =========================================================
-   DISTÂNCIA
+   LIMITES VERTICAIS
 ========================================================= */
 
-function distanceToTarget(){
+function getBarberBounds(){
 
-    return Math.hypot(
-        targetX - barberX,
-        targetY - barberY
-    );
+    return {
+
+        minY:95,
+
+        maxY:
+            window.innerHeight - 90
+
+    };
 
 }
 
 
 /* =========================================================
-   TIMER DE ACENO POR INATIVIDADE
+   MANTER PERSONAGEM NA TELA
 ========================================================= */
 
-function resetIdleWaveTimer(){
+function clampBarberY(){
 
-    clearTimeout(
-        idleWaveTimer
-    );
+    const bounds =
+        getBarberBounds();
 
-    idleWaveTimer =
-        setTimeout(()=>{
-
-            if(
-                !running &&
-                !isWaving &&
-                !document.hidden &&
-                !miniBarber.classList.contains(
-                    "barber-tired"
-                )
-            ){
-
-                startWave();
-
-            }else{
-
-                resetIdleWaveTimer();
-
-            }
-
-        },IDLE_WAVE_DELAY);
+    barberY =
+        Math.max(
+            bounds.minY,
+            Math.min(
+                bounds.maxY,
+                barberY
+            )
+        );
 
 }
 
@@ -3289,299 +3028,7 @@ function cancelWave(){
 
 
 /* =========================================================
-   CANSADO
-========================================================= */
-
-function makeBarberTired(){
-
-    clearTimeout(
-        tiredTimer
-    );
-
-    cancelWave();
-
-    miniBarber.classList.remove(
-        "barber-running"
-    );
-
-    miniBarber.classList.add(
-        "barber-tired"
-    );
-
-    clearTimeout(
-        idleWaveTimer
-    );
-
-    tiredTimer =
-        setTimeout(()=>{
-
-            miniBarber.classList.remove(
-                "barber-tired"
-            );
-
-            resetIdleWaveTimer();
-
-        },2300);
-
-}
-
-
-/* =========================================================
-   CORRER
-========================================================= */
-
-function startBarberRun(){
-
-    if(
-        isWaving ||
-        miniBarber.classList.contains(
-            "barber-waving"
-        ) ||
-        miniBarber.classList.contains(
-            "barber-wave-prep"
-        )
-    ){
-
-        cancelWave();
-
-    }
-
-    clearTimeout(
-        idleWaveTimer
-    );
-
-
-    if(!running){
-
-        running = true;
-
-        miniBarber.classList.remove(
-            "barber-tired"
-        );
-
-        miniBarber.classList.add(
-            "barber-running"
-        );
-
-    }
-
-    clearTimeout(
-        moveTimer
-    );
-
-}
-
-
-/* =========================================================
-   NOVO DESTINO
-========================================================= */
-
-function setBarberTarget(
-    x,
-    y,
-    showTired=false
-){
-
-    const bounds =
-        getBarberBounds();
-
-
-    targetX =
-        clamp(
-            x,
-            bounds.minX,
-            bounds.maxX
-        );
-
-
-    targetY =
-        clamp(
-            y,
-            bounds.minY,
-            bounds.maxY
-        );
-
-
-    tiredOnArrival =
-        showTired;
-
-
-    startBarberRun();
-
-
-    clearTimeout(
-        moveTimer
-    );
-
-}
-
-
-/* =========================================================
-   ANIMAÇÃO PRINCIPAL
-========================================================= */
-
-function animateBarber(){
-
-    const dx =
-        targetX - barberX;
-
-    const dy =
-        targetY - barberY;
-
-    const distance =
-        Math.hypot(
-            dx,
-            dy
-        );
-
-
-    if(distance > 4){
-
-        const speed =
-            Math.min(
-                18,
-                4 + distance * .035
-            );
-
-
-        velocityX +=
-            (
-                dx / distance * speed
-                - velocityX
-            ) * .18;
-
-
-        velocityY +=
-            (
-                dy / distance * speed
-                - velocityY
-            ) * .18;
-
-
-        barberX +=
-            velocityX;
-
-        barberY +=
-            velocityY;
-
-
-        miniBarber.classList.add(
-            "barber-running"
-        );
-
-
-    }else{
-
-        velocityX *= .72;
-
-        velocityY *= .72;
-
-
-        if(
-            Math.abs(velocityX) < .15 &&
-            Math.abs(velocityY) < .15
-        ){
-
-            velocityX = 0;
-            velocityY = 0;
-
-
-            if(running){
-
-                running = false;
-
-                miniBarber.classList.remove(
-                    "barber-running"
-                );
-
-
-                if(tiredOnArrival){
-
-                    tiredOnArrival = false;
-
-                    makeBarberTired();
-
-                }else{
-
-                    resetIdleWaveTimer();
-
-                }
-
-            }
-
-        }
-
-    }
-
-
-    setBarberPosition();
-
-
-    requestAnimationFrame(
-        animateBarber
-    );
-
-}
-
-animateBarber();
-
-
-/* =========================================================
-   SEGUIR CURSOR
-========================================================= */
-
-let cursorFollowTimer = null;
-
-
-document.addEventListener(
-    "mousemove",
-    function(e){
-
-        if(
-            e.target.closest(
-                "#miniBarberWrap"
-            )
-        ){
-
-            return;
-
-        }
-
-
-        clearTimeout(
-            cursorFollowTimer
-        );
-
-
-        cursorFollowTimer =
-            setTimeout(()=>{
-
-                if(
-                    isWaving ||
-                    miniBarber.classList.contains(
-                        "barber-tired"
-                    )
-                ){
-
-                    return;
-
-                }
-
-
-                setBarberTarget(
-                    e.clientX,
-                    e.clientY,
-                    false
-                );
-
-            },90);
-
-    }
-);
-
-
-/* =========================================================
-   CLIQUE DIRETO NO PERSONAGEM
+   CLIQUE NO PERSONAGEM
 ========================================================= */
 
 miniBarberWrap.addEventListener(
@@ -3591,273 +3038,16 @@ miniBarberWrap.addEventListener(
         e.preventDefault();
         e.stopPropagation();
 
-
-        if(document.hidden){
-
-            return;
-
-        }
-
-
-        clearTimeout(
-            idleWaveTimer
-        );
-
-
-        if(isWaving){
+        if(
+            isWaving ||
+            document.hidden
+        ){
 
             return;
 
         }
-
-
-        running = false;
-
-        velocityX = 0;
-        velocityY = 0;
-
-        targetX = barberX;
-        targetY = barberY;
-
-        tiredOnArrival = false;
-
-
-        miniBarber.classList.remove(
-            "barber-running"
-        );
-
-        miniBarber.classList.remove(
-            "barber-tired"
-        );
-
 
         startWave();
-
-    }
-);
-
-
-/* =========================================================
-   CLIQUE FORA DO PERSONAGEM
-========================================================= */
-
-document.addEventListener(
-    "pointerdown",
-    function(e){
-
-        if(
-            e.target.closest(
-                "#miniBarberWrap"
-            )
-        ){
-
-            return;
-
-        }
-
-
-        if(
-            e.target.closest(
-                ".modal-box"
-            )
-        ){
-
-            return;
-
-        }
-
-
-        setBarberTarget(
-            e.clientX,
-            e.clientY,
-            false
-        );
-
-    }
-);
-
-
-/* =========================================================
-   TOQUE
-========================================================= */
-
-document.addEventListener(
-    "touchstart",
-    function(e){
-
-        if(
-            !e.touches ||
-            !e.touches[0]
-        ){
-
-            return;
-
-        }
-
-
-        if(
-            e.target.closest &&
-            e.target.closest(
-                "#miniBarberWrap"
-            )
-        ){
-
-            return;
-
-        }
-
-
-        const touch =
-            e.touches[0];
-
-
-        setBarberTarget(
-            touch.clientX,
-            touch.clientY,
-            false
-        );
-
-    },
-    {
-        passive:true
-    }
-);
-
-
-/* =========================================================
-   SCROLL
-========================================================= */
-
-window.addEventListener(
-    "scroll",
-    function(){
-
-        const currentScroll =
-            window.scrollY;
-
-
-        const difference =
-            currentScroll -
-            lastScrollY;
-
-
-        lastScrollY =
-            currentScroll;
-
-
-        const bounds =
-            getBarberBounds();
-
-
-        if(
-            Math.abs(difference) > 1
-        ){
-
-            clearTimeout(
-                idleWaveTimer
-            );
-
-
-            const destinationY =
-                difference > 0
-                    ? bounds.maxY - 10
-                    : bounds.minY + 10;
-
-
-            const destinationX =
-                clamp(
-                    barberX +
-                    (
-                        difference > 0
-                            ? 90
-                            : -90
-                    ),
-                    bounds.minX,
-                    bounds.maxX
-                );
-
-
-            setBarberTarget(
-                destinationX,
-                destinationY,
-                true
-            );
-
-
-            clearTimeout(
-                scrollTargetTimeout
-            );
-
-
-            scrollTargetTimeout =
-                setTimeout(()=>{
-
-                    const finalX =
-                        window.innerWidth *
-                        .78;
-
-
-                    const finalY =
-                        window.innerHeight *
-                        .72;
-
-
-                    setBarberTarget(
-                        finalX,
-                        finalY,
-                        true
-                    );
-
-                },650);
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   REDIMENSIONAMENTO
-========================================================= */
-
-window.addEventListener(
-    "resize",
-    function(){
-
-        const bounds =
-            getBarberBounds();
-
-
-        barberX =
-            clamp(
-                barberX,
-                bounds.minX,
-                bounds.maxX
-            );
-
-
-        barberY =
-            clamp(
-                barberY,
-                bounds.minY,
-                bounds.maxY
-            );
-
-
-        targetX =
-            clamp(
-                targetX,
-                bounds.minX,
-                bounds.maxX
-            );
-
-
-        targetY =
-            clamp(
-                targetY,
-                bounds.minY,
-                bounds.maxY
-            );
 
     }
 );
@@ -3871,10 +3061,7 @@ function startWave(){
 
     if(
         document.hidden ||
-        isWaving ||
-        miniBarber.classList.contains(
-            "barber-tired"
-        )
+        isWaving
     ){
 
         return;
@@ -3882,10 +3069,12 @@ function startWave(){
     }
 
 
-    isWaving = true;
+    isWaving =
+        true;
+
 
     clearTimeout(
-        idleWaveTimer
+        wavePrepTimer
     );
 
     clearTimeout(
@@ -3893,25 +3082,17 @@ function startWave(){
     );
 
     clearTimeout(
-        wavePrepTimer
-    );
-
-    clearTimeout(
         waveReturnTimer
     );
 
 
-    running = false;
-
-    velocityX = 0;
-    velocityY = 0;
-
-    targetX = barberX;
-    targetY = barberY;
-
-
     miniBarber.classList.remove(
-        "barber-running"
+        "barber-waving"
+    );
+
+
+    miniBarber.classList.add(
+        "barber-wave-prep"
     );
 
 
@@ -3925,11 +3106,6 @@ function startWave(){
 
     clipperTool.classList.remove(
         "clipper-in-hand"
-    );
-
-
-    miniBarber.classList.add(
-        "barber-wave-prep"
     );
 
 
@@ -3989,17 +3165,14 @@ function startWave(){
                                     "clipper-in-hand"
                                 );
 
-                                isWaving = false;
-
-                                resetIdleWaveTimer();
+                                isWaving =
+                                    false;
 
                             },420);
 
                         },180);
 
-
                 },1650);
-
 
         },420);
 
@@ -4007,105 +3180,291 @@ function startWave(){
 
 
 /* =========================================================
-   INATIVIDADE
+   SCROLL
+   O PERSONAGEM ACOMPANHA O SCROLL
+   SEM ANDAR
 ========================================================= */
 
-resetIdleWaveTimer();
+let lastScrollY =
+    window.scrollY;
+
+let scrollAnimationFrame =
+    null;
+
+let scrollDelta =
+    0;
+
+
+window.addEventListener(
+    "scroll",
+    function(){
+
+        const currentScroll =
+            window.scrollY;
+
+
+        const difference =
+            currentScroll -
+            lastScrollY;
+
+
+        lastScrollY =
+            currentScroll;
+
+
+        /*
+           O personagem acompanha verticalmente
+           o gesto do scroll.
+
+           Não existe corrida.
+           Não existe destino.
+           Não existe movimento lateral.
+        */
+
+        if(
+            Math.abs(difference) > 0
+        ){
+
+            /*
+               Scroll para baixo:
+               personagem acompanha para baixo.
+
+               Scroll para cima:
+               personagem acompanha para cima.
+            */
+
+            scrollDelta +=
+                difference * .42;
+
+
+            scrollDelta =
+                Math.max(
+                    -170,
+                    Math.min(
+                        170,
+                        scrollDelta
+                    )
+                );
+
+        }
+
+    },
+    {
+        passive:true
+    }
+);
 
 
 /* =========================================================
-   MOVIMENTO AUTOMÁTICO CONTÍNUO
+   ANIMAÇÃO SUAVE DO SCROLL
 ========================================================= */
 
-function scheduleAutomaticMovement(){
+function animateScrollBarber(){
 
-    clearTimeout(
-        automaticMoveTimer
-    );
+    /*
+       Retorna suavemente para a posição central
+       depois do movimento do scroll.
+
+       Isso cria o efeito de personagem "colado",
+       sem parecer que está correndo.
+    */
+
+    barberY +=
+        scrollDelta * .075;
 
 
-    automaticMoveTimer =
-        setTimeout(()=>{
+    scrollDelta *=
+        .82;
 
-            automaticBarberMovement();
 
-        },AUTOMATIC_MOVE_DELAY);
+    clampBarberY();
+
+
+    setBarberPosition();
+
+
+    scrollAnimationFrame =
+        requestAnimationFrame(
+            animateScrollBarber
+        );
 
 }
 
+animateScrollBarber();
 
-function automaticBarberMovement(){
 
-    if(
-        document.hidden ||
-        isWaving ||
-        miniBarber.classList.contains(
-            "barber-tired"
-        )
-    ){
+/* =========================================================
+   REDIMENSIONAMENTO
+========================================================= */
 
-        scheduleAutomaticMovement();
+window.addEventListener(
+    "resize",
+    function(){
 
-        return;
+        barberX =
+            window.innerWidth > 700
+                ? window.innerWidth * .78
+                : window.innerWidth * .72;
+
+
+        clampBarberY();
+
+
+        setBarberPosition();
 
     }
+);
 
 
-    const bounds =
-        getBarberBounds();
+/* =========================================================
+   BALÃO DE FALA
+========================================================= */
 
+const barberSpeech =
+    document.getElementById(
+        "barberSpeech"
+    );
 
-    let randomX;
-    let randomY;
-
-    let attempts = 0;
-
-
-    do{
-
-        randomX =
-            bounds.minX +
-            Math.random() *
-            (
-                bounds.maxX -
-                bounds.minX
-            );
-
-
-        randomY =
-            bounds.minY +
-            Math.random() *
-            (
-                bounds.maxY -
-                bounds.minY
-            );
-
-
-        attempts++;
-
-    }while(
-        Math.hypot(
-            randomX - barberX,
-            randomY - barberY
-        ) < 150 &&
-        attempts < 10
+const barberSpeechText =
+    document.getElementById(
+        "barberSpeechText"
     );
 
 
-    setBarberTarget(
-        randomX,
-        randomY,
-        false
+const speechMessage =
+    "E aí, vamos ficar mais bonito?";
+
+
+let speechTimer =
+    null;
+
+let speechTypingTimer =
+    null;
+
+let speechHideTimer =
+    null;
+
+
+/* =========================================================
+   MOSTRAR BALÃO
+========================================================= */
+
+function showBarberSpeech(){
+
+    clearInterval(
+        speechTypingTimer
+    );
+
+    clearTimeout(
+        speechHideTimer
     );
 
 
-    scheduleAutomaticMovement();
+    barberSpeechText.textContent =
+        "";
+
+    barberSpeechText.classList.add(
+        "typing"
+    );
+
+
+    barberSpeech.classList.add(
+        "show"
+    );
+
+
+    let index =
+        0;
+
+
+    speechTypingTimer =
+        setInterval(()=>{
+
+            barberSpeechText.textContent =
+                speechMessage.slice(
+                    0,
+                    index + 1
+                );
+
+
+            index++;
+
+
+            if(
+                index >= speechMessage.length
+            ){
+
+                clearInterval(
+                    speechTypingTimer
+                );
+
+                barberSpeechText.classList.remove(
+                    "typing"
+                );
+
+            }
+
+        },42);
+
+
+    speechHideTimer =
+        setTimeout(()=>{
+
+            barberSpeech.classList.remove(
+                "show"
+            );
+
+        },4500);
 
 }
 
 
 /* =========================================================
-   PAUSAR/RETOMAR
+   FALA A CADA 6 SEGUNDOS
+========================================================= */
+
+function startSpeechLoop(){
+
+    clearInterval(
+        speechTimer
+    );
+
+
+    speechTimer =
+        setInterval(()=>{
+
+            if(
+                document.hidden
+            ){
+
+                return;
+
+            }
+
+
+            showBarberSpeech();
+
+        },6000);
+
+}
+
+
+/* =========================================================
+   PRIMEIRA FALA
+========================================================= */
+
+setTimeout(()=>{
+
+    showBarberSpeech();
+
+},1800);
+
+
+startSpeechLoop();
+
+
+/* =========================================================
+   VISIBILIDADE
 ========================================================= */
 
 document.addEventListener(
@@ -4114,15 +3473,13 @@ document.addEventListener(
 
         if(document.hidden){
 
-            clearTimeout(
-                automaticMoveTimer
+            clearInterval(
+                speechTimer
             );
 
         }else{
 
-            scheduleAutomaticMovement();
-
-            resetIdleWaveTimer();
+            startSpeechLoop();
 
         }
 
@@ -5091,21 +4448,10 @@ setTimeout(()=>{
         window.innerHeight * .72;
 
 
-    targetX =
-        barberX;
-
-
-    targetY =
-        barberY;
+    clampBarberY();
 
 
     setBarberPosition();
-
-
-    resetIdleWaveTimer();
-
-
-    scheduleAutomaticMovement();
 
 },100);
 
@@ -5118,14 +4464,9 @@ window.addEventListener(
     "focus",
     function(){
 
-        if(
-            !automaticMoveTimer &&
-            !document.hidden
-        ){
+        clampBarberY();
 
-            scheduleAutomaticMovement();
-
-        }
+        setBarberPosition();
 
     }
 );

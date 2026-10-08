@@ -237,8 +237,13 @@ nav a:hover{
 }
 
 @keyframes ringRotate{
-    from{transform:translateY(-50%) rotate(0deg)}
-    to{transform:translateY(-50%) rotate(360deg)}
+    from{
+        transform:translateY(-50%) rotate(0deg)
+    }
+
+    to{
+        transform:translateY(-50%) rotate(360deg)
+    }
 }
 
 .hero-content{
@@ -390,12 +395,6 @@ nav a:hover{
     transform:translate3d(0,0,0);
     will-change:transform;
 }
-
-/*
-   O personagem agora fica parado.
-   O JavaScript apenas altera a posição vertical
-   quando o usuário movimenta o scroll.
-*/
 
 .mini-barber-shadow{
     position:absolute;
@@ -926,53 +925,13 @@ section{
 ========================= */
 
 .story{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:80px;
-    align-items:center;
-    padding-top:35px;
+    display:block;
+    padding-top:45px;
+    padding-bottom:120px;
 }
 
-.story-visual{
-    min-height:500px;
-    position:relative;
-    border:1px solid rgba(215,173,85,.12);
-    background:
-        radial-gradient(circle at 50% 50%,rgba(215,173,85,.08),transparent 50%),
-        #090909;
-    overflow:hidden;
-}
-
-.story-visual::before{
-    content:"N";
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:Georgia,serif;
-    font-size:300px;
-    color:rgba(215,173,85,.035);
-}
-
-.story-ring{
-    position:absolute;
-    width:280px;
-    height:280px;
-    border-radius:50%;
-    border:1px solid rgba(215,173,85,.2);
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-}
-
-.story-ring::before{
-    content:"";
-    position:absolute;
-    inset:25px;
-    border:1px dashed rgba(215,173,85,.14);
-    border-radius:50%;
-    animation:ringRotate 15s linear infinite reverse;
+.story-content{
+    max-width:850px;
 }
 
 .story-content p{
@@ -980,6 +939,7 @@ section{
     line-height:2;
     font-size:14px;
     margin:25px 0;
+    max-width:700px;
 }
 
 .story-list{
@@ -1443,13 +1403,13 @@ footer{
     }
 
     .story{
-        grid-template-columns:1fr;
-        gap:40px;
+        display:block;
         padding-top:35px;
+        padding-bottom:90px;
     }
 
-    .story-visual{
-        min-height:330px;
+    .story-content{
+        max-width:none;
     }
 
     .cta{
@@ -1527,7 +1487,9 @@ footer{
     }
 
     .story{
+        display:block;
         padding-top:35px;
+        padding-bottom:90px;
     }
 }
 </style>
@@ -2327,12 +2289,6 @@ footer{
 </section>
 
 <section class="section story" id="historia">
-
-    <div class="story-visual reveal">
-
-        <div class="story-ring"></div>
-
-    </div>
 
     <div class="story-content reveal">
 
